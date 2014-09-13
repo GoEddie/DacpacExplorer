@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    attributeFormDefault="unqualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02"
+    xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation>
+            The following schema for Microsoft SQL Server describes the parts of a dacpac package in XML format.
+            Microsoft does not make any representation or warranty regarding the schema or any product or item
+            developed based on the schema. The schema is provided to you on an AS IS basis. Microsoft disclaims all express,
+            implied and statutory warranties, including but not limited to the implied warranties of merchantability, fitness
+            for a particular purpose, and freedom from infringement. Without limiting the generality of the foregoing, Microsoft
+            does not make any warranty of any kind that any item developed based on the schema, or any portion of the schema,
+            will not infringe any copyright, patent, trade secret, or other intellectual property right of any person or entity
+            in any country. It is your responsibility to seek licenses for such intellectual property rights where appropriate.
+            MICROSOFT SHALL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING OUT OF OR IN CONNECTION WITH THE USE OF THE SCHEMA,
+            INCLUDING WITHOUT LIMITATION, ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL (INCLUDING ANY LOST PROFITS), PUNITIVE
+            OR SPECIAL DAMAGES, WHETHER OR NOT MICROSOFT HAS BEEN ADVISED OF SUCH DAMAGES. (c) 2012 Microsoft Corporation. All
+            rights reserved.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="DataSchemaModel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Header" type="HeaderType" minOccurs="0"/>
+                <xs:element name="Model" type="ModelType"/>
+            </xs:sequence>
+            <xs:attribute name="FileFormatVersion" type="xs:decimal" use="required" />
+            <xs:attribute name="SchemaVersion" type="xs:decimal" use="required" />
+            <xs:attribute name="DspName" type="xs:string" use="required" />
+            <xs:attribute name="CollationLcid" type="xs:unsignedShort" use="required" />
+            <xs:attribute name="CollationCaseSensitive" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="HeaderType">
+        <xs:sequence>
+            <xs:element name="CustomData" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Metadata" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Name" type="xs:string" use="required"/>
+                                <xs:attribute name="Value" type="xs:string" use="optional"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="Category" type="xs:string" use="required"/>
+                    <xs:attribute name="Type" type="xs:string" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ModelType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Unattached">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Annotation" type="AnnotationType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Annotation" type="AnnotationType"/>
+            <xs:element name="AttachedAnnotation" type="AnnotationReferenceType"/>
+            <xs:element name="Element" type="ElementType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="PropertyType">
+        <xs:sequence>
+            <xs:element name="Value" minOccurs="0">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="QuotedIdentifiers" type="xs:boolean" use="optional"/>
+                            <xs:attribute name="AnsiNulls" type="xs:boolean" use="optional"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="required"/>
+        <xs:attribute name="Value" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="AnnotationType">
+        <xs:sequence>
+            <xs:element name="Property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="Type" type="xs:string" use="required"/>
+        <xs:attribute name="Name" type="xs:string" use="optional"/>
+        <xs:attribute name="Disambiguator" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="AnnotationReferenceType">
+        <xs:attribute name="Disambiguator" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="ElementType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Property" type="PropertyType"/>
+            <xs:element name="Relationship" type="RelationshipType"/>
+            <xs:element name="Annotation" type="AnnotationType"/>
+            <xs:element name="AttachedAnnotation" type="AnnotationReferenceType"/>
+            <xs:element name="Position" type="PositionType"/>
+        </xs:choice>
+
+        <xs:attribute name="Type" type="xs:string" use="required"/>
+        <xs:attribute name="Name" type="xs:string" use="optional"/>
+        <xs:attribute name="Disambiguator" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="RelationshipType">
+        <xs:sequence>
+            <xs:element name="Entry" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="References" type="ReferencesType"/>
+                        <xs:element name="Element" type="ElementType"/>
+                        <xs:element name="Annotation" type="AnnotationType"/>
+                        <xs:element name="AttachedAnnotation" type="AnnotationReferenceType"/>
+                        <xs:element name="Position" type="PositionType"/>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="ReferencesType">
+        <xs:attribute name="ExternalSource" type="xs:string" use="optional"/>
+        <xs:attribute name="Name" type="xs:string" use="optional"/>
+        <xs:attribute name="Type" type="xs:string" use="optional"/>
+        <xs:attribute name="Disambiguator" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="PositionType">
+        <xs:attribute name="IsPrimary" type="xs:string" use="required"/>
+        <xs:attribute name="Offset" type="xs:int" use="required"/>
+        <xs:attribute name="Length" type="xs:int" use="required"/>
+        <xs:attribute name="Line" type="xs:int" use="required"/>
+        <xs:attribute name="Column" type="xs:int" use="required"/>
+        <xs:attribute name="SourceName" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <xs:element name="DacType">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="Version" type="xs:string"/>
+                <xs:element name="Description" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DacOrigin">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PackageProperties">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Version" type="xs:string"/>
+                            <xs:element name="ContainsExportedData" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Operation" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Identity" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Start" type="xs:string" minOccurs="0"/>
+                            <xs:element name="End" type="xs:string" minOccurs="0"/>
+                            <xs:element name="ProductName" type="xs:string" minOccurs="0"/>
+                            <xs:element name="ProductVersion" type="xs:string" minOccurs="0"/>
+                            <xs:element name="ProductSchema" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Server" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ServerVersion" type="xs:string" minOccurs="0"/>
+                            <xs:element name="ObjectCounts" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element name="Aggregate" type="xs:int"/>
+                                        <xs:element name="ApplicationRole" type="xs:int"/>
+                                        <xs:element name="Assembly" type="xs:int"/>
+                                        <xs:element name="AssemblyFile" type="xs:int"/>
+                                        <xs:element name="AssemblySource" type="xs:int"/>
+                                        <xs:element name="AsymmetricKey" type="xs:int"/>
+                                        <xs:element name="AuditAction" type="xs:int"/>
+                                        <xs:element name="AuditActionGroup" type="xs:int"/>
+                                        <xs:element name="AuditActionSpecification" type="xs:int"/>
+                                        <xs:element name="BrokerPriority" type="xs:int"/>
+                                        <xs:element name="BuiltInServerRole" type="xs:int"/>
+                                        <xs:element name="BuiltInType" type="xs:int"/>
+                                        <xs:element name="Certificate" type="xs:int"/>
+                                        <xs:element name="CheckConstraint" type="xs:int"/>
+                                        <xs:element name="ClrFunctionImplementation" type="xs:int"/>
+                                        <xs:element name="ClrFunctionOrderedColumnSpecification" type="xs:int"/>
+                                        <xs:element name="ClrMethod" type="xs:int"/>
+                                        <xs:element name="ClrMethodParameter" type="xs:int"/>
+                                        <xs:element name="ClrProperty" type="xs:int"/>
+                                        <xs:element name="ColumnSet" type="xs:int"/>
+                                        <xs:element name="ColumnStoreIndex" type="xs:int"/>
+                                        <xs:element name="ComputedColumn" type="xs:int"/>
+                                        <xs:element name="Contract" type="xs:int"/>
+                                        <xs:element name="Credential" type="xs:int"/>
+                                        <xs:element name="CryptographicProvider" type="xs:int"/>
+                                        <xs:element name="DatabaseAuditSpecification" type="xs:int"/>
+                                        <xs:element name="DatabaseDdlTrigger" type="xs:int"/>
+                                        <xs:element name="DatabaseEncryptionKey" type="xs:int"/>
+                                        <xs:element name="DatabaseEventNotification" type="xs:int"/>
+                                        <xs:element name="DatabaseOptions" type="xs:int"/>
+                                        <xs:element name="DataCompressionOption" type="xs:int"/>
+                                        <xs:element name="Default" type="xs:int"/>
+                                        <xs:element name="DefaultConstraint" type="xs:int"/>
+                                        <xs:element name="DmlTrigger" type="xs:int"/>
+                                        <xs:element name="DynamicColumnSource" type="xs:int"/>
+                                        <xs:element name="Endpoint" type="xs:int"/>
+                                        <xs:element name="ErrorMessage" type="xs:int"/>
+                                        <xs:element name="EventSession" type="xs:int"/>
+                                        <xs:element name="EventSessionAction" type="xs:int"/>
+                                        <xs:element name="EventSessionDefinitions" type="xs:int"/>
+                                        <xs:element name="EventSessionSetting" type="xs:int"/>
+                                        <xs:element name="EventSessionTarget" type="xs:int"/>
+                                        <xs:element name="ExtendedProcedure" type="xs:int"/>
+                                        <xs:element name="ExtendedProperty" type="xs:int"/>
+                                        <xs:element name="File" type="xs:int"/>
+                                        <xs:element name="Filegroup" type="xs:int"/>
+                                        <xs:element name="FileTable" type="xs:int"/>
+                                        <xs:element name="ForeignKeyConstraint" type="xs:int"/>
+                                        <xs:element name="FullTextCatalog" type="xs:int"/>
+                                        <xs:element name="FullTextIndex" type="xs:int"/>
+                                        <xs:element name="FullTextStopList" type="xs:int"/>
+                                        <xs:element name="Index" type="xs:int"/>
+                                        <xs:element name="InlineTableValuedFunction" type="xs:int"/>
+                                        <xs:element name="LinkedServer" type="xs:int"/>
+                                        <xs:element name="LinkedServerLogin" type="xs:int"/>
+                                        <xs:element name="Login" type="xs:int"/>
+                                        <xs:element name="MasterKey" type="xs:int"/>
+                                        <xs:element name="MessageType" type="xs:int"/>
+                                        <xs:element name="MultiStatementTableValuedFunction" type="xs:int"/>
+                                        <xs:element name="PartitionFunction" type="xs:int"/>
+                                        <xs:element name="PartitionScheme" type="xs:int"/>
+                                        <xs:element name="PartitionValue" type="xs:int"/>
+                                        <xs:element name="PermissionStatement" type="xs:int"/>
+                                        <xs:element name="PrimaryKeyConstraint" type="xs:int"/>
+                                        <xs:element name="Procedure" type="xs:int"/>
+                                        <xs:element name="Queue" type="xs:int"/>
+                                        <xs:element name="QueueEventNotification" type="xs:int"/>
+                                        <xs:element name="RemoteServiceBinding" type="xs:int"/>
+                                        <xs:element name="ResourceGovernor" type="xs:int"/>
+                                        <xs:element name="ResourcePool" type="xs:int"/>
+                                        <xs:element name="Role" type="xs:int"/>
+                                        <xs:element name="RoleMembership" type="xs:int"/>
+                                        <xs:element name="Route" type="xs:int"/>
+                                        <xs:element name="Rule" type="xs:int"/>
+                                        <xs:element name="ScalarFunction" type="xs:int"/>
+                                        <xs:element name="Schema" type="xs:int"/>
+                                        <xs:element name="Script" type="xs:int"/>
+                                        <xs:element name="ScriptFunctionImplementation" type="xs:int"/>
+                                        <xs:element name="SearchProperty" type="xs:int"/>
+                                        <xs:element name="SearchPropertyList" type="xs:int"/>
+                                        <xs:element name="Sequence" type="xs:int"/>
+                                        <xs:element name="ServerAudit" type="xs:int"/>
+                                        <xs:element name="ServerAuditSpecification" type="xs:int"/>
+                                        <xs:element name="ServerDdlTrigger" type="xs:int"/>
+                                        <xs:element name="ServerEventNotification" type="xs:int"/>
+                                        <xs:element name="ServerOptions" type="xs:int"/>
+                                        <xs:element name="ServerRoleMembership" type="xs:int"/>
+                                        <xs:element name="Service" type="xs:int"/>
+                                        <xs:element name="Signature" type="xs:int"/>
+                                        <xs:element name="SignatureEncryptionMechanism" type="xs:int"/>
+                                        <xs:element name="SimpleColumn" type="xs:int"/>
+                                        <xs:element name="SoapMethodSpecification" type="xs:int"/>
+                                        <xs:element name="SpatialIndex" type="xs:int"/>
+                                        <xs:element name="Statistic" type="xs:int"/>
+                                        <xs:element name="SubroutineParameter" type="xs:int"/>
+                                        <xs:element name="SymmetricKey" type="xs:int"/>
+                                        <xs:element name="SymmetricKeyEncryptionPassword" type="xs:int"/>
+                                        <xs:element name="Synonym" type="xs:int"/>
+                                        <xs:element name="Table" type="xs:int"/>
+                                        <xs:element name="TableType" type="xs:int"/>
+                                        <xs:element name="TableTypeCheckConstraint" type="xs:int"/>
+                                        <xs:element name="TableTypeComputedColumn" type="xs:int"/>
+                                        <xs:element name="TableTypeDefaultConstraint" type="xs:int"/>
+                                        <xs:element name="TableTypeIndexedColumnSpecification" type="xs:int"/>
+                                        <xs:element name="TableTypePrimaryKeyConstraint" type="xs:int"/>
+                                        <xs:element name="TableTypeSimpleColumn" type="xs:int"/>
+                                        <xs:element name="TableTypeUniqueConstraint" type="xs:int"/>
+                                        <xs:element name="UniqueConstraint" type="xs:int"/>
+                                        <xs:element name="User" type="xs:int"/>
+                                        <xs:element name="UserDefinedDataType" type="xs:int"/>
+                                        <xs:element name="UserDefinedServerRole" type="xs:int"/>
+                                        <xs:element name="UserDefinedType" type="xs:int"/>
+                                        <xs:element name="View" type="xs:int"/>
+                                        <xs:element name="WorkloadGroup" type="xs:int"/>
+                                        <xs:element name="XmlIndex" type="xs:int"/>
+                                        <xs:element name="XmlSchemaCollection" type="xs:int"/>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ExportStatistics" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SourceDatabaseSize" type="xs:int" minOccurs="0"/>
+                            <xs:element name="TableRowCountTotalTag" type="xs:int" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Checksums" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Checksum"  minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="Uri" type="xs:string" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="OperationType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Property">
+                <xs:complexType>
+                    <xs:attribute name="Name" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="ElementName"/>
+                                <xs:enumeration value="ElementType"/>
+                                <xs:enumeration value="ParentElementName"/>
+                                <xs:enumeration value="ParentElementType"/>
+                                <xs:enumeration value="NewName"/>
+                                <xs:enumeration value="NewSchema"/>
+                                <xs:enumeration value="IsNewSchemaExternal"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="Value" type="xs:string"  use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Rename Refactor"/>
+                    <xs:enumeration value="Move Schema"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="Key" type="xs:string" use="required"/>
+        <xs:attribute name="ChangeDateTime" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="OperationsType">
+        <xs:sequence>
+            <xs:element name="Operation" type="OperationType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="Version" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <xs:element name="Operations" type="OperationsType"/>
+
+</xs:schema>
