@@ -1,4 +1,6 @@
 ﻿using System;
+using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,7 +26,7 @@ namespace DacpacExplorer
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BrowseClick(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog
             {
@@ -53,7 +55,25 @@ namespace DacpacExplorer
 
         private void FilePath_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            Application.Current.Properties["DacpacFilePath"] = FilePath.Text;
+            //Application.Current.Properties["DacpacFilePath"] = FilePath.Text;
+        }
+       
+        private void OpenClick(object sender, RoutedEventArgs e)
+        {
+            if (!File.Exists(FilePath.Text))
+            {
+                MessageBox.Show("Please choose a file that exists");
+                return;
+            }
+
+            var app = Application.Current.Properties["App"] as App;
+            app.Model = new DacpacGateway().GetDataSchemaModel(FilePath.Text);
+            app.DacFilePath = FilePath.Text;
+            app.InvokeModelUpdate();
+
+            
+
+
         }
     }
 }

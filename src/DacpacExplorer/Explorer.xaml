@@ -9,7 +9,7 @@
 
     <StackPanel Style="{StaticResource ContentRoot}">
             <TextBlock Name="DisplayFilePath"/>
-
+            <TreeView Name="TreeView"/>
     </StackPanel>
     
 </Page>

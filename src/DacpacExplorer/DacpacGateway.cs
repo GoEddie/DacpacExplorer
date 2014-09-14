@@ -11,10 +11,8 @@ namespace DacpacExplorer
 {
     class DacpacGateway
     {
-        public DataSchemaModel GetDataSchemaModel()
+        public DataSchemaModel GetDataSchemaModel(string path)
         {
-            const string path = @"Z:\homed\DacpacExplorer\src\SampleSchema\bin\Debug\SampleSchema.dacpac";
-
             using (var package = Package.Open(path, FileMode.Open, FileAccess.Read))
             {
                 foreach (var part in package.GetParts())
