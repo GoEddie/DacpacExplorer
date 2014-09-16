@@ -38,6 +38,18 @@
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\external\ModernUI.1.0.6\net40\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql">
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\120\DAC\bin\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Utilities">
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\120\DAC\bin\Microsoft.Data.Tools.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dac">
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\120\DAC\bin\Microsoft.SqlServer.Dac.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dac.Extensions">
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\120\DAC\bin\Microsoft.SqlServer.Dac.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>..\external\ModernUI.1.0.6\net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
@@ -79,12 +91,9 @@
     <Compile Include="ChooseDacpac.xaml.cs">
       <DependentUpon>ChooseDacpac.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DacpacGateway.cs" />
-    <Compile Include="DataFile.cs" />
     <Compile Include="Explorer.xaml.cs">
       <DependentUpon>Explorer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="generated\dacpac.designer.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,9 +117,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="generated\dacpac.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

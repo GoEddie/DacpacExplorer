@@ -5,13 +5,15 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using dacpac;
+using Microsoft.SqlServer.Dac.Model;
+
 
 namespace DacpacExplorer
 {
     public partial class App : Application
     {
-        public DataSchemaModel Model { get; set; }
+        public TSqlModel Model { get; set; }
+
         public string DacFilePath;
 
         public event ModelUpdated ModelUpdated;

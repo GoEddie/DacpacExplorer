@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.SqlServer.Dac.Model;
 using Microsoft.Win32;
 
 namespace DacpacExplorer
@@ -67,11 +68,14 @@ namespace DacpacExplorer
             }
 
             var app = Application.Current.Properties["App"] as App;
-            app.Model = new DacpacGateway().GetDataSchemaModel(FilePath.Text);
+            app.Model = new TSqlModel(FilePath.Text);
             app.DacFilePath = FilePath.Text;
             app.InvokeModelUpdate();
 
-            
+            using (var model = new TSqlModel(FilePath.Text))
+            {
+                
+            }
 
 
         }
