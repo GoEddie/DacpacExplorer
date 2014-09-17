@@ -72,6 +72,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ColumnPropertyName.cs" />
+    <Compile Include="Redefinitions\DefaultConstraintDefinition.cs" />
+    <Compile Include="ModelParsingException.cs" />
+    <Compile Include="SqlObjectTypeHelper.cs" />
+    <Compile Include="SqlObjectTypes.cs" />
+    <Compile Include="TsqlObjectExtensions.cs" />
     <Page Include="ChooseDacpac.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
