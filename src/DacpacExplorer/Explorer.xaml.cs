@@ -34,6 +34,8 @@ namespace DacpacExplorer
                 DisplayFilePath.Text = "Please choose a valid dacpac file";
                 return;
             }
+
+            DisplayFilePath.Text = app.DacFilePath;
         }
 
         void parent_ModelUpdated(object sender)

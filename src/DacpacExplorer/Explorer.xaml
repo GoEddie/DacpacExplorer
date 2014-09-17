@@ -1,15 +1,31 @@
-﻿<Page x:Class="DacpacExplorer.Explorer"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DacpacExplorer" x:Class="DacpacExplorer.Explorer" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="Explorer">
+	>
 
-    <StackPanel Style="{StaticResource ContentRoot}">
-            <TextBlock Name="DisplayFilePath"/>
-            <TreeView Name="TreeView"/>
-    </StackPanel>
-    
+    <Grid Style="{StaticResource ContentRoot}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
+            <StackPanel>
+                <TextBlock x:Name="DisplayFilePath"/>
+                <TreeView x:Name="TreeView"/>
+            </StackPanel>
+        </ScrollViewer>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+        <local:SqlObjectDisplay  Grid.Column="2"   HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"/>
+        
+        
+    </Grid>
+
 </Page>

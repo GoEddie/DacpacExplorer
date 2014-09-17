@@ -73,6 +73,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ColumnPropertyName.cs" />
+    <Compile Include="Content\DisplayObject.xaml.cs">
+      <DependentUpon>DisplayObject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\DisplayScript.xaml.cs">
+      <DependentUpon>DisplayScript.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Redefinitions\ColumnDefinition.cs" />
     <Compile Include="Redefinitions\DefaultConstraintDefinition.cs" />
     <Compile Include="ModelParsingException.cs" />
@@ -81,10 +87,21 @@
     <Compile Include="Redefinitions\PrimaryKeyDefinition.cs" />
     <Compile Include="Redefinitions\SqlObjectRedefinition.cs" />
     <Compile Include="Redefinitions\TableDefinition.cs" />
+    <Compile Include="SqlObjectDisplay.xaml.cs">
+      <DependentUpon>SqlObjectDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlObjectTypeHelper.cs" />
     <Compile Include="SqlObjectTypes.cs" />
     <Compile Include="TsqlObjectExtensions.cs" />
     <Page Include="ChooseDacpac.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\DisplayObject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\DisplayScript.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,6 +127,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SqlObjectDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
