@@ -1,34 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Documents;
 using Microsoft.SqlServer.Dac.Model;
 
 namespace DacpacExplorer.Redefinitions
 {
-    public class SqlObjectRedefinition
+    public class ForeignKeyConstraintDefinition : SqlObjectRedefinition
     {
-        public TSqlObject WeaklyTypedObject;
-
-        public SqlObjectRedefinition(TSqlObject weaklyTypedObject)
+        
+        public ForeignKeyConstraintDefinition(TSqlObject weakObject, TableDefinition tableDefinition) : base(weakObject, tableDefinition)
         {
-            WeaklyTypedObject = weaklyTypedObject;
+            
+            //Get attributes and once we have all the tables we need to go back and re-initialize theese as we can't be sure we have two tables.
         }
 
-        public string GetName()
+        public void SetReferences(List<TableDefinition> tables)
         {
-            return WeaklyTypedObject.Name.ToString();
-        }
-
-        public SqlObjectTypes GetUnderlyingType()
-        {
-            return EnumHelper<SqlObjectTypes>.ToEnum(WeaklyTypedObject.ObjectType.Name);
+            //Now 
         }
     }
 
+    public class DmlTriggerDefinition : SqlObjectRedefinition
+    {
+
+        public bool AnsiNullsOn;
+        public bool Disabled;
+        public bool QuotedIdentifierOn;
+        public TriggerType TriggerType;
+
+        public DmlTriggerDefinition(TSqlObject weaklyTypedObject, TableDefinition tableDefinition) : base(weaklyTypedObject, tableDefinition)
+        {
+            AnsiNullsOn = weaklyTypedObject.GetProperty<bool>(DmlTrigger.AnsiNullsOn);
+            Disabled = weaklyTypedObject.GetProperty<bool>(DmlTrigger.Disabled);
+            QuotedIdentifierOn = weaklyTypedObject.GetProperty<bool>(DmlTrigger.QuotedIdentifierOn);
+            TriggerType = weaklyTypedObject.GetProperty<TriggerType>(DmlTrigger.TriggerType);
+            
+        }
+    }
+    /*
+          public static ModelPropertyClass AnsiNullsOn { get; internal set; }
+    public static ModelRelationshipClass Assembly { get; internal set; }
+    public static ModelRelationshipClass BodyDependencies { get; internal set; }
+    public static ModelPropertyClass ClassName { get; internal set; }
+    public static ModelPropertyClass DeleteOrderRestriction { get; internal set; }
+    public static ModelPropertyClass Disabled { get; internal set; }
+    public static ModelPropertyClass ExecuteAsCaller { get; internal set; }
+    public static ModelPropertyClass ExecuteAsOwner { get; internal set; }
+    public static ModelPropertyClass ExecuteAsSelf { get; internal set; }
+    public static ModelPropertyClass InsertOrderRestriction { get; internal set; }
+    public static ModelPropertyClass IsDeleteTrigger { get; internal set; }
+    public static ModelPropertyClass IsInsertTrigger { get; internal set; }
+    public static ModelPropertyClass IsUpdateTrigger { get; internal set; }
+    public static ModelRelationshipClass Login { get; internal set; }
+    public static ModelPropertyClass MethodName { get; internal set; }
+    public static ModelPropertyClass NotForReplication { get; internal set; }
+    public static ModelPropertyClass QuotedIdentifierOn { get; internal set; }
+    public static ModelRelationshipClass TriggerObject { get; internal set; }
+    public static ModelPropertyClass TriggerType { get; internal set; }
+    public static ModelTypeClass TypeClass { get; internal set; }
+    public static ModelPropertyClass UpdateOrderRestriction { get; internal set; }
+    public static ModelRelationshipClass User { get; internal set; }
+    public static ModelPropertyClass WithAppend { get; internal set; }
+    public static ModelPropertyClass WithEncryption { get; internal set; }
+ 
+    */
     public class DefaultConstraintDefinition : SqlObjectRedefinition
     {
-        public DefaultConstraintDefinition(TSqlObject weakObject) : base(weakObject)
+        public DefaultConstraintDefinition(TSqlObject weakObject, TableDefinition tableDefinition) : base(weakObject, tableDefinition)
         {
-            
+            Expression = weakObject.GetProperty<object>(DefaultConstraint.Expression) as string;
+
+            Disabled = weakObject.GetProperty<bool>(DefaultConstraint.Disabled);
+
+            var targetColumn = weakObject.GetReferenced(DefaultConstraint.TargetColumn).FirstOrDefault();
+
+            ParentColumn = tableDefinition.Columns.FirstOrDefault(p => p.GetName() == targetColumn.Name.ToString());
         }
 
         public string Expression;
@@ -44,46 +91,4 @@ namespace DacpacExplorer.Redefinitions
         //public static ModelRelationshipClass ExpressionDependencies { get; internal set; }
         
     }
-
-    public class TableDefinition : SqlObjectRedefinition
-    {
-        public List<ColumnDefinition> Columns = new List<ColumnDefinition>();
-
-        public TableDefinition(TSqlObject weakObject)
-            : base(weakObject)
-        {
-            
-        }
-
-    }
-
-    public class ColumnDefinition : SqlObjectRedefinition
-    {
-        public ColumnDefinition(TSqlObject weakObject, TableDefinition parent) : base(weakObject)
-        {
-            ParentTable = parent;
-        }
-
-        public string SqlType;
-        public string Collation;
-        public bool IsIdenityNotForReplication;
-        public bool IsRowGuidCol;
-        public bool Sparse;
-        public string Expression;
-        public bool Persisted;
-        public bool PersistedNullable;
-        public int Scale;
-        public int Precision;
-        public int Length;
-        public bool IsMax;
-        public int XmlStyle;
-        public bool IdentityIncrement;
-        public string IdentitySeed;
-        public bool IsFileStream;
-        public bool IsIdentity;
-        public bool Nullable;
-
-        public TableDefinition ParentTable;
-    }
-
 }

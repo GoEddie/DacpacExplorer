@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Bing]
+(
+	[Id] INT NOT NULL PRIMARY KEY CLUSTERED,
+	[Bong] INT NULL
+)

@@ -73,8 +73,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ColumnPropertyName.cs" />
+    <Compile Include="Redefinitions\ColumnDefinition.cs" />
     <Compile Include="Redefinitions\DefaultConstraintDefinition.cs" />
     <Compile Include="ModelParsingException.cs" />
+    <Compile Include="Redefinitions\IndexDefinition.cs" />
+    <Compile Include="Redefinitions\ModelDefinition.cs" />
+    <Compile Include="Redefinitions\PrimaryKeyDefinition.cs" />
+    <Compile Include="Redefinitions\SqlObjectRedefinition.cs" />
+    <Compile Include="Redefinitions\TableDefinition.cs" />
     <Compile Include="SqlObjectTypeHelper.cs" />
     <Compile Include="SqlObjectTypes.cs" />
     <Compile Include="TsqlObjectExtensions.cs" />

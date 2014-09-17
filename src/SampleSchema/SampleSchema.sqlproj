@@ -61,5 +61,9 @@
   <ItemGroup>
     <Build Include="Bish.sql" />
     <Build Include="HowHaHeeHa.sql" />
+    <Build Include="Bing.sql" />
+    <Build Include="UX_Bing_Bong.sql" />
+    <Build Include="fk_bish_bing_bong.sql" />
+    <Build Include="trigger_bish_insert.sql" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,9 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using DacpacExplorer.Redefinitions;
 using Microsoft.SqlServer.Dac.Model;
+using ColumnDefinition = DacpacExplorer.Redefinitions.ColumnDefinition;
 
 
 namespace DacpacExplorer
@@ -81,6 +83,7 @@ namespace DacpacExplorer
 
         private void ShowModel(TreeViewItem root)
         {
+            root.Items.Clear();
             ShowTables(root);
         }
 
@@ -88,45 +91,45 @@ namespace DacpacExplorer
         {
             var tablesNode = new TreeViewItem() { Header = "Tables" };
 
-            foreach (var table in _model.GetObjects(DacQueryScopes.Default, Table.TypeClass))
+            var modelDefinition = _model.GetModelDefinition();
+
+            foreach (var table in modelDefinition.Tables)
             {
-                var tableDefinition = table.GetTableDefinition();
-                Console.WriteLine(tableDefinition.ToString());
+                ShowTable(table, tablesNode);
             }
 
-            //foreach (var table in _model.GetObjects(DacQueryScopes.Default, Table.TypeClass))
-            //{
-            //    var tableNode = new TreeViewItem() { Header = string.Format("{0}", table.Name) };
-            //    foreach(var child in table.GetChildren())
-            //    {
-            //        Console.WriteLine(child.Name + " : " + child.ObjectType.Name);
-
-            //        switch (child.ObjectType.Name)
-            //        {
-            //            case "DefaultConstraint":
-
-            //                var expression = child.GetProperty<string>(DefaultConstraint.Expression);
-
-            //                break;
-            //        }
-            //    }
-                
-            //    ShowColumns(tableNode, table);
-
-            //        //ShowKeys(tableNode, table);
-            //        //tablesNode.Items.Add(tableNode);
-            //    tablesNode.Items.Add(tableNode);
-
-            //}
+            tablesNode.ExpandSubtree();
 
             root.Items.Add(tablesNode);
         }
 
-        private void ShowColumns(TreeViewItem tableNode, TSqlObject table)
+        private void ShowTable(TableDefinition table, TreeViewItem tablesNode)
         {
-            //var columns = table.GetColumnDefinitions();
+            var treeNode = new TreeViewItem();
+            treeNode.Header = table.Name;
 
-            
+            var columnsNode = new TreeViewItem();
+            columnsNode.Header = "Columns";
+
+            treeNode.Items.Add(columnsNode);
+
+            foreach (var columnDefinition in table.Columns)
+            {
+                ShowColumn(columnDefinition, columnsNode);
+            }
+
+            tablesNode.Items.Add(treeNode);
+
         }
+
+        private void ShowColumn(ColumnDefinition columnDefinition, TreeViewItem columnsNode)
+        {
+            var columnNode = new TreeViewItem();
+            columnNode.Header = columnDefinition.GetName();
+
+            columnsNode.Items.Add(columnNode);
+        }
+
+        
     }
 }

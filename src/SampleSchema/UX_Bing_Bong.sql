@@ -1,0 +1,1 @@
+﻿CREATE UNIQUE INDEX IX_Bing_Bong ON Bing(Bong)

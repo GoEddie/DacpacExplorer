@@ -5,6 +5,10 @@
         Column,
         Table,
         DataType,
-        DefaultConstraint
+        DefaultConstraint,
+        PrimaryKeyConstraint,
+        Index,
+        ForeignKeyConstraint,
+        DmlTrigger
     }
 }
