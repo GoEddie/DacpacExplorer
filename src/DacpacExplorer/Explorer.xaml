@@ -18,12 +18,14 @@
 
             <StackPanel>
                 <TextBlock x:Name="DisplayFilePath"/>
-                <TreeView x:Name="TreeView"/>
+                <TreeView x:Name="TreeView" SelectedItemChanged="SelectedItemChanged"/>
             </StackPanel>
         </ScrollViewer>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-
-        <local:SqlObjectDisplay  Grid.Column="2"   HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"/>
+        <DockPanel Grid.Column="2">
+            <local:SqlObjectDisplay  DockPanel.Dock="Right"  VerticalContentAlignment="Stretch"  HorizontalContentAlignment="Stretch"/>    
+        </DockPanel>
+        
         
         
     </Grid>

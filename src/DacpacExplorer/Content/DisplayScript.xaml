@@ -6,8 +6,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	>
-
-    <Grid>
-        <TextBlock>I display some text</TextBlock>
-    </Grid>
+    <DockPanel>
+        <TextBox TextWrapping="NoWrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" DockPanel.Dock="Right" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Name="ScriptBox"></TextBox>
+    </DockPanel>
 </UserControl>

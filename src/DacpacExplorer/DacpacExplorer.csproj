@@ -73,6 +73,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ColumnPropertyName.cs" />
+    <Compile Include="Content\DisplayColumn.xaml.cs">
+      <DependentUpon>DisplayColumn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\DisplayObject.xaml.cs">
       <DependentUpon>DisplayObject.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
     <Compile Include="SqlObjectTypes.cs" />
     <Compile Include="TsqlObjectExtensions.cs" />
     <Page Include="ChooseDacpac.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\DisplayColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

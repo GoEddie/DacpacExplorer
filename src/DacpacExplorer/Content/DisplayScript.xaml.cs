@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DacpacExplorer.Redefinitions;
 
 namespace DacpacExplorer.Content
 {
@@ -23,6 +24,28 @@ namespace DacpacExplorer.Content
         public DisplayScript()
         {
             InitializeComponent();
+
+            var app = Application.Current.Properties["App"] as App;
+
+            app.SelectedObjectChanged += app_SelectedObjectChanged;
+            app_SelectedObjectChanged(this, app.SelectedObject);
+        }
+
+        void app_SelectedObjectChanged(object sender, object newObject)
+        {
+            if (newObject == null)
+            {
+                ScriptBox.Text = "";
+                return;
+            }
+              
+
+            var scriptableItem = newObject as SqlObjectRedefinition;
+
+            if (scriptableItem != null)
+            {
+                ScriptBox.Text = scriptableItem.GetScript();
+            }
         }
     }
 }

@@ -65,5 +65,6 @@
     <Build Include="UX_Bing_Bong.sql" />
     <Build Include="fk_bish_bing_bong.sql" />
     <Build Include="trigger_bish_insert.sql" />
+    <Build Include="ColunmsTest.sql" />
   </ItemGroup>
 </Project>

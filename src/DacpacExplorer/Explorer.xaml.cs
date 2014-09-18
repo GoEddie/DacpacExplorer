@@ -12,14 +12,15 @@ namespace DacpacExplorer
     public partial class Explorer : Page
     {
         private TSqlModel _model;
+        private App _app;
 
         public Explorer()
         {
             InitializeComponent();
 
-            var app = Application.Current.Properties["App"] as App;
+            _app = Application.Current.Properties["App"] as App;
             
-            app.ModelUpdated += parent_ModelUpdated;
+            _app.ModelUpdated += parent_ModelUpdated;
 
             SetFileDisplay();
             parent_ModelUpdated(this);
@@ -27,23 +28,19 @@ namespace DacpacExplorer
 
         private void SetFileDisplay()
         {
-            var app = Application.Current.Properties["App"] as App;
-            
-            if (!File.Exists(app.DacFilePath))
+           
+            if (!File.Exists(_app.DacFilePath))
             {
                 DisplayFilePath.Text = "Please choose a valid dacpac file";
                 return;
             }
 
-            DisplayFilePath.Text = app.DacFilePath;
+            DisplayFilePath.Text = _app.DacFilePath;
         }
 
         void parent_ModelUpdated(object sender)
         {
-            if ((Application.Current.Properties["App"] as App).Model == null)
-                return;
-
-            _model = (Application.Current.Properties["App"] as App).Model;
+            _model = _app.Model;
 
             SetFileDisplay();
             ShowTreeview();
@@ -54,7 +51,7 @@ namespace DacpacExplorer
             var root = new TreeViewItem();
             root.Header = "Dacpac";
 
-            root.Items.Add(new TreeViewItem() {Header = string.Format("Version : {0}", DisplayVersion())});
+          //  root.Items.Add(new TreeViewItem() {Header = string.Format("Version : {0}", DisplayVersion())});
 //            ShowRootProperties(root);
   //          ShowModelHeader(root);
            ShowModel(root);
@@ -91,7 +88,10 @@ namespace DacpacExplorer
 
         private void ShowTables(TreeViewItem root)
         {
-            var tablesNode = new TreeViewItem() { Header = "Tables" };
+            var tablesNode = new TreeViewItem() { Header = "Tables"};
+
+            if (_model == null)
+                return;
 
             var modelDefinition = _model.GetModelDefinition();
 
@@ -100,7 +100,7 @@ namespace DacpacExplorer
                 ShowTable(table, tablesNode);
             }
 
-            tablesNode.ExpandSubtree();
+            
 
             root.Items.Add(tablesNode);
         }
@@ -109,6 +109,7 @@ namespace DacpacExplorer
         {
             var treeNode = new TreeViewItem();
             treeNode.Header = table.Name;
+            treeNode.Tag = table;
 
             var columnsNode = new TreeViewItem();
             columnsNode.Header = "Columns";
@@ -117,21 +118,44 @@ namespace DacpacExplorer
 
             foreach (var columnDefinition in table.Columns)
             {
-                ShowColumn(columnDefinition, columnsNode);
+                AddLeafNode(columnDefinition, columnsNode);
             }
 
+            var indexesNode = new TreeViewItem();
+            indexesNode.Header = "Indexes";
+
+            foreach (var indexDefinition in table.Indexes)
+            {
+                AddLeafNode(indexDefinition, indexesNode);
+            }
+
+            treeNode.Items.Add(indexesNode);
             tablesNode.Items.Add(treeNode);
 
         }
 
-        private void ShowColumn(ColumnDefinition columnDefinition, TreeViewItem columnsNode)
+        
+        private void AddLeafNode(SqlObjectRedefinition itemDefinition, TreeViewItem columnsNode)
         {
-            var columnNode = new TreeViewItem();
-            columnNode.Header = columnDefinition.GetName();
-
-            columnsNode.Items.Add(columnNode);
+            var leafNode = new TreeViewItem();
+            leafNode.Header = itemDefinition.GetName();
+            leafNode.Tag = itemDefinition;
+            columnsNode.Items.Add(leafNode);
+            
         }
 
-        
+        private void SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var newItem = e.NewValue as TreeViewItem;
+            if (null == newItem || newItem.Tag == null)
+                return;
+
+            var objectDefinition = newItem.Tag as SqlObjectRedefinition;
+            if (null == objectDefinition)
+                return;
+
+            _app.SelectedObject = objectDefinition;
+            _app.InvokeSelectedObjectChanged(objectDefinition);
+        }
     }
 }

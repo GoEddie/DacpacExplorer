@@ -16,6 +16,8 @@ namespace DacpacExplorer.Redefinitions
 
         public ModelDefinition(TSqlModel weaklyTypedModel)
         {
+            
+
             WeaklyTypedModel = weaklyTypedModel;
             Name = "Model";
             foreach (var table in WeaklyTypedModel.GetObjects(DacQueryScopes.Default, Table.TypeClass))

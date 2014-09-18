@@ -11,8 +11,9 @@
         <TextBlock Text="Choose the DacPac to open..." />
         <WrapPanel>
             <TextBox x:Name="FilePath" MinWidth="400" Margin="12.5" TextChanged="FilePath_OnTextChanged"></TextBox>
-            <Button DockPanel.Dock="Right" MaxWidth="100" Margin="12.5" Click="BrowseClick">Browse</Button>
+            <Button MaxWidth="100" Margin="12.5" Click="BrowseClick">Browse</Button>
+            <Button MaxWidth="100" Margin="12.5" Content="Open" Click="OpenClick"></Button>
         </WrapPanel>
-        <Button MaxWidth="100" Content="Open" Click="OpenClick"></Button>
+        
     </StackPanel>
 </Page>

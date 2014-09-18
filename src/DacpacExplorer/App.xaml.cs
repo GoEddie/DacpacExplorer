@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using DacpacExplorer.Redefinitions;
 using Microsoft.SqlServer.Dac.Model;
 
 
@@ -16,7 +17,10 @@ namespace DacpacExplorer
 
         public string DacFilePath;
 
+        public SqlObjectRedefinition SelectedObject;
+
         public event ModelUpdated ModelUpdated;
+        public event SelectedObjectChanged SelectedObjectChanged;
 
         public App()
         {
@@ -30,9 +34,22 @@ namespace DacpacExplorer
 
             ModelUpdated(this);
         }
+
+        public void InvokeSelectedObjectChanged(SqlObjectRedefinition newObject)
+        {
+            if (SelectedObjectChanged == null)
+            {
+                return;
+            }
+
+            SelectedObjectChanged(this, newObject);
+
+        }
+
     }
 
     public delegate void ModelUpdated(object sender);
 
-    
+    public delegate void SelectedObjectChanged(object sender, SqlObjectRedefinition newObject);
+
 }

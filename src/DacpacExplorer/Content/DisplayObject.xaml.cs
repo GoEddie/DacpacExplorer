@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DacpacExplorer.Redefinitions;
 
 namespace DacpacExplorer.Content
 {
@@ -23,6 +24,35 @@ namespace DacpacExplorer.Content
         public DisplayObject()
         {
             InitializeComponent();
+
+            var app = Application.Current.Properties["App"] as App;
+
+            app.SelectedObjectChanged += app_SelectedObjectChanged;
+            app_SelectedObjectChanged(this, app.SelectedObject);
+        
+        }
+
+        private void app_SelectedObjectChanged(object sender, SqlObjectRedefinition newobject)
+        {
+            HideControls();
+
+            if (newobject == null)
+            {
+                return;
+            }
+            
+            var columnDefinition = newobject as Redefinitions.ColumnDefinition;
+            if (columnDefinition != null)
+            {
+                Column.Configure(columnDefinition);
+                Column.Visibility = Visibility.Visible;
+            }
+
+        }
+
+        private void HideControls()
+        {
+           Column.Visibility = Visibility.Hidden;
         }
     }
 }
