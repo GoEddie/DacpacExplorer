@@ -57,7 +57,7 @@ namespace DacpacExplorer
            ShowModel(root);
 
             TreeView.Items.Add(root);
-
+            TreeView.Focus();
         }
 
         private string DisplayVersion()
@@ -130,6 +130,19 @@ namespace DacpacExplorer
             }
 
             treeNode.Items.Add(indexesNode);
+            
+
+            var defaultsNode = new TreeViewItem();
+            defaultsNode.Header = "Defaults";
+            foreach (var def in table.Defaults)
+            {
+                AddLeafNode(def, defaultsNode);
+            }
+
+
+            treeNode.Items.Add(defaultsNode);
+
+
             tablesNode.Items.Add(treeNode);
 
         }

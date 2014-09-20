@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
         <Grid Style="{StaticResource ContentRoot}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <mui:ModernTab SelectedSource="/Content/DisplayScript.xaml" Layout="Tab">
+            <mui:ModernTab SelectedSource="/Content/DisplayScript.xaml" Layout="Tab" >
                 <mui:ModernTab.Links>
                     <mui:Link DisplayName="Properties" Source="/Content/DisplayObject.xaml" />
                     <mui:Link DisplayName="Script" Source="/Content/DisplayScript.xaml" />

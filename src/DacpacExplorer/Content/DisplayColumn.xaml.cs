@@ -28,7 +28,7 @@ namespace DacpacExplorer.Content
 
         public void Configure(ColumnDefinition columnDefinition)
         {
-            TypeLabel.Content = columnDefinition.GetFormattedTypeDisplay();
+            TypeLabel.Content = columnDefinition.SqlType;
             CollationLabel.Content = columnDefinition.Collation;
             IdentityIncrement.Content =  columnDefinition.IdentityIncrement;
             IdentitySeed.Content = columnDefinition.IdentitySeed;

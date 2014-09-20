@@ -61,23 +61,25 @@ namespace DacpacExplorer
        
         private void OpenClick(object sender, RoutedEventArgs e)
         {
+            
+
             if (!File.Exists(FilePath.Text))
             {
                 MessageBox.Show("Please choose a file that exists");
                 return;
             }
+            var cursor = Cursor;
+
+            Cursor = Cursors.Wait;
 
             var app = Application.Current.Properties["App"] as App;
             app.Model = new TSqlModel(FilePath.Text);
             app.DacFilePath = FilePath.Text;
             app.InvokeModelUpdate();
 
-            using (var model = new TSqlModel(FilePath.Text))
-            {
-                
-            }
-
-
+//            (Application.Current.Properties["App"] as App).MainMuiWindow.Navigate("/Explorer.xaml");
+            //this.LinkNavigator.Navigate();//"/Explorer.xaml"
+            Cursor = cursor;
         }
     }
 }

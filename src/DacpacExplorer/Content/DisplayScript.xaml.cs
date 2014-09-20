@@ -33,10 +33,11 @@ namespace DacpacExplorer.Content
 
         void app_SelectedObjectChanged(object sender, object newObject)
         {
+            ScriptBox.Text = "";
+
             if (newObject == null)
             {
-                ScriptBox.Text = "";
-                return;
+               return;
             }
               
 

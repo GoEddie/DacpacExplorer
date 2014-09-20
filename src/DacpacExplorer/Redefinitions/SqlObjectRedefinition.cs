@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.SqlServer.Dac.Model;
 
 namespace DacpacExplorer.Redefinitions
@@ -19,7 +20,13 @@ namespace DacpacExplorer.Redefinitions
 
         public string GetName()
         {
-            return WeaklyTypedObject.Name.ToString();
+            var name = WeaklyTypedObject.Name.ToString();
+            if (String.IsNullOrEmpty(name))
+            {
+                return "Unnamed";
+            }
+
+            return name;
         }
 
         public SqlObjectTypes GetUnderlyingType()

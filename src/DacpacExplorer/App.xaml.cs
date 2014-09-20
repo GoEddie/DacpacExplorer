@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using DacpacExplorer.Redefinitions;
+using FirstFloor.ModernUI.Windows.Controls;
 using Microsoft.SqlServer.Dac.Model;
 
 
@@ -19,8 +20,12 @@ namespace DacpacExplorer
 
         public SqlObjectRedefinition SelectedObject;
 
+        public MainWindow MainMuiWindow { get; set; }
+        
         public event ModelUpdated ModelUpdated;
         public event SelectedObjectChanged SelectedObjectChanged;
+
+
 
         public App()
         {

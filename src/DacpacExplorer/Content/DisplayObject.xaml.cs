@@ -46,13 +46,23 @@ namespace DacpacExplorer.Content
             {
                 Column.Configure(columnDefinition);
                 Column.Visibility = Visibility.Visible;
+                return;
             }
+
+            var defaultDefinition = newobject as Redefinitions.DefaultConstraintDefinition;
+            if (defaultDefinition != null)
+            {
+                Defaults.Configure(defaultDefinition);
+                Defaults.Visibility = Visibility.Visible;
+            }
+
 
         }
 
         private void HideControls()
         {
            Column.Visibility = Visibility.Hidden;
+           Defaults.Visibility = Visibility.Hidden;
         }
     }
 }

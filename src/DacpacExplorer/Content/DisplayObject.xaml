@@ -10,5 +10,6 @@
 
     <Grid>
         <content:DisplayColumn x:Name="Column"/>
+        <content:DisplayDefault x:Name="Defaults"/>
     </Grid>
 </UserControl>
