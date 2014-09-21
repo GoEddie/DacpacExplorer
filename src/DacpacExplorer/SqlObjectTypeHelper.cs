@@ -11,7 +11,8 @@ namespace DacpacExplorer
             if (Enum.TryParse(name, true, out result))
                 return result;
 
-            throw new ModelParsingException("Unable to convert \"{0}\" to a {1}", name, typeof(T));
+            return result;
+            //throw new ModelParsingException("Unable to convert \"{0}\" to a {1}", name, typeof(T));
         }
         
     }

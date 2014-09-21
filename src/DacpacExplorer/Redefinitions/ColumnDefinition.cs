@@ -11,7 +11,7 @@ namespace DacpacExplorer.Redefinitions
         {
             var typeName = weakObject.GetReferenced().FirstOrDefault();
 
-            if (!typeName.IsOfType(SqlObjectTypes.DataType))
+            if (!typeName.IsOfType(SqlObjectTypes.DataType) && !typeName.IsOfType(SqlObjectTypes.UserDefinedType))
             {
                 throw new ModelParsingException("Expected DataType but got: {0}", typeName.ObjectType.Name);
             }

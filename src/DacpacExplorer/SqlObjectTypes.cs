@@ -2,6 +2,7 @@
 {
     public enum SqlObjectTypes
     {
+        Unknown,
         Column,
         Table,
         DataType,
@@ -9,6 +10,7 @@
         PrimaryKeyConstraint,
         Index,
         ForeignKeyConstraint,
-        DmlTrigger
+        DmlTrigger,
+        UserDefinedType
     }
 }
