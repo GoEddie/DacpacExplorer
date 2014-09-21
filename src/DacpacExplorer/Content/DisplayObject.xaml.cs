@@ -56,6 +56,19 @@ namespace DacpacExplorer.Content
                 Defaults.Visibility = Visibility.Visible;
             }
 
+            var indexDefinition = newobject as IndexDefinition;
+            if (indexDefinition != null)
+            {
+                Index.Configure(indexDefinition);
+                Index.Visibility = Visibility.Visible;
+            }
+
+            var primaryKeyDefinition = newobject as PrimaryKeyDefinition;
+            if (primaryKeyDefinition != null)
+            {
+                PrimaryKey.Configure(primaryKeyDefinition);
+                PrimaryKey.Visibility = Visibility.Visible;
+            }
 
         }
 
@@ -63,6 +76,8 @@ namespace DacpacExplorer.Content
         {
            Column.Visibility = Visibility.Hidden;
            Defaults.Visibility = Visibility.Hidden;
+           Index.Visibility = Visibility.Hidden;
+           PrimaryKey.Visibility = Visibility.Hidden;
         }
     }
 }

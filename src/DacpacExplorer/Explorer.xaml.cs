@@ -1,25 +1,23 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using DacpacExplorer.Redefinitions;
 using Microsoft.SqlServer.Dac.Model;
 using ColumnDefinition = DacpacExplorer.Redefinitions.ColumnDefinition;
 
-
 namespace DacpacExplorer
 {
     public partial class Explorer : Page
     {
+        private readonly App _app;
         private TSqlModel _model;
-        private App _app;
 
         public Explorer()
         {
             InitializeComponent();
 
             _app = Application.Current.Properties["App"] as App;
-            
+
             _app.ModelUpdated += parent_ModelUpdated;
 
             SetFileDisplay();
@@ -28,7 +26,6 @@ namespace DacpacExplorer
 
         private void SetFileDisplay()
         {
-           
             if (!File.Exists(_app.DacFilePath))
             {
                 DisplayFilePath.Text = "Please choose a valid dacpac file";
@@ -38,7 +35,7 @@ namespace DacpacExplorer
             DisplayFilePath.Text = _app.DacFilePath;
         }
 
-        void parent_ModelUpdated(object sender)
+        private void parent_ModelUpdated(object sender)
         {
             _model = _app.Model;
 
@@ -48,13 +45,9 @@ namespace DacpacExplorer
 
         private void ShowTreeview()
         {
-            var root = new TreeViewItem();
-            root.Header = "Dacpac";
+            var root = new TreeViewItem {Header = "Dacpac"};
 
-          //  root.Items.Add(new TreeViewItem() {Header = string.Format("Version : {0}", DisplayVersion())});
-//            ShowRootProperties(root);
-  //          ShowModelHeader(root);
-           ShowModel(root);
+            ShowModel(root);
 
             TreeView.Items.Add(root);
             TreeView.Focus();
@@ -66,7 +59,7 @@ namespace DacpacExplorer
             {
                 case SqlServerVersion.Sql90:
                     return "Sql Server 2005";
-                    
+
                 case SqlServerVersion.Sql100:
                     return "Sql Server 2008";
                 case SqlServerVersion.SqlAzure:
@@ -88,19 +81,18 @@ namespace DacpacExplorer
 
         private void ShowTables(TreeViewItem root)
         {
-            var tablesNode = new TreeViewItem() { Header = "Tables"};
+            var tablesNode = new TreeViewItem {Header = "Tables"};
 
             if (_model == null)
                 return;
 
-            var modelDefinition = _model.GetModelDefinition();
+            ModelDefinition modelDefinition = _model.GetModelDefinition();
 
-            foreach (var table in modelDefinition.Tables)
+            foreach (TableDefinition table in modelDefinition.Tables)
             {
                 ShowTable(table, tablesNode);
             }
 
-            
 
             root.Items.Add(tablesNode);
         }
@@ -116,7 +108,7 @@ namespace DacpacExplorer
 
             treeNode.Items.Add(columnsNode);
 
-            foreach (var columnDefinition in table.Columns)
+            foreach (ColumnDefinition columnDefinition in table.Columns)
             {
                 AddLeafNode(columnDefinition, columnsNode);
             }
@@ -124,37 +116,43 @@ namespace DacpacExplorer
             var indexesNode = new TreeViewItem();
             indexesNode.Header = "Indexes";
 
-            foreach (var indexDefinition in table.Indexes)
+            foreach (IndexDefinition indexDefinition in table.Indexes)
             {
                 AddLeafNode(indexDefinition, indexesNode);
             }
 
             treeNode.Items.Add(indexesNode);
-            
+
 
             var defaultsNode = new TreeViewItem();
             defaultsNode.Header = "Defaults";
-            foreach (var def in table.Defaults)
+            foreach (DefaultConstraintDefinition def in table.Defaults)
             {
                 AddLeafNode(def, defaultsNode);
             }
-
-
+            
             treeNode.Items.Add(defaultsNode);
+
+            var primaryKeysNode = new TreeViewItem();
+            primaryKeysNode.Header = "Primary Key";
+            if (table.PrimaryKey != null)
+            {
+                AddLeafNode(table.PrimaryKey, primaryKeysNode);
+            }
+
+            treeNode.Items.Add(primaryKeysNode);
 
 
             tablesNode.Items.Add(treeNode);
-
         }
 
-        
+
         private void AddLeafNode(SqlObjectRedefinition itemDefinition, TreeViewItem columnsNode)
         {
             var leafNode = new TreeViewItem();
             leafNode.Header = itemDefinition.GetName();
             leafNode.Tag = itemDefinition;
             columnsNode.Items.Add(leafNode);
-            
         }
 
         private void SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

@@ -7,9 +7,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	>
-
-    <Grid>
-        <content:DisplayColumn x:Name="Column"/>
-        <content:DisplayDefault x:Name="Defaults"/>
-    </Grid>
+    <ScrollViewer>
+        <Grid Style="{StaticResource ContentRoot}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <content:DisplayColumn x:Name="Column"/>
+            <content:DisplayDefault x:Name="Defaults"/>
+            <content:DisplayIndex x:Name="Index" />
+            <content:DisplayPrimaryKey x:Name="PrimaryKey" />
+        </Grid>
+    </ScrollViewer>
 </UserControl>

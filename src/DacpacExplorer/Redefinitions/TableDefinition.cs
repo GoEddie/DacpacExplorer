@@ -20,7 +20,7 @@ namespace DacpacExplorer.Redefinitions
 
             foreach (var child in weakObject.GetChildren())
             {
-                Console.WriteLine(child.Name + " : " + child.ObjectType.Name);
+               // Console.WriteLine(child.Name + " : " + child.ObjectType.Name);
 
                 switch (EnumHelper<SqlObjectTypes>.ToEnum(child.ObjectType.Name))
                 {

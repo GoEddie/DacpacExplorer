@@ -73,6 +73,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ColumnPropertyName.cs" />
+    <Compile Include="Content\DisplayPrimaryKey.xaml.cs">
+      <DependentUpon>DisplayPrimaryKey.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\DisplayIndex.xaml.cs">
+      <DependentUpon>DisplayIndex.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\DisplayDefault.xaml.cs">
       <DependentUpon>DisplayDefault.xaml</DependentUpon>
     </Compile>
@@ -102,6 +108,14 @@
     <Page Include="ChooseDacpac.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\DisplayPrimaryKey.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\DisplayIndex.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Content\DisplayDefault.xaml">
       <Generator>MSBuild:Compile</Generator>

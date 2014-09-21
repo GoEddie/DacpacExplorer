@@ -5,7 +5,7 @@
   Title="MainWindow" Height="350" Width="1000"   ContentSource="/ChooseDacpac.xaml"  >
 
     <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="menu" x:Name="MainMenuGroup" >
+        <mui:LinkGroup DisplayName="Dacpac Explorer" x:Name="MainMenuGroup" >
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Choose Dacpac" Source="/ChooseDacpac.xaml" />
                 <mui:Link DisplayName="Explore" Source="/Explorer.xaml" />

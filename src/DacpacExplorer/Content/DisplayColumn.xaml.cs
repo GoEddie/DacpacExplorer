@@ -16,9 +16,6 @@ using ColumnDefinition = DacpacExplorer.Redefinitions.ColumnDefinition;
 
 namespace DacpacExplorer.Content
 {
-    /// <summary>
-    /// Interaction logic for DisplayColumn.xaml
-    /// </summary>
     public partial class DisplayColumn : UserControl
     {
         public DisplayColumn()

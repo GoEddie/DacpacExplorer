@@ -6,7 +6,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	>
+    <ScrollViewer>
     <DockPanel>
         <TextBox TextWrapping="NoWrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" DockPanel.Dock="Right" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Name="ScriptBox"></TextBox>
-    </DockPanel>
+        </DockPanel>
+    </ScrollViewer>
 </UserControl>

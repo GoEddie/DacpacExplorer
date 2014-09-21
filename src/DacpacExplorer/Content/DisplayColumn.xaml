@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="220" MaxWidth="220">
-    <StackPanel>
-        
+    <ScrollViewer>
+        <StackPanel>
         <DockPanel>
             <Label DockPanel.Dock="Left" Margin="5,5,5,5">Type</Label>
             <Label DockPanel.Dock="Right" HorizontalAlignment="Right" Name="TypeLabel"></Label>
@@ -77,4 +77,5 @@
         </DockPanel>
         
     </StackPanel>
+    </ScrollViewer>
 </UserControl>
