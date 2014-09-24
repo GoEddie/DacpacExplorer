@@ -20,21 +20,7 @@ namespace DacpacExplorer
  
     public partial class MainWindow : ModernWindow 
     {
-        public MainWindow()
-        {
-            
-        }
-
-        public void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            (Application.Current.Properties["App"] as App).MainWindow = this;
-        }
-
-        public void Navigate(string uri)
-        {
-            LinkNavigator.Navigate(new Uri(uri), this );
-        }
-
+        
     }
 
     

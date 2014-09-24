@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DacpacExplorer", "DacpacExp
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SampleSchema", "SampleSchema\SampleSchema.sqlproj", "{3B18B5EC-A3F8-422E-9EF9-411078E24D5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectEnumerator", "ObjectEnumerator\ObjectEnumerator.csproj", "{A42CD23A-575C-4017-A68B-0BDBBDFDBA51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{3B18B5EC-A3F8-422E-9EF9-411078E24D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B18B5EC-A3F8-422E-9EF9-411078E24D5A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3B18B5EC-A3F8-422E-9EF9-411078E24D5A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A42CD23A-575C-4017-A68B-0BDBBDFDBA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42CD23A-575C-4017-A68B-0BDBBDFDBA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42CD23A-575C-4017-A68B-0BDBBDFDBA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42CD23A-575C-4017-A68B-0BDBBDFDBA51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DacpacExplorer
+namespace DacpacExplorer.Pages
 {
     /// <summary>
-    /// Interaction logic for SqlObjectDisplay.xaml
+    /// Interaction logic for PageSplitter.xaml
     /// </summary>
-    public partial class SqlObjectDisplay : UserControl
+    public partial class PageSplitter : Page
     {
-        public SqlObjectDisplay()
+        public PageSplitter()
         {
             InitializeComponent();
         }
