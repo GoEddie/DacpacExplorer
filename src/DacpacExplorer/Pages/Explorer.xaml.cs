@@ -31,10 +31,22 @@ namespace DacpacExplorer.Pages
             var repository = ModelRepository.GetRepository();
             _model = repository.GetModel();
 
-            DisplayTables();
-            AddRootTreeItem("Procedures");
-            AddRootTreeItem("Security");
+            DisplayTopLevelNode("Tables", ModelSchema.Table);
+            DisplayTopLevelNode("Views", ModelSchema.View);
+            
+            var programabililtyNode = AddRootTreeItem("Programmability");
+            DisplayTopLevelNode(programabililtyNode, "Procedures", ModelSchema.Procedure);
+            DisplayTopLevelNode(programabililtyNode, "Scalar Functions", ModelSchema.ScalarFunction);
+            DisplayTopLevelNode(programabililtyNode, "Table-Valued Functions", ModelSchema.TableValuedFunction);
+            DisplayTopLevelNode(programabililtyNode, "Database Triggers", ModelSchema.DatabaseDdlTrigger);
+            DisplayTopLevelNode(programabililtyNode, "Server Triggers", ModelSchema.ServerDdlTrigger);
+            DisplayTopLevelNode(programabililtyNode, "Assemblies", ModelSchema.Assembly);
 
+            var securityNode = AddRootTreeItem("Security");
+            DisplayTopLevelNode(securityNode, "Server Logins", ModelSchema.Login);
+            DisplayTopLevelNode(securityNode, "Database Users", ModelSchema.User);
+            DisplayTopLevelNode(securityNode, "Schemas", ModelSchema.Schema);
+            DisplayTopLevelNode(securityNode, "Roles", ModelSchema.Role);
         }
 
         void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -48,7 +60,7 @@ namespace DacpacExplorer.Pages
                 return;
             }
 
-            var display = item.Tag as CachedDisplay;
+            var display = item.Tag as CachedObjectDisplay;
 
             if (null == display)
                 return;
@@ -58,48 +70,66 @@ namespace DacpacExplorer.Pages
 
         }
 
-        private void DisplayTables()
+        private void DisplayTopLevelNode(ItemsControl rootNode, string header, ModelTypeClass type)
         {
-            var rootNode = AddRootTreeItem("Tables");
-            
-            var tables = _model.GetObjects(DacQueryScopes.All, ModelSchema.Table);
+            var newNode = AddTreeItem(header, rootNode);
 
-            foreach (var table in tables)
+            var objects = _model.GetObjects(DacQueryScopes.All, type);
+
+            foreach (var child in objects)
             {
-                var tableNode = AddTreeItem(table.Name.ToString(), rootNode);
-                DisplayTableNode(table, tableNode);
-            }
-
+                var childTreeNode = AddTreeItem(child.Name.ToString(), newNode);
+                DisplayObject(child, childTreeNode);
+            }    
         }
 
-        private void DisplayTableNode(TSqlObject table, TreeViewItem tableNode)
+        private void DisplayTopLevelNode(string description, ModelTypeClass type)
         {
-            
-            var properties = GetPropertiesDisplay(table);
-            var script = GetScript(table);
+            DisplayTopLevelNode(TreeView, description, type);
+        }
 
-            tableNode.Tag = new CachedDisplay()
+        private void DisplayObject(TSqlObject currentObject, TreeViewItem currentObjectTreeViewItem)
+        {
+            var properties = GetPropertiesDisplay(currentObject);
+            var script = GetScript(currentObject);
+
+            currentObjectTreeViewItem.Tag = new CachedObjectDisplay()
             {
                 Properties = properties,
                 Script = script
             };
-
-            //var columnsNode = AddTreeItem("Columns", tableNode);
+            
             var childObjects = new Dictionary<string, TreeViewItem>();
             
-
-            foreach (var column in table.GetChildren())
+            foreach (var child in currentObject.GetChildren())
             {
-                var type = column.ObjectType.Name;
-                var typeContainerHeader = string.Format("{0}s", type);
-                if (!childObjects.ContainsKey(type))
+                var type = child.ObjectType.Name;
+                var typeContainerHeader = GetContainerHeader(type);
+
+                if (!childObjects.ContainsKey(typeContainerHeader))
                 {
-                    var item = AddTreeItem(typeContainerHeader, tableNode);
+                    var item = AddTreeItem(typeContainerHeader, currentObjectTreeViewItem);
+                    childObjects.Add(typeContainerHeader, item);
                 }
+                    
+                var childTreeViewItem = AddTreeItem(child.Name.ToString(), childObjects[typeContainerHeader]);
 
-
+                DisplayObject(child, childTreeViewItem);
             }
 
+        }
+
+        private static string GetContainerHeader(string type)
+        {
+
+            if (type.EndsWith("ex", StringComparison.OrdinalIgnoreCase))
+                return type + "es";
+
+            if (type.EndsWith("ty", StringComparison.OrdinalIgnoreCase))
+                return type.Replace("ty", "ties");
+
+            return type + "s";
+            
         }
 
         private string GetScript(TSqlObject table)
@@ -160,7 +190,7 @@ namespace DacpacExplorer.Pages
         }
     }
 
-    public class CachedDisplay
+    public class CachedObjectDisplay
     {
         public string Script { get; set; }
         public UIElement Properties { get; set; }
