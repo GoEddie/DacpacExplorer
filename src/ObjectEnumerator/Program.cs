@@ -41,8 +41,6 @@ namespace ObjectEnumerator
 
           foreach (var child in parent.GetChildren())
             {
-            //    Console.WriteLine("{0}".PadLeft(depth, '\t'), child.Name);
-            //    Console.WriteLine("{0}".PadLeft(depth, '\t'), child.ObjectType.Name);
                 DumpChildren(child, depth + 1);
             }
       }

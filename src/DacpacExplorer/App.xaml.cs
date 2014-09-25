@@ -15,8 +15,7 @@ namespace DacpacExplorer
     {
         public App()
         {
-            var repository = ModelRepository.GetRepository();
-            repository.SetModel(new TSqlModel(@"c:\users\ed\desktop\AdventureWorks2012.dacpac"));
+            
         }
     }
 
