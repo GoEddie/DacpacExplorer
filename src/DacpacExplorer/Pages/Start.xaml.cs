@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DacpacExplorer.External;
+using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using Microsoft.SqlServer.Dac.Model;
 using Microsoft.Win32;
@@ -23,7 +24,7 @@ namespace DacpacExplorer.Pages
     /// <summary>
     /// Interaction logic for Start.xaml
     /// </summary>
-    public partial class Start : Page
+    public partial class Start : Page, IContent
     {
         public Start()
         {
@@ -40,11 +41,16 @@ namespace DacpacExplorer.Pages
 
             Cursor = Cursors.Wait;
             var repository = ModelRepository.GetRepository();
-            repository.SetModel(new TSqlModel(DacpacPathTextBox.Text));
+            repository.SetModel(new TSqlModel(DacpacPathTextBox.Text), ValidateModel.IsChecked != null && ValidateModel.IsChecked.Value );
+            
 
             var window = this.TryFindParent<ModernWindow>();
             window.ContentSource = new Uri("/Pages/Explorer.xaml", UriKind.Relative);
+            
+            
         }
+
+       
 
         private void ButtonBrowse_Clicked(object sender, RoutedEventArgs e)
         {
@@ -71,6 +77,27 @@ namespace DacpacExplorer.Pages
             {
                 DacpacPathTextBox.Text = dialog.FileName;
             }
+        }
+
+
+        public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
+        {
+            
+        }
+
+        public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
+        {
+            
+        }
+
+        public void OnNavigatedTo(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
+        {
+            Cursor = Cursors.Arrow;
+        }
+
+        public void OnNavigatingFrom(FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            
         }
     }
 }

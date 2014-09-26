@@ -73,6 +73,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="External\WpfExtensions.cs" />
+    <Compile Include="Pages\CachedObjectDisplay.cs" />
+    <Compile Include="Pages\PropertiesPageBuilder.cs" />
+    <Compile Include="Pages\SqlObjectComparer.cs" />
     <Compile Include="Pages\Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
     </Compile>

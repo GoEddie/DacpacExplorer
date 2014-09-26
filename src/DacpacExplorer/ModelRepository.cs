@@ -11,6 +11,7 @@ namespace DacpacExplorer
     {
         private static readonly ModelRepository Singleton = new ModelRepository();
         private TSqlModel _model;
+        private bool _validateModel;
 
         public static ModelRepository GetRepository()
         {
@@ -22,8 +23,14 @@ namespace DacpacExplorer
             
         }
 
-        public void SetModel(TSqlModel model)
+        public bool ValidateModel()
         {
+            return _validateModel;
+        }
+
+        public void SetModel(TSqlModel model, bool validateModel)
+        {
+            _validateModel = validateModel;
             _model = model;
         }
 

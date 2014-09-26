@@ -4,34 +4,59 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using DacpacExplorer.External;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
 using Microsoft.SqlServer.Dac.Model;
 
 namespace DacpacExplorer.Pages
 {
-    public partial class Explorer : Page
+    public partial class Explorer : Page, IContent
     {
-        private readonly TSqlModel _model;
-        private readonly RecursionGuard _recursionGuard = new RecursionGuard();
+        private TSqlModel _model;
+        private RecursionGuard _recursionGuard;
 
         public Explorer()
         {
             InitializeComponent();
             TreeView.SelectedItemChanged += TreeView_SelectedItemChanged;
+        }
+
+        public void Display()
+        {
+            _recursionGuard = new RecursionGuard();
+            TreeView.Items.Clear();
+            
 
             var repository = ModelRepository.GetRepository();
             _model = repository.GetModel();
 
+            var propertiesPageBuilder = new PropertiesPageBuilder();
+
             var dacpacNode = AddRootTreeItem("Dacpac Properties");
             dacpacNode.Tag = new CachedObjectDisplay()
             {
-                Properties = GetPropertiesDisplayForDacpac(),
+                Properties = propertiesPageBuilder.GetPropertiesDisplayForDacpac(_model),
                 Script = ""
             };
+
+            if (repository.ValidateModel())
+            {
+                var messages = _model.Validate();
+                var messagesNode = AddTreeItem("Validation Result", dacpacNode);
+                messagesNode.Tag = new CachedObjectDisplay()
+                {
+                    Properties = propertiesPageBuilder.GetPropertiesDisplayForValidationMessages(messages),
+                    Script = ""
+                };
+
+            }
 
 
             DisplayTopLevelNode("Tables", ModelSchema.Table);
             DisplayTopLevelNode("Views", ModelSchema.View);
-            
+
             var programabililtyNode = AddRootTreeItem("Programmability");
             DisplayTopLevelNode(programabililtyNode, "Procedures", ModelSchema.Procedure);
             DisplayTopLevelNode(programabililtyNode, "Scalar Functions", ModelSchema.ScalarFunction);
@@ -47,6 +72,7 @@ namespace DacpacExplorer.Pages
             DisplayTopLevelNode(securityNode, "Roles", ModelSchema.Role);
 
             Cursor = Cursors.Arrow;
+
         }
 
         void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -72,7 +98,7 @@ namespace DacpacExplorer.Pages
 
         private void DisplayTopLevelNode(ItemsControl rootNode, string header, ModelTypeClass type)
         {
-            var newNode = AddTreeItem(header, rootNode);
+            var newNode = new TreeViewItem() { Header = header };
 
             var objects = _model.GetObjects(DacQueryScopes.All, type);
 
@@ -80,7 +106,10 @@ namespace DacpacExplorer.Pages
             {
                 var childTreeNode = AddTreeItem(child.Name.ToString(), newNode);
                 DisplayObject(header, child, childTreeNode);
-            }    
+            }
+
+            if (newNode.Items.Count > 0)
+                rootNode.Items.Add(newNode);
         }
 
         private void DisplayTopLevelNode(string description, ModelTypeClass type)
@@ -90,12 +119,9 @@ namespace DacpacExplorer.Pages
 
         private void DisplayObject(string rootNodeHeader, TSqlObject currentObject, TreeViewItem currentObjectTreeViewItem)
         {
-            //Because we use recursion and we don't know what the model might give us we need to ensure we don't end
-            //up in an infitnite loop
-         //   if (!_recursionGuard.Add(rootNodeHeader, currentObject.Name.ToString(), currentObject))
-        //        return;
-            
-            var properties = GetPropertiesDisplay(currentObject);
+         
+            var propertiesPageBuilder = new PropertiesPageBuilder();
+            var properties = propertiesPageBuilder.GetPropertiesDisplay(currentObject);
             var script = GetScript(currentObject);
 
             currentObjectTreeViewItem.Tag = new CachedObjectDisplay()
@@ -113,7 +139,7 @@ namespace DacpacExplorer.Pages
 
         private void DisplyChildObjects(string rootNodeHader, TreeViewItem currentObjectTreeViewItem, IEnumerable<TSqlObject> children, Dictionary<string, TreeViewItem> childObjectTypes)
         {
-            foreach (var child in children.OrderBy(p=>p, new TSqlObjectComparer()))
+            foreach (var child in children.OrderBy(p=>p, new SqlObjectComparer()))
             {
                 var type = child.ObjectType.Name;
                 var typeContainerHeader = GetContainerHeader(type);
@@ -155,178 +181,8 @@ namespace DacpacExplorer.Pages
             return script;
         }
 
-        private UIElement GetPropertiesDisplay(TSqlObject item)
-        {
-            var panel = GetPropertiesDisplayPanel(item.Name.ToString());
-
-            
-            AddCustomProperties(item, panel);
-
-            
-            
-
-            foreach (var property in item.ObjectType.Properties.OrderBy(p=>p.Name))
-            {
-                var val = property.GetValue<object>(item);
-                if (val == null)
-                {
-                    val = "NULL";
-                }
-
-                var label = GetPropertyLabel(property.Name, val.ToString());
-
-                panel.Children.Add(label);
-            }
-
-            return panel;
-        }
-
-        private void AddCustomProperties(TSqlObject item, StackPanel panel)
-        {
-            if (item.ObjectType == ModelSchema.Index)
-            {
-                AddPropertiesForIndex(panel, item);
-                return;
-            }
-
-            if (item.ObjectType == ModelSchema.Column)
-            {
-                AddPropertiesForColumn(panel, item);
-                return;
-            }
-
-            if (item.ObjectType == ModelSchema.PrimaryKeyConstraint)
-            {
-                AddPropertiesForPrimaryKey(panel, item);
-                return;
-            }
-
-            if (item.ObjectType == ModelSchema.ForeignKeyConstraint)
-            {
-                AddPropertiesForForeignKey(panel, item);
-                return;
-            }
-
-            
-        }
-
-        private StackPanel GetPropertiesDisplayPanel(string name)
-        {
-            var panel = GetPropertiesPanel();
-
-            var nameLabel = GetPropertiesNameLabel(name);
-            panel.Children.Add(nameLabel);
-
-
-
-            return panel;
-        }
-
-
-
-        private UIElement GetPropertiesDisplayForDacpac()
-        {
-            var panel = GetPropertiesDisplayPanel("Version: " +_model.Version);
-            var options = _model.CopyModelOptions();
-
-            foreach (var prop in options.GetType().GetProperties().OrderBy(p=>p.Name))
-            {
-                var val = prop.GetValue(options) as object;
-                if (val == null)
-                {
-                    val = "NULL";
-                }
-
-                panel.Children.Add(GetPropertyLabel(prop.Name, val.ToString()));
-            }
-
-            return panel;
-        }
-
-
-        private void AddPropertiesForForeignKey(Panel panel, TSqlObject key)
-        {
-            foreach (var reference in key.GetReferencedRelationshipInstances(ForeignKeyConstraint.Columns))
-            {
-                panel.Children.Add(GetPropertyLabel("Column: ", reference.ObjectName.ToString()));
-            }
-
-            foreach (var reference in key.GetReferencedRelationshipInstances(ForeignKeyConstraint.ForeignTable))
-            {
-                panel.Children.Add(GetPropertyLabel("Foreign Table: ", reference.ObjectName.ToString()));
-            }
-            foreach (var reference in key.GetReferencedRelationshipInstances(ForeignKeyConstraint.ForeignColumns))
-            {
-                panel.Children.Add(GetPropertyLabel("Foreign Column: ", reference.ObjectName.ToString()));
-            }
-
-        }
-
-
-        private void AddPropertiesForPrimaryKey(Panel panel, TSqlObject key)
-        {
-            foreach (var reference in key.GetReferencedRelationshipInstances(PrimaryKeyConstraint.Columns))
-            {
-                panel.Children.Add(GetPropertyLabel("Column: ", reference.ObjectName + " " + (reference.GetProperty<bool>(PrimaryKeyConstraint.ColumnsRelationship.Ascending) ? "ASC" : "DESC")));
-            }
-        }
-
-        private void AddPropertiesForColumn(Panel panel, TSqlObject column)
-        {
-            var type = column.GetMetadata<ColumnType>(Column.ColumnType);
-            
-            panel.Children.Add(GetPropertyLabel("Column MetaType: ", type == ColumnType.Column ? "Standard Column" : type.ToString()));
-
-            foreach (TSqlObject referenced in column.GetReferenced())
-            {
-                panel.Children.Add(GetPropertyLabel("Type: ", referenced.Name.ToString()));
-            }
-
-        }
-
-
-        private void AddPropertiesForIndex(Panel panel, TSqlObject index)
-        {
-
-            foreach (var reference in index.GetReferencedRelationshipInstances(Index.Columns))
-            {
-                panel.Children.Add(GetPropertyLabel("Column: ", reference.ObjectName + " " + (reference.GetProperty<bool>(Index.ColumnsRelationship.Ascending) ? "ASC" : "DESC")));
-            }
-
-            if (index.GetReferencedRelationshipInstances(Index.IncludedColumns).Any())
-            {
-                foreach (var reference in index.GetReferencedRelationshipInstances(Index.IncludedColumns))
-                {
-                    panel.Children.Add(GetPropertyLabel("Included Column: ", reference.ObjectName.ToString()));
-                }
-            }
-        }
-
-        private static Label GetPropertyLabel(string name, string val)
-        {
-            var displayText = string.Format("{0} = {1}", name, val);
-
-            var label = new Label();
-            label.Content = displayText;
-            return label;
-        }
-
-        private UIElement GetPropertiesNameLabel(string name)
-        {
-            var nameLabel = new Label();
-            nameLabel.Content = name;
-            nameLabel.Margin = new Thickness(0, 5, 0, 25);
-            nameLabel.FontSize = 16.0;
-            return nameLabel;
-        }
-
-        private static StackPanel GetPropertiesPanel()
-        {
-            var panel = new StackPanel {Orientation = Orientation.Vertical};
-            panel.Margin = new Thickness(100, 25, 0, 0);
-            return panel;
-        }
-
+       
+        
         private TreeViewItem AddRootTreeItem(string header)
         {
             return AddTreeItem(header, TreeView);
@@ -343,19 +199,25 @@ namespace DacpacExplorer.Pages
             parent.Items.Add(item);
             return item;
         }
-    }
 
-    public class CachedObjectDisplay
-    {
-        public string Script { get; set; }
-        public UIElement Properties { get; set; }
-    }
-
-    public class TSqlObjectComparer : IComparer<TSqlObject>
-    {
-        public int Compare(TSqlObject x, TSqlObject y)
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-            return x.Name.ToString().CompareTo(y.Name.ToString());
+            
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Display();            
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            TreeView.Items.Clear();
         }
     }
 }

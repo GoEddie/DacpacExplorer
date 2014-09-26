@@ -17,12 +17,29 @@ using FirstFloor.ModernUI.Windows.Controls;
 
 namespace DacpacExplorer
 {
- 
+    
+
     public partial class MainWindow : ModernWindow 
     {
+        public MainWindow()
+        {
+            
+        }
+
         
     }
 
-    
-    
+
+    public class DacpacMainWindow : MainWindow
+    {
+        public event RenderTree RenderTree;
+
+        public void InvokeRenderTree()
+        {
+            if (RenderTree != null)
+                RenderTree.Invoke();
+        }
+    }
+
+    public delegate void RenderTree();
 }
