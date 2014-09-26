@@ -17,7 +17,8 @@ using FirstFloor.ModernUI.Windows.Controls;
 
 namespace DacpacExplorer
 {
- 
+    
+
     public partial class MainWindow : ModernWindow 
     {
         public MainWindow()
@@ -25,18 +26,20 @@ namespace DacpacExplorer
             
         }
 
-        public void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            (Application.Current.Properties["App"] as App).MainWindow = this;
-        }
-
-        public void Navigate(string uri)
-        {
-            LinkNavigator.Navigate(new Uri(uri), this );
-        }
-
+        
     }
 
-    
-    
+
+    public class DacpacMainWindow : MainWindow
+    {
+        public event RenderTree RenderTree;
+
+        public void InvokeRenderTree()
+        {
+            if (RenderTree != null)
+                RenderTree.Invoke();
+        }
+    }
+
+    public delegate void RenderTree();
 }

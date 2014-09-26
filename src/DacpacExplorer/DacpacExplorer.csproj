@@ -72,71 +72,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ColumnPropertyName.cs" />
-    <Compile Include="Content\DisplayPrimaryKey.xaml.cs">
-      <DependentUpon>DisplayPrimaryKey.xaml</DependentUpon>
+    <Compile Include="External\WpfExtensions.cs" />
+    <Compile Include="Pages\CachedObjectDisplay.cs" />
+    <Compile Include="Pages\PropertiesPageBuilder.cs" />
+    <Compile Include="Pages\SqlObjectComparer.cs" />
+    <Compile Include="Pages\Start.xaml.cs">
+      <DependentUpon>Start.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\DisplayIndex.xaml.cs">
-      <DependentUpon>DisplayIndex.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Content\DisplayDefault.xaml.cs">
-      <DependentUpon>DisplayDefault.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Content\DisplayColumn.xaml.cs">
-      <DependentUpon>DisplayColumn.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Content\DisplayObject.xaml.cs">
-      <DependentUpon>DisplayObject.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Content\DisplayScript.xaml.cs">
-      <DependentUpon>DisplayScript.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Redefinitions\ColumnDefinition.cs" />
-    <Compile Include="Redefinitions\DefaultConstraintDefinition.cs" />
-    <Compile Include="ModelParsingException.cs" />
-    <Compile Include="Redefinitions\IndexDefinition.cs" />
-    <Compile Include="Redefinitions\ModelDefinition.cs" />
-    <Compile Include="Redefinitions\PrimaryKeyDefinition.cs" />
-    <Compile Include="Redefinitions\SqlObjectRedefinition.cs" />
-    <Compile Include="Redefinitions\TableDefinition.cs" />
-    <Compile Include="SqlObjectDisplay.xaml.cs">
-      <DependentUpon>SqlObjectDisplay.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SqlObjectTypeHelper.cs" />
-    <Compile Include="SqlObjectTypes.cs" />
-    <Compile Include="TsqlObjectExtensions.cs" />
-    <Page Include="ChooseDacpac.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Content\DisplayPrimaryKey.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Content\DisplayIndex.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Content\DisplayDefault.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Content\DisplayColumn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Content\DisplayObject.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Content\DisplayScript.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Explorer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="RecursionGuard.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,22 +88,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ChooseDacpac.xaml.cs">
-      <DependentUpon>ChooseDacpac.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Explorer.xaml.cs">
-      <DependentUpon>Explorer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SqlObjectDisplay.xaml">
+    <Page Include="Pages\Explorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageSplitter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Start.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelRepository.cs" />
+    <Compile Include="Pages\Explorer.xaml.cs">
+      <DependentUpon>Explorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageSplitter.xaml.cs">
+      <DependentUpon>PageSplitter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
