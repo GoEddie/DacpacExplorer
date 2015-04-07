@@ -16,5 +16,7 @@
             <CheckBox x:Name="ValidateModel">Validate Model</CheckBox>
             <Button HorizontalAlignment="Center" Margin="10,10,10,10" Click="ButtonOk_Click">_Open</Button>
         </StackPanel>
+        <CheckBox x:Name="ScriptDom" Content="Add script dom explorer"/>
+        <CheckBox x:Name="FileBacked" Content="Load in file backed mode - Slower but more detailed"/>
     </StackPanel>
     </Page>

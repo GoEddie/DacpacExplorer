@@ -18,6 +18,7 @@ using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using Microsoft.SqlServer.Dac.Model;
 using Microsoft.Win32;
+using Microsoft.SqlServer.Dac;
 
 namespace DacpacExplorer.Pages
 {
@@ -41,7 +42,17 @@ namespace DacpacExplorer.Pages
 
             Cursor = Cursors.Wait;
             var repository = ModelRepository.GetRepository();
-            repository.SetModel(new TSqlModel(DacpacPathTextBox.Text), ValidateModel.IsChecked != null && ValidateModel.IsChecked.Value );
+
+            bool bFileBacked = FileBacked.IsChecked.Value;
+            if (bFileBacked)
+            {
+                TSqlModel model = TSqlModel.LoadFromDacpac(DacpacPathTextBox.Text, new ModelLoadOptions(DacSchemaModelStorageType.File, loadAsScriptBackedModel: true));
+                repository.SetModel(model, ValidateModel.IsChecked != null && ValidateModel.IsChecked.Value,ScriptDom.IsChecked.Value);
+            }
+            else
+            {
+                repository.SetModel(new TSqlModel(DacpacPathTextBox.Text), ValidateModel.IsChecked != null && ValidateModel.IsChecked.Value, ScriptDom.IsChecked.Value);
+            }
             
 
             var window = this.TryFindParent<ModernWindow>();
@@ -50,7 +61,10 @@ namespace DacpacExplorer.Pages
             
         }
 
-       
+        public bool LoadScriptDom()
+        {
+            return this.ScriptDom.IsChecked.Value;
+        }
 
         private void ButtonBrowse_Clicked(object sender, RoutedEventArgs e)
         {
