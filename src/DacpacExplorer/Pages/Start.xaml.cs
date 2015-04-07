@@ -34,31 +34,41 @@ namespace DacpacExplorer.Pages
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
-            if (!File.Exists(DacpacPathTextBox.Text))
-            {
-                MessageBox.Show("Error dacpac file does not exist :(");
-                return;
-            }
 
-            Cursor = Cursors.Wait;
-            var repository = ModelRepository.GetRepository();
-
-            bool bFileBacked = FileBacked.IsChecked.Value;
-            if (bFileBacked)
+            Task.Run(() =>
             {
-                TSqlModel model = TSqlModel.LoadFromDacpac(DacpacPathTextBox.Text, new ModelLoadOptions(DacSchemaModelStorageType.File, loadAsScriptBackedModel: true));
-                repository.SetModel(model, ValidateModel.IsChecked != null && ValidateModel.IsChecked.Value,ScriptDom.IsChecked.Value);
-            }
-            else
-            {
-                repository.SetModel(new TSqlModel(DacpacPathTextBox.Text), ValidateModel.IsChecked != null && ValidateModel.IsChecked.Value, ScriptDom.IsChecked.Value);
-            }
-            
+                var filePath = Dispatcher.Invoke(() => DacpacPathTextBox.Text);
+                if (!File.Exists( filePath ))
+                {
+                    MessageBox.Show("Error dacpac file does not exist :(");
+                    return;
+                }
 
-            var window = this.TryFindParent<ModernWindow>();
-            window.ContentSource = new Uri("/Pages/Explorer.xaml", UriKind.Relative);
-            
-            
+                Dispatcher.Invoke(() => Cursor = Cursors.Wait);
+                var repository = ModelRepository.GetRepository();
+
+                var fileBacked = Dispatcher.Invoke(() => FileBacked.IsChecked ?? false);
+                var loadScriptDom = Dispatcher.Invoke(() => ScriptDom.IsChecked ?? false);
+                var validateModel = Dispatcher.Invoke(() => ValidateModel.IsChecked ?? false);
+
+                if (fileBacked)
+                {
+                    TSqlModel model = TSqlModel.LoadFromDacpac(filePath, new ModelLoadOptions(DacSchemaModelStorageType.File, loadAsScriptBackedModel: true));
+                    repository.SetModel(model, validateModel, loadScriptDom);
+                }
+                else
+                {
+                    repository.SetModel(new TSqlModel(filePath),validateModel, loadScriptDom);
+                }
+
+                Dispatcher.Invoke(() =>
+                {
+                    var window = this.TryFindParent<ModernWindow>();
+                    window.ContentSource = new Uri("/Pages/Explorer.xaml", UriKind.Relative);
+                });
+                
+            });
+
         }
 
         public bool LoadScriptDom()
