@@ -13,6 +13,7 @@ using Microsoft.SqlServer.Dac;
 using Microsoft.SqlServer.Dac.Model;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using System.Diagnostics;
+using System.Windows.Media;
 using DacpacExplorer.Pages;
 
 
@@ -28,7 +29,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 		private TreeViewItem AddTSqlFragment(string Node, TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem)
         {
-            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem);
+            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem, Brushes.Green);
 
             var propertiesPageBuilder = new PropertiesPageBuilder();
             //var properties = null;// propertiesPageBuilder.GetPropertiesDisplay(currentObject);

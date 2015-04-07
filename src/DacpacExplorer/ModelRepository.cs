@@ -1,38 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.SqlServer.Dac.Model;
+﻿using Microsoft.SqlServer.Dac.Model;
 
 namespace DacpacExplorer
 {
-    class ModelRepository
+    internal class ModelRepository
     {
         private static readonly ModelRepository Singleton = new ModelRepository();
+        private bool _LoadScriptDom;
         private TSqlModel _model;
         private bool _validateModel;
-        private bool _LoadScriptDom;
+
+        private ModelRepository()
+        {
+        }
 
         public static ModelRepository GetRepository()
         {
             return Singleton;
         }
 
-        private ModelRepository()
-        {
-            
-        }
-
         public bool ValidateModel()
         {
             return _validateModel;
         }
+
         public bool LoadScriptDom()
         {
             return _LoadScriptDom;
         }
-        public void SetModel(TSqlModel model, bool validateModel,bool loadScriptDom)
+
+        public void SetModel(TSqlModel model, bool validateModel, bool loadScriptDom)
         {
             _validateModel = validateModel;
             _model = model;
@@ -43,6 +39,5 @@ namespace DacpacExplorer
         {
             return _model;
         }
-
     }
 }

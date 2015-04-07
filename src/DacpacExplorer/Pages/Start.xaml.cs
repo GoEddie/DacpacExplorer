@@ -1,29 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DacpacExplorer.External;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
+using Microsoft.SqlServer.Dac;
 using Microsoft.SqlServer.Dac.Model;
 using Microsoft.Win32;
-using Microsoft.SqlServer.Dac;
 
 namespace DacpacExplorer.Pages
 {
     /// <summary>
-    /// Interaction logic for Start.xaml
+    ///     Interaction logic for Start.xaml
     /// </summary>
     public partial class Start : Page, IContent
     {
@@ -32,13 +24,29 @@ namespace DacpacExplorer.Pages
             InitializeComponent();
         }
 
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Cursor = Cursors.Arrow;
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
-
             Task.Run(() =>
             {
                 var filePath = Dispatcher.Invoke(() => DacpacPathTextBox.Text);
-                if (!File.Exists( filePath ))
+                if (!File.Exists(filePath))
                 {
                     MessageBox.Show("Error dacpac file does not exist :(");
                     return;
@@ -53,12 +61,13 @@ namespace DacpacExplorer.Pages
 
                 if (fileBacked)
                 {
-                    TSqlModel model = TSqlModel.LoadFromDacpac(filePath, new ModelLoadOptions(DacSchemaModelStorageType.File, loadAsScriptBackedModel: true));
+                    var model = TSqlModel.LoadFromDacpac(filePath,
+                        new ModelLoadOptions(DacSchemaModelStorageType.File, true));
                     repository.SetModel(model, validateModel, loadScriptDom);
                 }
                 else
                 {
-                    repository.SetModel(new TSqlModel(filePath),validateModel, loadScriptDom);
+                    repository.SetModel(new TSqlModel(filePath), validateModel, loadScriptDom);
                 }
 
                 Dispatcher.Invoke(() =>
@@ -66,14 +75,12 @@ namespace DacpacExplorer.Pages
                     var window = this.TryFindParent<ModernWindow>();
                     window.ContentSource = new Uri("/Pages/Explorer.xaml", UriKind.Relative);
                 });
-                
             });
-
         }
 
         public bool LoadScriptDom()
         {
-            return this.ScriptDom.IsChecked.Value;
+            return ScriptDom.IsChecked.Value;
         }
 
         private void ButtonBrowse_Clicked(object sender, RoutedEventArgs e)
@@ -95,33 +102,12 @@ namespace DacpacExplorer.Pages
                 }
             }
 
-            bool? result = dialog.ShowDialog();
+            var result = dialog.ShowDialog();
 
             if (result == true)
             {
                 DacpacPathTextBox.Text = dialog.FileName;
             }
-        }
-
-
-        public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
-        {
-            
-        }
-
-        public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
-        {
-            
-        }
-
-        public void OnNavigatedTo(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
-        {
-            Cursor = Cursors.Arrow;
-        }
-
-        public void OnNavigatingFrom(FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs e)
-        {
-            
         }
     }
 }
