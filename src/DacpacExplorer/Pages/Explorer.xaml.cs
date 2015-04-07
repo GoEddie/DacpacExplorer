@@ -8,7 +8,12 @@ using DacpacExplorer.External;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
+using Microsoft.SqlServer.Dac;
 using Microsoft.SqlServer.Dac.Model;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
+using System.Diagnostics;
+using DacpacExplorer.TSqlFragmentProcess;
+
 
 namespace DacpacExplorer.Pages
 {
@@ -91,7 +96,8 @@ namespace DacpacExplorer.Pages
             if (null == display)
                 return;
 
-            Properties.Children.Add(display.Properties);
+            if (display.Properties!=null)
+                Properties.Children.Add(display.Properties);
             ScriptDisplay.Text = display.Script;
 
         }
@@ -132,14 +138,16 @@ namespace DacpacExplorer.Pages
             
             var childObjectTypes = new Dictionary<string, TreeViewItem>();
 
-            DisplyChildObjects(rootNodeHeader, currentObjectTreeViewItem, currentObject.GetChildren(), childObjectTypes);           
+            DisplyChildObjects(rootNodeHeader, currentObjectTreeViewItem, currentObject, childObjectTypes);           
 
         }
 
 
-        private void DisplyChildObjects(string rootNodeHader, TreeViewItem currentObjectTreeViewItem, IEnumerable<TSqlObject> children, Dictionary<string, TreeViewItem> childObjectTypes)
+
+        private void DisplyChildObjects(string rootNodeHader, TreeViewItem currentObjectTreeViewItem, TSqlObject currentObject, Dictionary<string, TreeViewItem> childObjectTypes)
         {
-            foreach (var child in children.OrderBy(p=>p, new SqlObjectComparer()))
+            IEnumerable<TSqlObject> children = currentObject.GetChildren();
+            foreach (var child in children.OrderBy(p => p, new SqlObjectComparer()))
             {
                 var type = child.ObjectType.Name;
                 var typeContainerHeader = GetContainerHeader(type);
@@ -153,6 +161,16 @@ namespace DacpacExplorer.Pages
                 var childTreeViewItem = AddTreeItem(child.Name.ToString(), childObjectTypes[typeContainerHeader]);
 
                 DisplayObject(rootNodeHader, child, childTreeViewItem);
+            }
+            var repository = ModelRepository.GetRepository();
+            if(repository.LoadScriptDom())
+            {
+                TSqlFragment fragment;
+                
+                TSqlModelUtils.TryGetFragmentForAnalysis(currentObject, out fragment);
+                TSqlFragmentProcess.TSqlFragmentProcess frgPrc = new TSqlFragmentProcess.TSqlFragmentProcess(this);
+                frgPrc.ProcessTSQLFragment(fragment, currentObjectTreeViewItem);
+                
             }
         }
 
@@ -188,7 +206,7 @@ namespace DacpacExplorer.Pages
             return AddTreeItem(header, TreeView);
         }
 
-        private TreeViewItem AddTreeItem(string header, ItemsControl parent)
+        public TreeViewItem AddTreeItem(string header, ItemsControl parent)
         {
             if (string.IsNullOrEmpty(header))
             {
