@@ -16,7 +16,7 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <DockPanel>
-                <TreeView Name="TreeView" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TreeView>
+                <TreeView Name="TreeView" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black"></TreeView>
             </DockPanel>
         </ScrollViewer>
 

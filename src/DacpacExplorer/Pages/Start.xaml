@@ -13,9 +13,11 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             
             <Button HorizontalAlignment="Center" Margin="10,10,10,10" Click="ButtonBrowse_Clicked">_Browse</Button>
-            <CheckBox x:Name="ValidateModel">Validate Model</CheckBox>
+            
             <Button HorizontalAlignment="Center" Margin="10,10,10,10" Click="ButtonOk_Click">_Open</Button>
         </StackPanel>
+        <Label>Options:</Label>
+        <CheckBox x:Name="ValidateModel">Validate Model</CheckBox>
         <CheckBox x:Name="ScriptDom" Content="Add script dom explorer"/>
         <CheckBox x:Name="FileBacked" Content="Load in file backed mode - Slower but more detailed"/>
     </StackPanel>
