@@ -84,6 +84,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 			 private void Display<#=Class#>(Microsoft.SqlServer.TransactSql.ScriptDom.<#=s#> currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+						var panel = PropertiesPageBuilder.GetPropertiesDisplayPanel("<#=Class#>");
+						CachedObjectDisplay COD = (CachedObjectDisplay)currentObjectTreeViewItem.Tag;
+                        COD.Properties = panel;
 <#
 						System.Reflection.MethodInfo[] MethodsCollection = t.GetMethods();
                         foreach (var m in MethodsCollection)
@@ -94,6 +97,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 #>
 								ProcessTSQLFragment(currentFragment.<#=l#>,currentObjectTreeViewItem);
 <#
+								continue;
 							}
                             if (m.Name.Length>=5 && m.Name.Substring(0, 4) == "get_")
                             {
@@ -119,9 +123,32 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 <#
 									}
-                                }
+                                }else{
+									string f=m.Name;
+									
+									f=f.Replace("get_","");
+									if(f!="Item"){
+#>
+								//  -- Non Ilist Processing of <#=m.Name#>
+								{
+									string Proc = "<#=f#>";
+									string Val = currentFragment.<#=f#>.ToString();
+									var p = PropertiesPageBuilder.GetPropertyLabel(Proc,Val);	
+									panel.Children.Add(p);							
+								}
+<#							
+									}	
+								
+								}
                                 
-                            }
+                            }else{
+							
+#>
+								//  -- Processing of <#=m.Name#>
+
+<#							
+							
+							}
 
                         }
 

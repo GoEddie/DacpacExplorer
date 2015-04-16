@@ -184,7 +184,7 @@ namespace DacpacExplorer.Pages
 
         }
 
-        private StackPanel GetPropertiesDisplayPanel(string name)
+        public static StackPanel GetPropertiesDisplayPanel(string name)
         {
             var panel = GetPropertiesPanel();
 
@@ -196,7 +196,7 @@ namespace DacpacExplorer.Pages
             return panel;
         }
 
-        private UIElement GetPropertiesNameLabel(string name)
+        private static UIElement GetPropertiesNameLabel(string name)
         {
             var nameLabel = new Label();
             nameLabel.Content = name;
@@ -206,7 +206,7 @@ namespace DacpacExplorer.Pages
         }
 
 
-        private Label GetPropertyLabel(string name, string val)
+        public static Label GetPropertyLabel(string name, string val)
         {
             var displayText = string.Format("{0} = {1}", name, val);
 
@@ -214,7 +214,7 @@ namespace DacpacExplorer.Pages
             label.Content = displayText;
             return label;
         }
-
+        
         private Label GetSimplePropertyLabel(string value)
         {
             var displayText = value;
@@ -224,7 +224,7 @@ namespace DacpacExplorer.Pages
             return label;
         }
 
-        private StackPanel GetPropertiesPanel()
+        private static StackPanel GetPropertiesPanel()
         {
             var panel = new StackPanel { Orientation = Orientation.Vertical, Margin = new Thickness(25, 25, 0, 0) };
 
