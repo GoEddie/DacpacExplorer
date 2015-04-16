@@ -5,6 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 
+//  Fragment.cs is built from the T4 template fragment.tt.  Do NOT change this file,  change the .tt
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ using Microsoft.SqlServer.Dac.Model;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using System.Diagnostics;
 using DacpacExplorer.Pages;
+using System.Windows.Media;
 
 <#
   Type[] TypesInAssembly = null;
@@ -49,14 +51,16 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 		private TreeViewItem AddTSqlFragment(string Node, TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem)
         {
-            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem);
+            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem,Brushes.Green);
 
             var propertiesPageBuilder = new PropertiesPageBuilder();
             //var properties = null;// propertiesPageBuilder.GetPropertiesDisplay(currentObject);
             string script = "";
 
-            Microsoft.SqlServer.TransactSql.ScriptDom.Sql120ScriptGenerator sg = new Sql120ScriptGenerator();
-            sg.GenerateScript(currentFragment, out script);
+			if(currentFragment!=null){
+				Microsoft.SqlServer.TransactSql.ScriptDom.Sql120ScriptGenerator sg = new Sql120ScriptGenerator();
+				sg.GenerateScript(currentFragment, out script);
+			}
 
 
             childTreeViewItem.Tag = new CachedObjectDisplay()

@@ -1,4 +1,11 @@
 ﻿
+
+
+
+
+
+
+//  Fragment.cs is built from the T4 template fragment.tt.  Do NOT change this file,  change the .tt
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +20,9 @@ using Microsoft.SqlServer.Dac;
 using Microsoft.SqlServer.Dac.Model;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using System.Diagnostics;
-using System.Windows.Media;
 using DacpacExplorer.Pages;
+using System.Windows.Media;
+
 
 
 namespace DacpacExplorer.TSqlFragmentProcess
@@ -29,17 +37,16 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 		private TreeViewItem AddTSqlFragment(string Node, TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem)
         {
-            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem, Brushes.Green);
+            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem,Brushes.Green);
 
             var propertiesPageBuilder = new PropertiesPageBuilder();
             //var properties = null;// propertiesPageBuilder.GetPropertiesDisplay(currentObject);
             string script = "";
 
-            if (currentFragment != null)
-            {
-                Microsoft.SqlServer.TransactSql.ScriptDom.Sql120ScriptGenerator sg = new Sql120ScriptGenerator();
-                sg.GenerateScript(currentFragment, out script);
-            }
+			if(currentFragment!=null){
+				Microsoft.SqlServer.TransactSql.ScriptDom.Sql120ScriptGenerator sg = new Sql120ScriptGenerator();
+				sg.GenerateScript(currentFragment, out script);
+			}
 
 
             childTreeViewItem.Tag = new CachedObjectDisplay()
@@ -54,8 +61,10 @@ namespace DacpacExplorer.TSqlFragmentProcess
         }		
 
 
+
 			 private void DisplayMultiPartIdentifier(Microsoft.SqlServer.TransactSql.ScriptDom.MultiPartIdentifier currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
@@ -65,16 +74,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySchemaObjectName(Microsoft.SqlServer.TransactSql.ScriptDom.SchemaObjectName currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ServerIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SchemaIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.BaseIdentifier,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
@@ -84,17 +100,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayChildObjectName(Microsoft.SqlServer.TransactSql.ScriptDom.ChildObjectName currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.BaseIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SchemaIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ServerIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ChildIdentifier,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
@@ -104,130 +128,183 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayIdentifier(Microsoft.SqlServer.TransactSql.ScriptDom.Identifier currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayScalarExpression(Microsoft.SqlServer.TransactSql.ScriptDom.ScalarExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPrimaryExpression(Microsoft.SqlServer.TransactSql.ScriptDom.PrimaryExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayValueExpression(Microsoft.SqlServer.TransactSql.ScriptDom.ValueExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.Literal currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIdentifierLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.IdentifierLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIdentifierOrValueExpression(Microsoft.SqlServer.TransactSql.ScriptDom.IdentifierOrValueExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ValueExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIntegerLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.IntegerLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayNumericLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.NumericLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRealLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.RealLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMoneyLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.MoneyLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBinaryLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.BinaryLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayStringLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.StringLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayNullLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.NullLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDefaultLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.DefaultLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMaxLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.MaxLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOdbcLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.OdbcLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayStatementList(Microsoft.SqlServer.TransactSql.ScriptDom.StatementList currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Statements",null, currentObjectTreeViewItem);
@@ -237,19 +314,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayTSqlStatement(Microsoft.SqlServer.TransactSql.ScriptDom.TSqlStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ExecuteSpecification,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -259,18 +342,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteOption(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayResultSetsExecuteOption(Microsoft.SqlServer.TransactSql.ScriptDom.ResultSetsExecuteOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Definitions",null, currentObjectTreeViewItem);
@@ -280,18 +368,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayResultSetDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.ResultSetDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayInlineResultSetDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.InlineResultSetDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ResultColumnDefinitions",null, currentObjectTreeViewItem);
@@ -301,52 +394,75 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayResultColumnDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.ResultColumnDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ColumnDefinition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Nullable,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySchemaObjectResultSetDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.SchemaObjectResultSetDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.LinkedServer,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ExecuteContext,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ExecutableEntity,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteContext(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteContext currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Principal,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteParameter(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ParameterValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecutableEntity(Microsoft.SqlServer.TransactSql.ScriptDom.ExecutableEntity currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -356,22 +472,31 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayProcedureReferenceName(Microsoft.SqlServer.TransactSql.ScriptDom.ProcedureReferenceName currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ProcedureReference,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ProcedureVariable,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecutableProcedureReference(Microsoft.SqlServer.TransactSql.ScriptDom.ExecutableProcedureReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ProcedureReference,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AdHocDataSource,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -381,12 +506,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayExecutableStringList(Microsoft.SqlServer.TransactSql.ScriptDom.ExecutableStringList currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Strings",null, currentObjectTreeViewItem);
@@ -396,6 +524,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -405,27 +534,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAdHocDataSource(Microsoft.SqlServer.TransactSql.ScriptDom.AdHocDataSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ProviderName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.InitString,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayViewOption(Microsoft.SqlServer.TransactSql.ScriptDom.ViewOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayViewStatementBody(Microsoft.SqlServer.TransactSql.ScriptDom.ViewStatementBody currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -434,6 +573,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -444,14 +584,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SelectStatement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterViewStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterViewStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -460,6 +605,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -470,14 +616,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SelectStatement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateViewStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateViewStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -486,6 +637,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -496,42 +648,59 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SelectStatement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTriggerObject(Microsoft.SqlServer.TransactSql.ScriptDom.TriggerObject currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTriggerOption(Microsoft.SqlServer.TransactSql.ScriptDom.TriggerOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteAsTriggerOption(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteAsTriggerOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ExecuteAsClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTriggerAction(Microsoft.SqlServer.TransactSql.ScriptDom.TriggerAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.EventTypeGroup,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTriggerStatementBody(Microsoft.SqlServer.TransactSql.ScriptDom.TriggerStatementBody currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TriggerObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -540,6 +709,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -550,16 +720,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTriggerStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTriggerStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TriggerObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -568,6 +745,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -578,16 +756,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateTriggerStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateTriggerStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TriggerObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -596,6 +781,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -606,14 +792,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayProcedureStatementBodyBase(Microsoft.SqlServer.TransactSql.ScriptDom.ProcedureStatementBodyBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -623,15 +814,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayProcedureStatementBody(Microsoft.SqlServer.TransactSql.ScriptDom.ProcedureStatementBody currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ProcedureReference,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -640,6 +837,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -650,15 +848,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterProcedureStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterProcedureStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ProcedureReference,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -667,6 +871,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -677,15 +882,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateProcedureStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateProcedureStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ProcedureReference,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -694,6 +905,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -704,33 +916,49 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayProcedureReference(Microsoft.SqlServer.TransactSql.ScriptDom.ProcedureReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Number,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMethodSpecifier(Microsoft.SqlServer.TransactSql.ScriptDom.MethodSpecifier currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.AssemblyName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ClassName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFunctionStatementBody(Microsoft.SqlServer.TransactSql.ScriptDom.FunctionStatementBody currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ReturnType,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -740,7 +968,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OrderHint,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -750,40 +980,55 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayProcedureOption(Microsoft.SqlServer.TransactSql.ScriptDom.ProcedureOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteAsProcedureOption(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteAsProcedureOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ExecuteAs,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFunctionOption(Microsoft.SqlServer.TransactSql.ScriptDom.FunctionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteAsFunctionOption(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteAsFunctionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ExecuteAs,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayXmlNamespaces(Microsoft.SqlServer.TransactSql.ScriptDom.XmlNamespaces currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("XmlNamespacesElements",null, currentObjectTreeViewItem);
@@ -793,35 +1038,49 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayXmlNamespacesElement(Microsoft.SqlServer.TransactSql.ScriptDom.XmlNamespacesElement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.String,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayXmlNamespacesDefaultElement(Microsoft.SqlServer.TransactSql.ScriptDom.XmlNamespacesDefaultElement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.String,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayXmlNamespacesAliasElement(Microsoft.SqlServer.TransactSql.ScriptDom.XmlNamespacesAliasElement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.String,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCommonTableExpression(Microsoft.SqlServer.TransactSql.ScriptDom.CommonTableExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ExpressionName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -831,14 +1090,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.QueryExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWithCtesAndXmlNamespaces(Microsoft.SqlServer.TransactSql.ScriptDom.WithCtesAndXmlNamespaces currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.XmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("CommonTableExpressions",null, currentObjectTreeViewItem);
@@ -848,33 +1112,45 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.ChangeTrackingContext,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFunctionReturnType(Microsoft.SqlServer.TransactSql.ScriptDom.FunctionReturnType currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayTableValuedFunctionReturnType(Microsoft.SqlServer.TransactSql.ScriptDom.TableValuedFunctionReturnType currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DeclareTableVariableBody,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDataTypeReference(Microsoft.SqlServer.TransactSql.ScriptDom.DataTypeReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayParameterizedDataTypeReference(Microsoft.SqlServer.TransactSql.ScriptDom.ParameterizedDataTypeReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -884,13 +1160,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySqlDataTypeReference(Microsoft.SqlServer.TransactSql.ScriptDom.SqlDataTypeReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -900,13 +1180,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUserDataTypeReference(Microsoft.SqlServer.TransactSql.ScriptDom.UserDataTypeReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -916,35 +1200,49 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayXmlDataTypeReference(Microsoft.SqlServer.TransactSql.ScriptDom.XmlDataTypeReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.XmlSchemaCollection,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayScalarFunctionReturnType(Microsoft.SqlServer.TransactSql.ScriptDom.ScalarFunctionReturnType currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySelectFunctionReturnType(Microsoft.SqlServer.TransactSql.ScriptDom.SelectFunctionReturnType currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SelectStatement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.TableDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ColumnDefinitions",null, currentObjectTreeViewItem);
@@ -953,6 +1251,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -963,6 +1262,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Indexes",null, currentObjectTreeViewItem);
@@ -972,41 +1272,57 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDeclareTableVariableBody(Microsoft.SqlServer.TransactSql.ScriptDom.DeclareTableVariableBody currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.VariableName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Definition,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDeclareTableVariableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DeclareTableVariableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Body,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.TableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayTableReferenceWithAlias(Microsoft.SqlServer.TransactSql.ScriptDom.TableReferenceWithAlias currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayNamedTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.NamedTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("TableHints",null, currentObjectTreeViewItem);
@@ -1016,14 +1332,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.TableSampleClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableReferenceWithAliasAndColumns(Microsoft.SqlServer.TransactSql.ScriptDom.TableReferenceWithAliasAndColumns currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1033,14 +1354,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySchemaObjectFunctionTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.SchemaObjectFunctionTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -1050,6 +1376,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1059,19 +1386,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableHint(Microsoft.SqlServer.TransactSql.ScriptDom.TableHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayIndexTableHint(Microsoft.SqlServer.TransactSql.ScriptDom.IndexTableHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexValues",null, currentObjectTreeViewItem);
@@ -1081,20 +1414,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralTableHint(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralTableHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayQueryDerivedTable(Microsoft.SqlServer.TransactSql.ScriptDom.QueryDerivedTable currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.QueryExpression,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1104,13 +1444,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayInlineDerivedTable(Microsoft.SqlServer.TransactSql.ScriptDom.InlineDerivedTable currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("RowValues",null, currentObjectTreeViewItem);
@@ -1120,6 +1464,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1129,45 +1474,65 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySubqueryComparisonPredicate(Microsoft.SqlServer.TransactSql.ScriptDom.SubqueryComparisonPredicate currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Subquery,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExistsPredicate(Microsoft.SqlServer.TransactSql.ScriptDom.ExistsPredicate currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Subquery,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLikePredicate(Microsoft.SqlServer.TransactSql.ScriptDom.LikePredicate currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EscapeExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayInPredicate(Microsoft.SqlServer.TransactSql.ScriptDom.InPredicate currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Subquery,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Values",null, currentObjectTreeViewItem);
@@ -1177,12 +1542,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextPredicate(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextPredicate currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1192,25 +1560,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.LanguageTerm,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PropertyName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUserDefinedTypePropertyAccess(Microsoft.SqlServer.TransactSql.ScriptDom.UserDefinedTypePropertyAccess currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.CallTarget,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PropertyName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayStatementWithCtesAndXmlNamespaces(Microsoft.SqlServer.TransactSql.ScriptDom.StatementWithCtesAndXmlNamespaces currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -1220,14 +1600,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySelectStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SelectStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.QueryExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Into,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ComputeClauses",null, currentObjectTreeViewItem);
@@ -1237,7 +1622,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -1247,30 +1634,39 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayForClause(Microsoft.SqlServer.TransactSql.ScriptDom.ForClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayBrowseForClause(Microsoft.SqlServer.TransactSql.ScriptDom.BrowseForClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayReadOnlyForClause(Microsoft.SqlServer.TransactSql.ScriptDom.ReadOnlyForClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayXmlForClause(Microsoft.SqlServer.TransactSql.ScriptDom.XmlForClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -1280,19 +1676,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayXmlForClauseOption(Microsoft.SqlServer.TransactSql.ScriptDom.XmlForClauseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateForClause(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateForClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1302,26 +1704,35 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayOptimizerHint(Microsoft.SqlServer.TransactSql.ScriptDom.OptimizerHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralOptimizerHint(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralOptimizerHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableHintsOptimizerHint(Microsoft.SqlServer.TransactSql.ScriptDom.TableHintsOptimizerHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("TableHints",null, currentObjectTreeViewItem);
@@ -1331,13 +1742,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayForceSeekTableHint(Microsoft.SqlServer.TransactSql.ScriptDom.ForceSeekTableHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.IndexValue,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ColumnValues",null, currentObjectTreeViewItem);
@@ -1347,12 +1762,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayOptimizeForOptimizerHint(Microsoft.SqlServer.TransactSql.ScriptDom.OptimizeForOptimizerHint currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Pairs",null, currentObjectTreeViewItem);
@@ -1362,52 +1780,75 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayVariableValuePair(Microsoft.SqlServer.TransactSql.ScriptDom.VariableValuePair currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWhenClause(Microsoft.SqlServer.TransactSql.ScriptDom.WhenClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ThenExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySimpleWhenClause(Microsoft.SqlServer.TransactSql.ScriptDom.SimpleWhenClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.WhenExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ThenExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySearchedWhenClause(Microsoft.SqlServer.TransactSql.ScriptDom.SearchedWhenClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.WhenExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ThenExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCaseExpression(Microsoft.SqlServer.TransactSql.ScriptDom.CaseExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ElseExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySimpleCaseExpression(Microsoft.SqlServer.TransactSql.ScriptDom.SimpleCaseExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.InputExpression,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("WhenClauses",null, currentObjectTreeViewItem);
@@ -1417,14 +1858,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.ElseExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySearchedCaseExpression(Microsoft.SqlServer.TransactSql.ScriptDom.SearchedCaseExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("WhenClauses",null, currentObjectTreeViewItem);
@@ -1434,23 +1880,33 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.ElseExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayNullIfExpression(Microsoft.SqlServer.TransactSql.ScriptDom.NullIfExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCoalesceExpression(Microsoft.SqlServer.TransactSql.ScriptDom.CoalesceExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Expressions",null, currentObjectTreeViewItem);
@@ -1460,24 +1916,35 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIIfCall(Microsoft.SqlServer.TransactSql.ScriptDom.IIfCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Predicate,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ThenExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ElseExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1487,18 +1954,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SearchCondition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TopN,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Language,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PropertyName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySemanticTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.SemanticTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -1508,19 +1984,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SourceKey,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MatchedColumn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MatchedKey,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOpenXmlTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.OpenXmlTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.RowPattern,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Flags,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SchemaDeclarationItems",null, currentObjectTreeViewItem);
@@ -1530,29 +2016,45 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.TableName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOpenRowsetTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.OpenRowsetTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ProviderName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataSource,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.UserId,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ProviderString,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Query,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Object,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayInternalOpenRowset(Microsoft.SqlServer.TransactSql.ScriptDom.InternalOpenRowset currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("VarArgs",null, currentObjectTreeViewItem);
@@ -1562,14 +2064,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBulkOpenRowset(Microsoft.SqlServer.TransactSql.ScriptDom.BulkOpenRowset currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataFile,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -1578,6 +2085,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -1588,99 +2096,153 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOpenQueryTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.OpenQueryTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.LinkedServer,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Query,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAdHocTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.AdHocTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataSource,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Object,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySchemaDeclarationItem(Microsoft.SqlServer.TransactSql.ScriptDom.SchemaDeclarationItem currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ColumnDefinition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Mapping,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayConvertCall(Microsoft.SqlServer.TransactSql.ScriptDom.ConvertCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Parameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Style,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTryConvertCall(Microsoft.SqlServer.TransactSql.ScriptDom.TryConvertCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Parameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Style,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayParseCall(Microsoft.SqlServer.TransactSql.ScriptDom.ParseCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.StringValue,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Culture,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTryParseCall(Microsoft.SqlServer.TransactSql.ScriptDom.TryParseCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.StringValue,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Culture,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCastCall(Microsoft.SqlServer.TransactSql.ScriptDom.CastCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Parameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTryCastCall(Microsoft.SqlServer.TransactSql.ScriptDom.TryCastCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Parameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFunctionCall(Microsoft.SqlServer.TransactSql.ScriptDom.FunctionCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.CallTarget,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FunctionName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -1690,42 +2252,59 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OverClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WithinGroupClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCallTarget(Microsoft.SqlServer.TransactSql.ScriptDom.CallTarget currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayExpressionCallTarget(Microsoft.SqlServer.TransactSql.ScriptDom.ExpressionCallTarget currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMultiPartIdentifierCallTarget(Microsoft.SqlServer.TransactSql.ScriptDom.MultiPartIdentifierCallTarget currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MultiPartIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUserDefinedTypeCallTarget(Microsoft.SqlServer.TransactSql.ScriptDom.UserDefinedTypeCallTarget currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLeftFunctionCall(Microsoft.SqlServer.TransactSql.ScriptDom.LeftFunctionCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -1735,13 +2314,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRightFunctionCall(Microsoft.SqlServer.TransactSql.ScriptDom.RightFunctionCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -1751,15 +2334,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayPartitionFunctionCall(Microsoft.SqlServer.TransactSql.ScriptDom.PartitionFunctionCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FunctionName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -1769,13 +2358,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOverClause(Microsoft.SqlServer.TransactSql.ScriptDom.OverClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Partitions",null, currentObjectTreeViewItem);
@@ -1785,30 +2378,43 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OrderByClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WindowFrameClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayParameterlessCall(Microsoft.SqlServer.TransactSql.ScriptDom.ParameterlessCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayScalarSubquery(Microsoft.SqlServer.TransactSql.ScriptDom.ScalarSubquery currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.QueryExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOdbcFunctionCall(Microsoft.SqlServer.TransactSql.ScriptDom.OdbcFunctionCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -1818,30 +2424,43 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExtractFromExpression(Microsoft.SqlServer.TransactSql.ScriptDom.ExtractFromExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ExtractedElement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOdbcConvertSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.OdbcConvertSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterFunctionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterFunctionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ReturnType,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -1851,7 +2470,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OrderHint,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -1861,21 +2482,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBeginEndBlockStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BeginEndBlockStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBeginEndAtomicBlockStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BeginEndAtomicBlockStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -1885,104 +2514,147 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAtomicBlockOption(Microsoft.SqlServer.TransactSql.ScriptDom.AtomicBlockOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralAtomicBlockOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralAtomicBlockOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIdentifierAtomicBlockOption(Microsoft.SqlServer.TransactSql.ScriptDom.IdentifierAtomicBlockOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffAtomicBlockOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffAtomicBlockOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayTransactionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.TransactionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBeginTransactionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BeginTransactionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MarkDescription,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBreakStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BreakStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayColumnWithSortOrder(Microsoft.SqlServer.TransactSql.ScriptDom.ColumnWithSortOrder currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCommitTransactionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CommitTransactionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRollbackTransactionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RollbackTransactionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySaveTransactionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SaveTransactionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayContinueStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ContinueStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCreateDefaultStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateDefaultStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateFunctionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateFunctionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ReturnType,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -1992,7 +2664,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OrderHint,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -2002,32 +2676,47 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateRuleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateRuleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDeclareVariableElement(Microsoft.SqlServer.TransactSql.ScriptDom.DeclareVariableElement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.VariableName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Nullable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDeclareVariableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DeclareVariableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Declarations",null, currentObjectTreeViewItem);
@@ -2037,53 +2726,77 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayGoToStatement(Microsoft.SqlServer.TransactSql.ScriptDom.GoToStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.LabelName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIfStatement(Microsoft.SqlServer.TransactSql.ScriptDom.IfStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Predicate,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ThenStatement,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ElseStatement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLabelStatement(Microsoft.SqlServer.TransactSql.ScriptDom.LabelStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayProcedureParameter(Microsoft.SqlServer.TransactSql.ScriptDom.ProcedureParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.VariableName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Nullable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWhileStatement(Microsoft.SqlServer.TransactSql.ScriptDom.WhileStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Predicate,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Statement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDataModificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DataModificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -2093,14 +2806,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDeleteStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DeleteStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DeleteSpecification,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -2110,48 +2828,75 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDataModificationSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.DataModificationSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TopRowFilter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputIntoClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateDeleteSpecificationBase(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateDeleteSpecificationBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FromClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WhereClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TopRowFilter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputIntoClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDeleteSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.DeleteSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FromClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WhereClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TopRowFilter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputIntoClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayInsertStatement(Microsoft.SqlServer.TransactSql.ScriptDom.InsertStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.InsertSpecification,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -2161,13 +2906,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayInsertSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.InsertSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.InsertSource,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -2177,18 +2926,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TopRowFilter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputIntoClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.UpdateSpecification,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -2198,12 +2956,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("SetClauses",null, currentObjectTreeViewItem);
@@ -2213,85 +2974,133 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.FromClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WhereClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TopRowFilter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputIntoClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateSchemaStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateSchemaStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.StatementList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWaitForStatement(Microsoft.SqlServer.TransactSql.ScriptDom.WaitForStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Parameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Timeout,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Statement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayReadTextStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ReadTextStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TextPointer,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Offset,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Size,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTextModificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.TextModificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TextId,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Timestamp,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateTextStatement(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateTextStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.InsertOffset,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DeleteLength,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SourceColumn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SourceParameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TextId,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Timestamp,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWriteTextStatement(Microsoft.SqlServer.TransactSql.ScriptDom.WriteTextStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SourceParameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TextId,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Timestamp,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLineNoStatement(Microsoft.SqlServer.TransactSql.ScriptDom.LineNoStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.LineNo,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySecurityStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SecurityStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
@@ -2301,7 +3110,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SecurityTargetObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
@@ -2311,13 +3122,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.AsClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayGrantStatement(Microsoft.SqlServer.TransactSql.ScriptDom.GrantStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
@@ -2327,7 +3142,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SecurityTargetObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
@@ -2337,13 +3154,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.AsClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDenyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DenyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
@@ -2353,7 +3174,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SecurityTargetObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
@@ -2363,13 +3186,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.AsClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRevokeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RevokeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
@@ -2379,7 +3206,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SecurityTargetObject,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
@@ -2389,21 +3218,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.AsClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterAuthorizationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterAuthorizationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SecurityTargetObject,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PrincipalName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayPermission(Microsoft.SqlServer.TransactSql.ScriptDom.Permission currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
@@ -2413,6 +3250,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -2422,13 +3260,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySecurityTargetObject(Microsoft.SqlServer.TransactSql.ScriptDom.SecurityTargetObject currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -2438,72 +3280,103 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySecurityTargetObjectName(Microsoft.SqlServer.TransactSql.ScriptDom.SecurityTargetObjectName currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MultiPartIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySecurityPrincipal(Microsoft.SqlServer.TransactSql.ScriptDom.SecurityPrincipal currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySecurityStatementBody80(Microsoft.SqlServer.TransactSql.ScriptDom.SecurityStatementBody80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SecurityElement80,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecurityUserClause80,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayGrantStatement80(Microsoft.SqlServer.TransactSql.ScriptDom.GrantStatement80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.AsClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecurityElement80,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecurityUserClause80,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDenyStatement80(Microsoft.SqlServer.TransactSql.ScriptDom.DenyStatement80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SecurityElement80,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecurityUserClause80,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRevokeStatement80(Microsoft.SqlServer.TransactSql.ScriptDom.RevokeStatement80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.AsClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecurityElement80,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecurityUserClause80,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySecurityElement80(Microsoft.SqlServer.TransactSql.ScriptDom.SecurityElement80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCommandSecurityElement80(Microsoft.SqlServer.TransactSql.ScriptDom.CommandSecurityElement80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPrivilegeSecurityElement80(Microsoft.SqlServer.TransactSql.ScriptDom.PrivilegeSecurityElement80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Privileges",null, currentObjectTreeViewItem);
@@ -2513,7 +3386,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -2523,12 +3398,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayPrivilege80(Microsoft.SqlServer.TransactSql.ScriptDom.Privilege80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -2538,12 +3416,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySecurityUserClause80(Microsoft.SqlServer.TransactSql.ScriptDom.SecurityUserClause80 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Users",null, currentObjectTreeViewItem);
@@ -2553,46 +3434,63 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySqlCommandIdentifier(Microsoft.SqlServer.TransactSql.ScriptDom.SqlCommandIdentifier currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetClause(Microsoft.SqlServer.TransactSql.ScriptDom.SetClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAssignmentSetClause(Microsoft.SqlServer.TransactSql.ScriptDom.AssignmentSetClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.NewValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFunctionCallSetClause(Microsoft.SqlServer.TransactSql.ScriptDom.FunctionCallSetClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MutatorFunction,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayInsertSource(Microsoft.SqlServer.TransactSql.ScriptDom.InsertSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayValuesInsertSource(Microsoft.SqlServer.TransactSql.ScriptDom.ValuesInsertSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("RowValues",null, currentObjectTreeViewItem);
@@ -2602,26 +3500,35 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySelectInsertSource(Microsoft.SqlServer.TransactSql.ScriptDom.SelectInsertSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Select,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteInsertSource(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteInsertSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Execute,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRowValue(Microsoft.SqlServer.TransactSql.ScriptDom.RowValue currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ColumnValues",null, currentObjectTreeViewItem);
@@ -2631,109 +3538,157 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayPrintStatement(Microsoft.SqlServer.TransactSql.ScriptDom.PrintStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateCall(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTSEqualCall(Microsoft.SqlServer.TransactSql.ScriptDom.TSEqualCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralRange(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralRange currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.From,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.To,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayVariableReference(Microsoft.SqlServer.TransactSql.ScriptDom.VariableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOptionValue(Microsoft.SqlServer.TransactSql.ScriptDom.OptionValue currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffOptionValue(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffOptionValue currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralOptionValue(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralOptionValue currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayGlobalVariableExpression(Microsoft.SqlServer.TransactSql.ScriptDom.GlobalVariableExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySchemaObjectNameOrValueExpression(Microsoft.SqlServer.TransactSql.ScriptDom.SchemaObjectNameOrValueExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ValueExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayParenthesisExpression(Microsoft.SqlServer.TransactSql.ScriptDom.ParenthesisExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayColumnReferenceExpression(Microsoft.SqlServer.TransactSql.ScriptDom.ColumnReferenceExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MultiPartIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayNextValueForExpression(Microsoft.SqlServer.TransactSql.ScriptDom.NextValueForExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SequenceName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OverClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySequenceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SequenceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SequenceOptions",null, currentObjectTreeViewItem);
@@ -2743,33 +3698,45 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySequenceOption(Microsoft.SqlServer.TransactSql.ScriptDom.SequenceOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDataTypeSequenceOption(Microsoft.SqlServer.TransactSql.ScriptDom.DataTypeSequenceOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayScalarExpressionSequenceOption(Microsoft.SqlServer.TransactSql.ScriptDom.ScalarExpressionSequenceOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateSequenceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateSequenceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SequenceOptions",null, currentObjectTreeViewItem);
@@ -2779,13 +3746,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterSequenceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterSequenceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SequenceOptions",null, currentObjectTreeViewItem);
@@ -2795,12 +3766,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropObjectsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropObjectsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -2810,12 +3784,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropSequenceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropSequenceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -2825,13 +3802,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAssemblyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AssemblyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -2840,6 +3821,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -2850,14 +3832,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateAssemblyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateAssemblyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -2866,6 +3853,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -2876,12 +3864,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterAssemblyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterAssemblyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("DropFiles",null, currentObjectTreeViewItem);
@@ -2890,6 +3881,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -2900,7 +3892,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -2910,6 +3904,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -2919,77 +3914,109 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAssemblyOption(Microsoft.SqlServer.TransactSql.ScriptDom.AssemblyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffAssemblyOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffAssemblyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPermissionSetAssemblyOption(Microsoft.SqlServer.TransactSql.ScriptDom.PermissionSetAssemblyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAddFileSpec(Microsoft.SqlServer.TransactSql.ScriptDom.AddFileSpec currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FileName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateXmlSchemaCollectionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateXmlSchemaCollectionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterXmlSchemaCollectionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterXmlSchemaCollectionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropXmlSchemaCollectionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropXmlSchemaCollectionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAssemblyName(Microsoft.SqlServer.TransactSql.ScriptDom.AssemblyName currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ClassName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableRebuildStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableRebuildStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Partition,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
@@ -2999,27 +4026,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableChangeTrackingModificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableChangeTrackingModificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableFileTableNamespaceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableFileTableNamespaceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableSetStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableSetStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -3029,73 +4066,101 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.TableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLockEscalationTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.LockEscalationTableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayFileStreamOnTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileStreamOnTableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileTableDirectoryTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileTableDirectoryTableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileTableCollateFileNameTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileTableCollateFileNameTableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileTableConstraintNameTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileTableConstraintNameTableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMemoryOptimizedTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.MemoryOptimizedTableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDurabilityTableOption(Microsoft.SqlServer.TransactSql.ScriptDom.DurabilityTableOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableAddTableElementStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableAddTableElementStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Definition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableConstraintModificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableConstraintModificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ConstraintNames",null, currentObjectTreeViewItem);
@@ -3105,16 +4170,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableSwitchStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableSwitchStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SourcePartitionNumber,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TargetPartitionNumber,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TargetTable,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -3124,19 +4196,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableSwitchOption(Microsoft.SqlServer.TransactSql.ScriptDom.TableSwitchOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLowPriorityLockWaitTableSwitchOption(Microsoft.SqlServer.TransactSql.ScriptDom.LowPriorityLockWaitTableSwitchOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -3146,39 +4224,53 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropClusteredConstraintOption(Microsoft.SqlServer.TransactSql.ScriptDom.DropClusteredConstraintOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDropClusteredConstraintStateOption(Microsoft.SqlServer.TransactSql.ScriptDom.DropClusteredConstraintStateOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDropClusteredConstraintValueOption(Microsoft.SqlServer.TransactSql.ScriptDom.DropClusteredConstraintValueOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropClusteredConstraintMoveOption(Microsoft.SqlServer.TransactSql.ScriptDom.DropClusteredConstraintMoveOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableDropTableElement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableDropTableElement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("DropClusteredConstraintOptions",null, currentObjectTreeViewItem);
@@ -3188,12 +4280,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableDropTableElementStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableDropTableElementStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("AlterTableDropTableElements",null, currentObjectTreeViewItem);
@@ -3203,13 +4298,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableTriggerModificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableTriggerModificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("TriggerNames",null, currentObjectTreeViewItem);
@@ -3219,13 +4318,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEnableDisableTriggerStatement(Microsoft.SqlServer.TransactSql.ScriptDom.EnableDisableTriggerStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("TriggerNames",null, currentObjectTreeViewItem);
@@ -3235,101 +4338,145 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.TriggerObject,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTryCatchStatement(Microsoft.SqlServer.TransactSql.ScriptDom.TryCatchStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TryStatements,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.CatchStatements,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateTypeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateTypeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateTypeUdtStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateTypeUdtStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.AssemblyName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateTypeUddtStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateTypeUddtStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.NullableConstraint,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateSynonymStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateSynonymStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ForName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteAsClause(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteAsClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Literal,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayQueueOption(Microsoft.SqlServer.TransactSql.ScriptDom.QueueOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayQueueStateOption(Microsoft.SqlServer.TransactSql.ScriptDom.QueueStateOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayQueueProcedureOption(Microsoft.SqlServer.TransactSql.ScriptDom.QueueProcedureOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayQueueValueOption(Microsoft.SqlServer.TransactSql.ScriptDom.QueueValueOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayQueueExecuteAsOption(Microsoft.SqlServer.TransactSql.ScriptDom.QueueExecuteAsOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRouteOption(Microsoft.SqlServer.TransactSql.ScriptDom.RouteOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Literal,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRouteStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RouteStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("RouteOptions",null, currentObjectTreeViewItem);
@@ -3339,13 +4486,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterRouteStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterRouteStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("RouteOptions",null, currentObjectTreeViewItem);
@@ -3355,14 +4506,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateRouteStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateRouteStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("RouteOptions",null, currentObjectTreeViewItem);
@@ -3372,13 +4528,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayQueueStatement(Microsoft.SqlServer.TransactSql.ScriptDom.QueueStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("QueueOptions",null, currentObjectTreeViewItem);
@@ -3388,13 +4548,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterQueueStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterQueueStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("QueueOptions",null, currentObjectTreeViewItem);
@@ -3404,14 +4568,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateQueueStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateQueueStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OnFileGroup,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("QueueOptions",null, currentObjectTreeViewItem);
@@ -3421,14 +4590,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayIndexDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.IndexDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.IndexType,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
@@ -3437,6 +4611,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -3447,16 +4622,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OnFileGroupOrPartitionScheme,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FileStreamOn,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.IndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
@@ -3466,26 +4648,35 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayIndexType(Microsoft.SqlServer.TransactSql.ScriptDom.IndexType currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPartitionSpecifier(Microsoft.SqlServer.TransactSql.ScriptDom.PartitionSpecifier currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Number,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Partition,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("PromotedPaths",null, currentObjectTreeViewItem);
@@ -3495,9 +4686,13 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.XmlNamespaces,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
@@ -3507,16 +4702,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateXmlIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateXmlIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.XmlColumn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondaryXmlIndexName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
@@ -3526,13 +4728,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateSelectiveXmlIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateSelectiveXmlIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.XmlColumn,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("PromotedPaths",null, currentObjectTreeViewItem);
@@ -3542,11 +4748,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.XmlNamespaces,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.UsingXmlIndexName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PathName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
@@ -3556,13 +4768,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayFileGroupOrPartitionScheme(Microsoft.SqlServer.TransactSql.ScriptDom.FileGroupOrPartitionScheme currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("PartitionSchemeColumns",null, currentObjectTreeViewItem);
@@ -3572,12 +4788,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -3586,6 +4805,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -3596,11 +4816,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OnFileGroupOrPartitionScheme,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FilterPredicate,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FileStreamOn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
@@ -3610,38 +4836,51 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.IndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayIndexStateOption(Microsoft.SqlServer.TransactSql.ScriptDom.IndexStateOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayIndexExpressionOption(Microsoft.SqlServer.TransactSql.ScriptDom.IndexExpressionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnlineIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnlineIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.LowPriorityLockWaitOption,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnlineIndexLowPriorityLockWaitOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnlineIndexLowPriorityLockWaitOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -3651,41 +4890,57 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayLowPriorityLockWaitOption(Microsoft.SqlServer.TransactSql.ScriptDom.LowPriorityLockWaitOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLowPriorityLockWaitMaxDurationOption(Microsoft.SqlServer.TransactSql.ScriptDom.LowPriorityLockWaitMaxDurationOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MaxDuration,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLowPriorityLockWaitAbortAfterWaitOption(Microsoft.SqlServer.TransactSql.ScriptDom.LowPriorityLockWaitAbortAfterWaitOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextIndexColumn(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextIndexColumn currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TypeColumn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.LanguageTerm,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateFullTextIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateFullTextIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("FullTextIndexColumns",null, currentObjectTreeViewItem);
@@ -3695,8 +4950,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.KeyIndexName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.CatalogAndFileGroup,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -3706,66 +4964,91 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayChangeTrackingFullTextIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.ChangeTrackingFullTextIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayStopListFullTextIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.StopListFullTextIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.StopListName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySearchPropertyListFullTextIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.SearchPropertyListFullTextIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.PropertyListName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextCatalogAndFileGroup(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextCatalogAndFileGroup currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.CatalogName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FileGroupName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEventTypeGroupContainer(Microsoft.SqlServer.TransactSql.ScriptDom.EventTypeGroupContainer currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayEventTypeContainer(Microsoft.SqlServer.TransactSql.ScriptDom.EventTypeContainer currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayEventGroupContainer(Microsoft.SqlServer.TransactSql.ScriptDom.EventGroupContainer currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCreateEventNotificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateEventNotificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Scope,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EventTypeGroups",null, currentObjectTreeViewItem);
@@ -3775,50 +5058,71 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.BrokerService,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.BrokerInstanceSpecifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEventNotificationObjectScope(Microsoft.SqlServer.TransactSql.ScriptDom.EventNotificationObjectScope currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.QueueName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.MasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayApplicationRoleOption(Microsoft.SqlServer.TransactSql.ScriptDom.ApplicationRoleOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayApplicationRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ApplicationRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ApplicationRoleOptions",null, currentObjectTreeViewItem);
@@ -3828,13 +5132,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateApplicationRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateApplicationRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ApplicationRoleOptions",null, currentObjectTreeViewItem);
@@ -3844,13 +5152,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterApplicationRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterApplicationRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ApplicationRoleOptions",null, currentObjectTreeViewItem);
@@ -3860,100 +5172,143 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Action,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterRoleAction(Microsoft.SqlServer.TransactSql.ScriptDom.AlterRoleAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayRenameAlterRoleAction(Microsoft.SqlServer.TransactSql.ScriptDom.RenameAlterRoleAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.NewName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAddMemberAlterRoleAction(Microsoft.SqlServer.TransactSql.ScriptDom.AddMemberAlterRoleAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Member,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropMemberAlterRoleAction(Microsoft.SqlServer.TransactSql.ScriptDom.DropMemberAlterRoleAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Member,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateServerRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateServerRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Action,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropUnownedObjectStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropUnownedObjectStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropServerRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropServerRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUserLoginOption(Microsoft.SqlServer.TransactSql.ScriptDom.UserLoginOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUserStatement(Microsoft.SqlServer.TransactSql.ScriptDom.UserStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("UserOptions",null, currentObjectTreeViewItem);
@@ -3963,14 +5318,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateUserStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateUserStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.UserLoginOption,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("UserOptions",null, currentObjectTreeViewItem);
@@ -3980,13 +5340,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterUserStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterUserStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("UserOptions",null, currentObjectTreeViewItem);
@@ -3996,18 +5360,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayStatisticsOption(Microsoft.SqlServer.TransactSql.ScriptDom.StatisticsOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayResampleStatisticsOption(Microsoft.SqlServer.TransactSql.ScriptDom.ResampleStatisticsOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Partitions",null, currentObjectTreeViewItem);
@@ -4017,35 +5386,49 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayStatisticsPartitionRange(Microsoft.SqlServer.TransactSql.ScriptDom.StatisticsPartitionRange currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.From,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.To,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffStatisticsOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffStatisticsOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralStatisticsOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralStatisticsOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Literal,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateStatisticsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateStatisticsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -4055,6 +5438,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("StatisticsOptions",null, currentObjectTreeViewItem);
@@ -4064,14 +5448,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.FilterPredicate,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateStatisticsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateStatisticsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SubElements",null, currentObjectTreeViewItem);
@@ -4081,6 +5470,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("StatisticsOptions",null, currentObjectTreeViewItem);
@@ -4090,27 +5480,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayReturnStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ReturnStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDeclareCursorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DeclareCursorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.CursorDefinition,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCursorDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.CursorDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -4120,21 +5520,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Select,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCursorOption(Microsoft.SqlServer.TransactSql.ScriptDom.CursorOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetVariableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetVariableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -4144,93 +5552,133 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.CursorDefinition,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCursorId(Microsoft.SqlServer.TransactSql.ScriptDom.CursorId currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCursorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CursorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Cursor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOpenCursorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.OpenCursorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Cursor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCloseCursorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CloseCursorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Cursor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCryptoMechanism(Microsoft.SqlServer.TransactSql.ScriptDom.CryptoMechanism currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PasswordOrSignature,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOpenSymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.OpenSymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DecryptionMechanism,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCloseSymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CloseSymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOpenMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.OpenMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCloseMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CloseMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDeallocateCursorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DeallocateCursorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Cursor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFetchType(Microsoft.SqlServer.TransactSql.ScriptDom.FetchType currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.RowOffset,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFetchCursorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.FetchCursorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FetchType,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IntoVariables",null, currentObjectTreeViewItem);
@@ -4240,21 +5688,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Cursor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWhereClause(Microsoft.SqlServer.TransactSql.ScriptDom.WhereClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SearchCondition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Cursor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropDatabaseStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropDatabaseStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Databases",null, currentObjectTreeViewItem);
@@ -4264,12 +5720,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropChildObjectsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropChildObjectsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4279,12 +5738,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("DropIndexClauses",null, currentObjectTreeViewItem);
@@ -4294,27 +5756,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropIndexClauseBase(Microsoft.SqlServer.TransactSql.ScriptDom.DropIndexClauseBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayBackwardsCompatibleDropIndexClause(Microsoft.SqlServer.TransactSql.ScriptDom.BackwardsCompatibleDropIndexClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Index,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropIndexClause(Microsoft.SqlServer.TransactSql.ScriptDom.DropIndexClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Index,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Object,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -4324,26 +5796,35 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayMoveToDropIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.MoveToDropIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MoveTo,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileStreamOnDropIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileStreamOnDropIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileStreamOn,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropStatisticsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropStatisticsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4353,12 +5834,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropTableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropTableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4368,12 +5852,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropProcedureStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropProcedureStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4383,12 +5870,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropFunctionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropFunctionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4398,12 +5888,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropViewStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropViewStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4413,12 +5906,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropDefaultStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropDefaultStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4428,12 +5924,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropRuleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropRuleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4443,12 +5942,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropTriggerStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropTriggerStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -4458,30 +5960,43 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropSchemaStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropSchemaStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Schema,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRaiseErrorLegacyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RaiseErrorLegacyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstParameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondParameter,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRaiseErrorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RaiseErrorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstParameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondParameter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ThirdParameter,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptionalParameters",null, currentObjectTreeViewItem);
@@ -4491,132 +6006,183 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayThrowStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ThrowStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ErrorNumber,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Message,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.State,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUseStatement(Microsoft.SqlServer.TransactSql.ScriptDom.UseStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayKillStatement(Microsoft.SqlServer.TransactSql.ScriptDom.KillStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Parameter,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayKillQueryNotificationSubscriptionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.KillQueryNotificationSubscriptionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SubscriptionId,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayKillStatsJobStatement(Microsoft.SqlServer.TransactSql.ScriptDom.KillStatsJobStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.JobId,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCheckpointStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CheckpointStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Duration,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayReconfigureStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ReconfigureStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayShutdownStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ShutdownStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetUserStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetUserStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.UserName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTruncateTableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.TruncateTableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySetOnOffStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetOnOffStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPredicateSetStatement(Microsoft.SqlServer.TransactSql.ScriptDom.PredicateSetStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetStatisticsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetStatisticsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetRowCountStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetRowCountStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.NumberRows,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySetOffsetsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetOffsetsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetCommand(Microsoft.SqlServer.TransactSql.ScriptDom.SetCommand currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayGeneralSetCommand(Microsoft.SqlServer.TransactSql.ScriptDom.GeneralSetCommand currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Parameter,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySetFipsFlaggerCommand(Microsoft.SqlServer.TransactSql.ScriptDom.SetFipsFlaggerCommand currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetCommandStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetCommandStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Commands",null, currentObjectTreeViewItem);
@@ -4626,41 +6192,57 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySetTransactionIsolationLevelStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetTransactionIsolationLevelStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetTextSizeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetTextSizeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TextSize,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySetIdentityInsertStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetIdentityInsertStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Table,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySetErrorLevelStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SetErrorLevelStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Level,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateDatabaseStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateDatabaseStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Containment,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("FileGroups",null, currentObjectTreeViewItem);
@@ -4669,6 +6251,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -4679,6 +6262,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -4688,15 +6272,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.DatabaseSnapshot,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.CopyOf,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileDeclaration(Microsoft.SqlServer.TransactSql.ScriptDom.FileDeclaration currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -4706,54 +6296,75 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayFileDeclarationOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileDeclarationOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayNameFileDeclarationOption(Microsoft.SqlServer.TransactSql.ScriptDom.NameFileDeclarationOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.LogicalFileName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileNameFileDeclarationOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileNameFileDeclarationOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OSFileName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySizeFileDeclarationOption(Microsoft.SqlServer.TransactSql.ScriptDom.SizeFileDeclarationOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Size,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMaxSizeFileDeclarationOption(Microsoft.SqlServer.TransactSql.ScriptDom.MaxSizeFileDeclarationOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MaxSize,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileGrowthFileDeclarationOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileGrowthFileDeclarationOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.GrowthIncrement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileGroupDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.FileGroupDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("FileDeclarations",null, currentObjectTreeViewItem);
@@ -4763,35 +6374,49 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseCollateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseCollateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseRebuildLogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseRebuildLogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileDeclaration,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseAddFileStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseAddFileStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("FileDeclarations",null, currentObjectTreeViewItem);
@@ -4801,72 +6426,107 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.FileGroup,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseAddFileGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseAddFileGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileGroup,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseRemoveFileGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseRemoveFileGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileGroup,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseRemoveFileStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseRemoveFileStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseModifyNameStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseModifyNameStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.NewDatabaseName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseModifyFileStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseModifyFileStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileDeclaration,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseModifyFileGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseModifyFileGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileGroup,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.NewFileGroupName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Termination,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseTermination(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseTermination currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.RollbackAfter,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseSetStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseSetStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Termination,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -4876,116 +6536,159 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.DatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAutoCreateStatisticsDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.AutoCreateStatisticsDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayContainmentDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.ContainmentDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayHadrDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.HadrDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayHadrAvailabilityGroupDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.HadrAvailabilityGroupDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.GroupName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDelayedDurabilityDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.DelayedDurabilityDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCursorDefaultDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.CursorDefaultDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayRecoveryDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.RecoveryDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayTargetRecoveryTimeDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.TargetRecoveryTimeDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.RecoveryTime,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayPageVerifyDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.PageVerifyDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPartnerDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.PartnerDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.PartnerServer,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Timeout,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWitnessDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.WitnessDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.WitnessServer,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayParameterizationDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.ParameterizationDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIdentifierDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.IdentifierDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayChangeTrackingDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.ChangeTrackingDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Details",null, currentObjectTreeViewItem);
@@ -4995,68 +6698,99 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayChangeTrackingOptionDetail(Microsoft.SqlServer.TransactSql.ScriptDom.ChangeTrackingOptionDetail currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAutoCleanupChangeTrackingOptionDetail(Microsoft.SqlServer.TransactSql.ScriptDom.AutoCleanupChangeTrackingOptionDetail currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayChangeRetentionChangeTrackingOptionDetail(Microsoft.SqlServer.TransactSql.ScriptDom.ChangeRetentionChangeTrackingOptionDetail currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.RetentionPeriod,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileStreamDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileStreamDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DirectoryName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMaxSizeDatabaseOption(Microsoft.SqlServer.TransactSql.ScriptDom.MaxSizeDatabaseOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MaxSize,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterTableAlterColumnStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterTableAlterColumnStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ColumnIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.StorageOptions,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayColumnDefinitionBase(Microsoft.SqlServer.TransactSql.ScriptDom.ColumnDefinitionBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ColumnIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayColumnDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.ColumnDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ComputedColumnExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DefaultConstraint,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.IdentityOptions,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Constraints",null, currentObjectTreeViewItem);
@@ -5066,43 +6800,65 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.StorageOptions,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Index,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ColumnIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIdentityOptions(Microsoft.SqlServer.TransactSql.ScriptDom.IdentityOptions currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.IdentitySeed,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.IdentityIncrement,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayColumnStorageOptions(Microsoft.SqlServer.TransactSql.ScriptDom.ColumnStorageOptions currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayConstraintDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.ConstraintDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ConstraintIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateTableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateTableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SchemaObjectName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Definition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnFileGroupOrPartitionScheme,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FederationScheme,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TextImageOn,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5112,28 +6868,39 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.FileStreamOn,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFederationScheme(Microsoft.SqlServer.TransactSql.ScriptDom.FederationScheme currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DistributionName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ColumnName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableDataCompressionOption(Microsoft.SqlServer.TransactSql.ScriptDom.TableDataCompressionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataCompressionOption,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDataCompressionOption(Microsoft.SqlServer.TransactSql.ScriptDom.DataCompressionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("PartitionRanges",null, currentObjectTreeViewItem);
@@ -5143,37 +6910,53 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCompressionPartitionRange(Microsoft.SqlServer.TransactSql.ScriptDom.CompressionPartitionRange currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.From,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.To,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCheckConstraintDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.CheckConstraintDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.CheckCondition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ConstraintIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDefaultConstraintDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.DefaultConstraintDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ConstraintIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayForeignKeyConstraintDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.ForeignKeyConstraintDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -5183,7 +6966,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.ReferenceTableName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ReferencedTableColumns",null, currentObjectTreeViewItem);
@@ -5193,20 +6978,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.ConstraintIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayNullableConstraintDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.NullableConstraintDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ConstraintIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUniqueConstraintDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.UniqueConstraintDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -5215,6 +7007,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5225,17 +7018,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OnFileGroupOrPartitionScheme,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.IndexType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FileStreamOn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ConstraintIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBackupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BackupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5244,6 +7045,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5254,6 +7056,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
@@ -5263,12 +7066,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBackupDatabaseStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BackupDatabaseStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Files",null, currentObjectTreeViewItem);
@@ -5278,7 +7084,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5287,6 +7095,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5297,6 +7106,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
@@ -5306,13 +7116,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBackupTransactionLogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BackupTransactionLogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5321,6 +7135,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5331,6 +7146,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
@@ -5339,14 +7155,18 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 			} // End
 
 
 
+
 			 private void DisplayRestoreStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RestoreStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
@@ -5355,6 +7175,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5365,6 +7186,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5374,71 +7196,101 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayRestoreOption(Microsoft.SqlServer.TransactSql.ScriptDom.RestoreOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayScalarExpressionRestoreOption(Microsoft.SqlServer.TransactSql.ScriptDom.ScalarExpressionRestoreOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMoveRestoreOption(Microsoft.SqlServer.TransactSql.ScriptDom.MoveRestoreOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.LogicalFileName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OSFileName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayStopRestoreOption(Microsoft.SqlServer.TransactSql.ScriptDom.StopRestoreOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Mark,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.After,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileStreamRestoreOption(Microsoft.SqlServer.TransactSql.ScriptDom.FileStreamRestoreOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileStreamOption,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBackupOption(Microsoft.SqlServer.TransactSql.ScriptDom.BackupOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBackupEncryptionOption(Microsoft.SqlServer.TransactSql.ScriptDom.BackupEncryptionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Encryptor,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDeviceInfo(Microsoft.SqlServer.TransactSql.ScriptDom.DeviceInfo currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.LogicalDevice,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PhysicalDevice,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMirrorToClause(Microsoft.SqlServer.TransactSql.ScriptDom.MirrorToClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
@@ -5448,12 +7300,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBackupRestoreFileInfo(Microsoft.SqlServer.TransactSql.ScriptDom.BackupRestoreFileInfo currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Items",null, currentObjectTreeViewItem);
@@ -5463,13 +7318,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBulkInsertBase(Microsoft.SqlServer.TransactSql.ScriptDom.BulkInsertBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.To,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5479,14 +7338,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBulkInsertStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BulkInsertStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.From,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.To,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5496,12 +7360,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayInsertBulkStatement(Microsoft.SqlServer.TransactSql.ScriptDom.InsertBulkStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ColumnDefinitions",null, currentObjectTreeViewItem);
@@ -5511,7 +7378,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.To,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5521,25 +7390,33 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBulkInsertOption(Microsoft.SqlServer.TransactSql.ScriptDom.BulkInsertOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralBulkInsertOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralBulkInsertOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOrderBulkInsertOption(Microsoft.SqlServer.TransactSql.ScriptDom.OrderBulkInsertOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -5549,19 +7426,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayInsertBulkColumnDefinition(Microsoft.SqlServer.TransactSql.ScriptDom.InsertBulkColumnDefinition currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDbccStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DbccStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Literals",null, currentObjectTreeViewItem);
@@ -5571,6 +7454,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5580,37 +7464,53 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDbccOption(Microsoft.SqlServer.TransactSql.ScriptDom.DbccOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDbccNamedLiteral(Microsoft.SqlServer.TransactSql.ScriptDom.DbccNamedLiteral currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateAsymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateAsymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.KeySource,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreatePartitionFunctionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreatePartitionFunctionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ParameterType,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("BoundaryValues",null, currentObjectTreeViewItem);
@@ -5620,22 +7520,31 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayPartitionParameterType(Microsoft.SqlServer.TransactSql.ScriptDom.PartitionParameterType currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Collation,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreatePartitionSchemeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreatePartitionSchemeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PartitionFunction,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("FileGroups",null, currentObjectTreeViewItem);
@@ -5645,13 +7554,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayRemoteServiceBindingStatementBase(Microsoft.SqlServer.TransactSql.ScriptDom.RemoteServiceBindingStatementBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5661,34 +7574,47 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayRemoteServiceBindingOption(Microsoft.SqlServer.TransactSql.ScriptDom.RemoteServiceBindingOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffRemoteServiceBindingOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffRemoteServiceBindingOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayUserRemoteServiceBindingOption(Microsoft.SqlServer.TransactSql.ScriptDom.UserRemoteServiceBindingOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.User,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateRemoteServiceBindingStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateRemoteServiceBindingStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Service,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5698,13 +7624,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterRemoteServiceBindingStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterRemoteServiceBindingStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -5714,33 +7644,45 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayEncryptionSource(Microsoft.SqlServer.TransactSql.ScriptDom.EncryptionSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAssemblyEncryptionSource(Microsoft.SqlServer.TransactSql.ScriptDom.AssemblyEncryptionSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Assembly,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFileEncryptionSource(Microsoft.SqlServer.TransactSql.ScriptDom.FileEncryptionSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayProviderEncryptionSource(Microsoft.SqlServer.TransactSql.ScriptDom.ProviderEncryptionSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("KeyOptions",null, currentObjectTreeViewItem);
@@ -5750,34 +7692,51 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCertificateStatementBase(Microsoft.SqlServer.TransactSql.ScriptDom.CertificateStatementBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PrivateKeyPath,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EncryptionPassword,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DecryptionPassword,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterCertificateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterCertificateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.AttestedBy,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PrivateKeyPath,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EncryptionPassword,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DecryptionPassword,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateCertificateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateCertificateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.CertificateSource,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("CertificateOptions",null, currentObjectTreeViewItem);
@@ -5787,25 +7746,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PrivateKeyPath,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EncryptionPassword,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DecryptionPassword,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCertificateOption(Microsoft.SqlServer.TransactSql.ScriptDom.CertificateOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateContractStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateContractStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Messages",null, currentObjectTreeViewItem);
@@ -5815,75 +7786,113 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayContractMessage(Microsoft.SqlServer.TransactSql.ScriptDom.ContractMessage currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCredentialStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CredentialStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Identity,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Secret,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateCredentialStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateCredentialStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.CryptographicProviderName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Identity,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Secret,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterCredentialStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterCredentialStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Identity,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Secret,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMessageTypeStatementBase(Microsoft.SqlServer.TransactSql.ScriptDom.MessageTypeStatementBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.XmlSchemaCollectionName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateMessageTypeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateMessageTypeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.XmlSchemaCollectionName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterMessageTypeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterMessageTypeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.XmlSchemaCollectionName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateAggregateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateAggregateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AssemblyName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -5893,15 +7902,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.ReturnType,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterCreateEndpointStatementBase(Microsoft.SqlServer.TransactSql.ScriptDom.AlterCreateEndpointStatementBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Affinity,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ProtocolOptions",null, currentObjectTreeViewItem);
@@ -5910,6 +7925,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5920,15 +7936,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateEndpointStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateEndpointStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Affinity,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ProtocolOptions",null, currentObjectTreeViewItem);
@@ -5937,6 +7959,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5947,14 +7970,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterEndpointStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterEndpointStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Affinity,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ProtocolOptions",null, currentObjectTreeViewItem);
@@ -5963,6 +7991,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -5973,149 +8002,209 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayEndpointAffinity(Microsoft.SqlServer.TransactSql.ScriptDom.EndpointAffinity currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEndpointProtocolOption(Microsoft.SqlServer.TransactSql.ScriptDom.EndpointProtocolOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralEndpointProtocolOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralEndpointProtocolOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAuthenticationEndpointProtocolOption(Microsoft.SqlServer.TransactSql.ScriptDom.AuthenticationEndpointProtocolOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPortsEndpointProtocolOption(Microsoft.SqlServer.TransactSql.ScriptDom.PortsEndpointProtocolOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCompressionEndpointProtocolOption(Microsoft.SqlServer.TransactSql.ScriptDom.CompressionEndpointProtocolOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayListenerIPEndpointProtocolOption(Microsoft.SqlServer.TransactSql.ScriptDom.ListenerIPEndpointProtocolOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.IPv6,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.IPv4PartOne,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.IPv4PartTwo,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIPv4(Microsoft.SqlServer.TransactSql.ScriptDom.IPv4 currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OctetOne,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OctetTwo,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OctetThree,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OctetFour,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.PayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySoapMethod(Microsoft.SqlServer.TransactSql.ScriptDom.SoapMethod currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Namespace,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEnabledDisabledPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.EnabledDisabledPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayWsdlPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.WsdlPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLoginTypePayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.LoginTypePayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySessionTimeoutPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.SessionTimeoutPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Timeout,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySchemaPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.SchemaPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCharacterSetPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.CharacterSetPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayRolePayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.RolePayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAuthenticationPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.AuthenticationPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Certificate,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEncryptionPayloadOption(Microsoft.SqlServer.TransactSql.ScriptDom.EncryptionPayloadOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EncryptingMechanisms",null, currentObjectTreeViewItem);
@@ -6125,12 +8214,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateSymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateSymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("KeyOptions",null, currentObjectTreeViewItem);
@@ -6140,9 +8232,13 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Provider,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EncryptingMechanisms",null, currentObjectTreeViewItem);
@@ -6152,52 +8248,71 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayKeyOption(Microsoft.SqlServer.TransactSql.ScriptDom.KeyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayKeySourceKeyOption(Microsoft.SqlServer.TransactSql.ScriptDom.KeySourceKeyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.PassPhrase,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlgorithmKeyOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlgorithmKeyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayIdentityValueKeyOption(Microsoft.SqlServer.TransactSql.ScriptDom.IdentityValueKeyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.IdentityPhrase,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayProviderKeyNameKeyOption(Microsoft.SqlServer.TransactSql.ScriptDom.ProviderKeyNameKeyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.KeyName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreationDispositionKeyOption(Microsoft.SqlServer.TransactSql.ScriptDom.CreationDispositionKeyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAlterSymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterSymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EncryptingMechanisms",null, currentObjectTreeViewItem);
@@ -6207,13 +8322,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextCatalogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextCatalogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -6223,28 +8342,39 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextCatalogOption(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextCatalogOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffFullTextCatalogOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffFullTextCatalogOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCreateFullTextCatalogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateFullTextCatalogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FileGroup,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Path,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -6254,13 +8384,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterFullTextCatalogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterFullTextCatalogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -6270,14 +8404,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterCreateServiceStatementBase(Microsoft.SqlServer.TransactSql.ScriptDom.AlterCreateServiceStatementBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.QueueName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ServiceContracts",null, currentObjectTreeViewItem);
@@ -6287,15 +8426,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateServiceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateServiceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.QueueName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ServiceContracts",null, currentObjectTreeViewItem);
@@ -6305,14 +8450,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServiceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServiceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.QueueName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ServiceContracts",null, currentObjectTreeViewItem);
@@ -6322,28 +8472,39 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayServiceContract(Microsoft.SqlServer.TransactSql.ScriptDom.ServiceContract currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBinaryExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BinaryExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBuiltInFunctionTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.BuiltInFunctionTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -6353,13 +8514,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayComputeClause(Microsoft.SqlServer.TransactSql.ScriptDom.ComputeClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ComputeFunctions",null, currentObjectTreeViewItem);
@@ -6368,6 +8533,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -6378,20 +8544,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayComputeFunction(Microsoft.SqlServer.TransactSql.ScriptDom.ComputeFunction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayPivotedTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.PivotedTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableReference,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("InColumns",null, currentObjectTreeViewItem);
@@ -6401,7 +8574,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PivotColumn,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ValueColumns",null, currentObjectTreeViewItem);
@@ -6411,15 +8586,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.AggregateFunctionIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUnpivotedTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.UnpivotedTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableReference,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("InColumns",null, currentObjectTreeViewItem);
@@ -6429,83 +8610,121 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PivotColumn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ValueColumn,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayJoinTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.JoinTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstTableReference,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondTableReference,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUnqualifiedJoin(Microsoft.SqlServer.TransactSql.ScriptDom.UnqualifiedJoin currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstTableReference,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondTableReference,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTableSampleClause(Microsoft.SqlServer.TransactSql.ScriptDom.TableSampleClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SampleNumber,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.RepeatSeed,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanNotExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanNotExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanParenthesisExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanParenthesisExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanComparisonExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanComparisonExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanBinaryExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanBinaryExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanIsNullExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanIsNullExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExpressionWithSortOrder(Microsoft.SqlServer.TransactSql.ScriptDom.ExpressionWithSortOrder currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayGroupByClause(Microsoft.SqlServer.TransactSql.ScriptDom.GroupByClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("GroupingSpecifications",null, currentObjectTreeViewItem);
@@ -6515,25 +8734,33 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayGroupingSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.GroupingSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayExpressionGroupingSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.ExpressionGroupingSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCompositeGroupingSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.CompositeGroupingSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Items",null, currentObjectTreeViewItem);
@@ -6543,12 +8770,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCubeGroupingSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.CubeGroupingSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Arguments",null, currentObjectTreeViewItem);
@@ -6558,12 +8788,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayRollupGroupingSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.RollupGroupingSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Arguments",null, currentObjectTreeViewItem);
@@ -6573,18 +8806,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayGrandTotalGroupingSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.GrandTotalGroupingSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayGroupingSetsGroupingSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.GroupingSetsGroupingSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Sets",null, currentObjectTreeViewItem);
@@ -6594,12 +8832,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayOutputClause(Microsoft.SqlServer.TransactSql.ScriptDom.OutputClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("SelectColumns",null, currentObjectTreeViewItem);
@@ -6608,13 +8849,16 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 			} // End
 
 
 
+
 			 private void DisplayOutputIntoClause(Microsoft.SqlServer.TransactSql.ScriptDom.OutputIntoClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("SelectColumns",null, currentObjectTreeViewItem);
@@ -6624,7 +8868,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.IntoTable,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("IntoTableColumns",null, currentObjectTreeViewItem);
@@ -6634,35 +8880,49 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayHavingClause(Microsoft.SqlServer.TransactSql.ScriptDom.HavingClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SearchCondition,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIdentityFunctionCall(Microsoft.SqlServer.TransactSql.ScriptDom.IdentityFunctionCall currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Seed,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Increment,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayJoinParenthesisTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.JoinParenthesisTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Join,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOrderByClause(Microsoft.SqlServer.TransactSql.ScriptDom.OrderByClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("OrderByElements",null, currentObjectTreeViewItem);
@@ -6672,48 +8932,71 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayQualifiedJoin(Microsoft.SqlServer.TransactSql.ScriptDom.QualifiedJoin currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SearchCondition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FirstTableReference,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondTableReference,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOdbcQualifiedJoinTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.OdbcQualifiedJoinTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableReference,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayQueryExpression(Microsoft.SqlServer.TransactSql.ScriptDom.QueryExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OrderByClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OffsetClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ForClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayQueryParenthesisExpression(Microsoft.SqlServer.TransactSql.ScriptDom.QueryParenthesisExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.QueryExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OrderByClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OffsetClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ForClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayQuerySpecification(Microsoft.SqlServer.TransactSql.ScriptDom.QuerySpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TopRowFilter,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SelectElements",null, currentObjectTreeViewItem);
@@ -6723,19 +9006,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.FromClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WhereClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.GroupByClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.HavingClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OrderByClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OffsetClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ForClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFromClause(Microsoft.SqlServer.TransactSql.ScriptDom.FromClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("TableReferences",null, currentObjectTreeViewItem);
@@ -6745,42 +9038,59 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySelectElement(Microsoft.SqlServer.TransactSql.ScriptDom.SelectElement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySelectScalarExpression(Microsoft.SqlServer.TransactSql.ScriptDom.SelectScalarExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ColumnName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySelectStarExpression(Microsoft.SqlServer.TransactSql.ScriptDom.SelectStarExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Qualifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySelectSetVariable(Microsoft.SqlServer.TransactSql.ScriptDom.SelectSetVariable currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDataModificationTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.DataModificationTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.DataModificationSpecification,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -6790,15 +9100,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayChangeTableChangesTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.ChangeTableChangesTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SinceVersion,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -6808,14 +9124,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayChangeTableVersionTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.ChangeTableVersionTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("PrimaryKeyColumns",null, currentObjectTreeViewItem);
@@ -6824,6 +9145,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -6834,6 +9156,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -6843,65 +9166,97 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanTernaryExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanTernaryExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ThirdExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTopRowFilter(Microsoft.SqlServer.TransactSql.ScriptDom.TopRowFilter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOffsetClause(Microsoft.SqlServer.TransactSql.ScriptDom.OffsetClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OffsetExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FetchExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUnaryExpression(Microsoft.SqlServer.TransactSql.ScriptDom.UnaryExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Expression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBinaryQueryExpression(Microsoft.SqlServer.TransactSql.ScriptDom.BinaryQueryExpression currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FirstQueryExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SecondQueryExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OrderByClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OffsetClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ForClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayVariableTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.VariableTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayVariableMethodCallTableReference(Microsoft.SqlServer.TransactSql.ScriptDom.VariableMethodCallTableReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Variable,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MethodName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
@@ -6911,6 +9266,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -6920,27 +9276,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Alias,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropPartitionFunctionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropPartitionFunctionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropPartitionSchemeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropPartitionSchemeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropSynonymStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropSynonymStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -6950,12 +9316,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropAggregateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropAggregateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -6965,12 +9334,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropAssemblyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropAssemblyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
@@ -6980,145 +9352,205 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropApplicationRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropApplicationRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropFullTextCatalogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropFullTextCatalogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropFullTextIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropFullTextIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropLoginStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropLoginStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropRoleStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropRoleStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropTypeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropTypeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropUserStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropUserStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDropSymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropSymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropAsymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropAsymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropCertificateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropCertificateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropCredentialStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropCredentialStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterPartitionFunctionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterPartitionFunctionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Boundary,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterPartitionSchemeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterPartitionSchemeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.FileGroup,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterFullTextIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterFullTextIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Action,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterFullTextIndexAction(Microsoft.SqlServer.TransactSql.ScriptDom.AlterFullTextIndexAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySimpleAlterFullTextIndexAction(Microsoft.SqlServer.TransactSql.ScriptDom.SimpleAlterFullTextIndexAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySetStopListAlterFullTextIndexAction(Microsoft.SqlServer.TransactSql.ScriptDom.SetStopListAlterFullTextIndexAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.StopListOption,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySetSearchPropertyListAlterFullTextIndexAction(Microsoft.SqlServer.TransactSql.ScriptDom.SetSearchPropertyListAlterFullTextIndexAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SearchPropertyListOption,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropAlterFullTextIndexAction(Microsoft.SqlServer.TransactSql.ScriptDom.DropAlterFullTextIndexAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -7128,12 +9560,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAddAlterFullTextIndexAction(Microsoft.SqlServer.TransactSql.ScriptDom.AddAlterFullTextIndexAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -7143,81 +9578,117 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterColumnAlterFullTextIndexAction(Microsoft.SqlServer.TransactSql.ScriptDom.AlterColumnAlterFullTextIndexAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Column,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateSearchPropertyListStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateSearchPropertyListStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SourceSearchPropertyList,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterSearchPropertyListStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterSearchPropertyListStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Action,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySearchPropertyListAction(Microsoft.SqlServer.TransactSql.ScriptDom.SearchPropertyListAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAddSearchPropertyListAction(Microsoft.SqlServer.TransactSql.ScriptDom.AddSearchPropertyListAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.PropertyName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Guid,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Id,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Description,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropSearchPropertyListAction(Microsoft.SqlServer.TransactSql.ScriptDom.DropSearchPropertyListAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.PropertyName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropSearchPropertyListStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropSearchPropertyListStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateLoginStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateLoginStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Source,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateLoginSource(Microsoft.SqlServer.TransactSql.ScriptDom.CreateLoginSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPasswordCreateLoginSource(Microsoft.SqlServer.TransactSql.ScriptDom.PasswordCreateLoginSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -7227,38 +9698,51 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayPrincipalOption(Microsoft.SqlServer.TransactSql.ScriptDom.PrincipalOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffPrincipalOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffPrincipalOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralPrincipalOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralPrincipalOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayIdentifierPrincipalOption(Microsoft.SqlServer.TransactSql.ScriptDom.IdentifierPrincipalOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Identifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWindowsCreateLoginSource(Microsoft.SqlServer.TransactSql.ScriptDom.WindowsCreateLoginSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -7268,43 +9752,61 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCertificateCreateLoginSource(Microsoft.SqlServer.TransactSql.ScriptDom.CertificateCreateLoginSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Certificate,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Credential,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAsymmetricKeyCreateLoginSource(Microsoft.SqlServer.TransactSql.ScriptDom.AsymmetricKeyCreateLoginSource currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Key,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Credential,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayPasswordAlterPrincipalOption(Microsoft.SqlServer.TransactSql.ScriptDom.PasswordAlterPrincipalOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OldPassword,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterLoginStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterLoginStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterLoginOptionsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterLoginOptionsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -7314,85 +9816,121 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterLoginEnableDisableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterLoginEnableDisableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterLoginAddDropCredentialStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterLoginAddDropCredentialStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.CredentialName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRevertStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RevertStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Cookie,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropContractStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropContractStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropEndpointStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropEndpointStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropMessageTypeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropMessageTypeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropQueueStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropQueueStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropRemoteServiceBindingStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropRemoteServiceBindingStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropRouteStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropRouteStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropServiceStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropServiceStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySignatureStatementBase(Microsoft.SqlServer.TransactSql.ScriptDom.SignatureStatementBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Element,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Cryptos",null, currentObjectTreeViewItem);
@@ -7402,13 +9940,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAddSignatureStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AddSignatureStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Element,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Cryptos",null, currentObjectTreeViewItem);
@@ -7418,13 +9960,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropSignatureStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropSignatureStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Element,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Cryptos",null, currentObjectTreeViewItem);
@@ -7434,12 +9980,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropEventNotificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropEventNotificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Notifications",null, currentObjectTreeViewItem);
@@ -7449,53 +9998,77 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Scope,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayExecuteAsStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ExecuteAsStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Cookie,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ExecuteContext,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEndConversationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.EndConversationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Conversation,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ErrorCode,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ErrorDescription,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMoveConversationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.MoveConversationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Conversation,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Group,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWaitForSupportedStatement(Microsoft.SqlServer.TransactSql.ScriptDom.WaitForSupportedStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayGetConversationGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.GetConversationGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.GroupId,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Queue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayReceiveStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ReceiveStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Top,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SelectElements",null, currentObjectTreeViewItem);
@@ -7505,15 +10078,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Queue,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Into,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Where,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySendStatement(Microsoft.SqlServer.TransactSql.ScriptDom.SendStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ConversationHandles",null, currentObjectTreeViewItem);
@@ -7523,53 +10102,81 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.MessageTypeName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MessageBody,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterSchemaStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterSchemaStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ObjectName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterAsymmetricKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterAsymmetricKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AttestedBy,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EncryptionPassword,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DecryptionPassword,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServiceMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServiceMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Account,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBeginConversationTimerStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BeginConversationTimerStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Handle,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Timeout,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBeginDialogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BeginDialogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Handle,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.InitiatorServiceName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TargetServiceName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.InstanceSpec,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.ContractName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -7579,95 +10186,137 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDialogOption(Microsoft.SqlServer.TransactSql.ScriptDom.DialogOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayScalarExpressionDialogOption(Microsoft.SqlServer.TransactSql.ScriptDom.ScalarExpressionDialogOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffDialogOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffDialogOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayBackupCertificateStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BackupCertificateStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.PrivateKeyPath,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EncryptionPassword,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DecryptionPassword,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBackupRestoreMasterKeyStatementBase(Microsoft.SqlServer.TransactSql.ScriptDom.BackupRestoreMasterKeyStatementBase currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBackupServiceMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BackupServiceMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRestoreServiceMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RestoreServiceMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBackupMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BackupMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayRestoreMasterKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.RestoreMasterKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.EncryptionPassword,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Password,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayScalarExpressionSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.ScalarExpressionSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayBooleanExpressionSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.BooleanExpressionSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayStatementListSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.StatementListSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Statements",null, currentObjectTreeViewItem);
@@ -7677,14 +10326,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySelectStatementSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.SelectStatementSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.QueryExpression,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Into,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ComputeClauses",null, currentObjectTreeViewItem);
@@ -7694,7 +10348,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -7704,16 +10360,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySchemaObjectNameSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.SchemaObjectNameSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ServerIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SchemaIdentifier,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.BaseIdentifier,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
@@ -7723,30 +10386,39 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayTSqlFragmentSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.TSqlFragmentSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayTSqlStatementSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.TSqlStatementSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayIdentifierSnippet(Microsoft.SqlServer.TransactSql.ScriptDom.IdentifierSnippet currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayTSqlScript(Microsoft.SqlServer.TransactSql.ScriptDom.TSqlScript currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Batches",null, currentObjectTreeViewItem);
@@ -7756,12 +10428,15 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayTSqlBatch(Microsoft.SqlServer.TransactSql.ScriptDom.TSqlBatch currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Statements",null, currentObjectTreeViewItem);
@@ -7771,14 +10446,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayMergeStatement(Microsoft.SqlServer.TransactSql.ScriptDom.MergeStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MergeSpecification,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.WithCtesAndXmlNamespaces,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
@@ -7788,15 +10468,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayMergeSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.MergeSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.TableAlias,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TableReference,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SearchCondition,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ActionClauses",null, currentObjectTreeViewItem);
@@ -7806,30 +10492,43 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Target,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.TopRowFilter,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputIntoClause,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OutputClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMergeActionClause(Microsoft.SqlServer.TransactSql.ScriptDom.MergeActionClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.SearchCondition,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Action,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMergeAction(Microsoft.SqlServer.TransactSql.ScriptDom.MergeAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayUpdateMergeAction(Microsoft.SqlServer.TransactSql.ScriptDom.UpdateMergeAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("SetClauses",null, currentObjectTreeViewItem);
@@ -7839,18 +10538,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDeleteMergeAction(Microsoft.SqlServer.TransactSql.ScriptDom.DeleteMergeAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayInsertMergeAction(Microsoft.SqlServer.TransactSql.ScriptDom.InsertMergeAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -7860,14 +10564,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Source,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateTypeTableStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateTypeTableStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Definition,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -7877,13 +10586,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAuditSpecificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AuditSpecificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
@@ -7893,27 +10606,37 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SpecificationName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAuditSpecificationPart(Microsoft.SqlServer.TransactSql.ScriptDom.AuditSpecificationPart currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Details,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAuditSpecificationDetail(Microsoft.SqlServer.TransactSql.ScriptDom.AuditSpecificationDetail currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAuditActionSpecification(Microsoft.SqlServer.TransactSql.ScriptDom.AuditActionSpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Actions",null, currentObjectTreeViewItem);
@@ -7922,6 +10645,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -7932,25 +10656,33 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.TargetObject,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDatabaseAuditAction(Microsoft.SqlServer.TransactSql.ScriptDom.DatabaseAuditAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAuditActionGroupReference(Microsoft.SqlServer.TransactSql.ScriptDom.AuditActionGroupReference currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCreateDatabaseAuditSpecificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateDatabaseAuditSpecificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
@@ -7960,14 +10692,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SpecificationName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseAuditSpecificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseAuditSpecificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
@@ -7977,21 +10714,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SpecificationName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropDatabaseAuditSpecificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropDatabaseAuditSpecificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateServerAuditSpecificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateServerAuditSpecificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
@@ -8001,14 +10746,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SpecificationName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerAuditSpecificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerAuditSpecificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
@@ -8018,23 +10768,33 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.SpecificationName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropServerAuditSpecificationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropServerAuditSpecificationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayServerAuditStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ServerAuditStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditTarget,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8044,15 +10804,21 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PredicateExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateServerAuditStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateServerAuditStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditTarget,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8062,16 +10828,23 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PredicateExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerAuditStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerAuditStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.NewName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AuditTarget,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8081,20 +10854,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PredicateExpression,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropServerAuditStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropServerAuditStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAuditTarget(Microsoft.SqlServer.TransactSql.ScriptDom.AuditTarget currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("TargetOptions",null, currentObjectTreeViewItem);
@@ -8104,105 +10884,145 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAuditOption(Microsoft.SqlServer.TransactSql.ScriptDom.AuditOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayQueueDelayAuditOption(Microsoft.SqlServer.TransactSql.ScriptDom.QueueDelayAuditOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Delay,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAuditGuidAuditOption(Microsoft.SqlServer.TransactSql.ScriptDom.AuditGuidAuditOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Guid,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnFailureAuditOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnFailureAuditOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayStateAuditOption(Microsoft.SqlServer.TransactSql.ScriptDom.StateAuditOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAuditTargetOption(Microsoft.SqlServer.TransactSql.ScriptDom.AuditTargetOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayMaxSizeAuditTargetOption(Microsoft.SqlServer.TransactSql.ScriptDom.MaxSizeAuditTargetOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Size,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMaxRolloverFilesAuditTargetOption(Microsoft.SqlServer.TransactSql.ScriptDom.MaxRolloverFilesAuditTargetOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralAuditTargetOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralAuditTargetOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffAuditTargetOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffAuditTargetOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayDatabaseEncryptionKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DatabaseEncryptionKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Encryptor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateDatabaseEncryptionKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateDatabaseEncryptionKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Encryptor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterDatabaseEncryptionKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterDatabaseEncryptionKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Encryptor,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropDatabaseEncryptionKeyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropDatabaseEncryptionKeyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayResourcePoolStatement(Microsoft.SqlServer.TransactSql.ScriptDom.ResourcePoolStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ResourcePoolParameters",null, currentObjectTreeViewItem);
@@ -8212,21 +11032,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayResourcePoolParameter(Microsoft.SqlServer.TransactSql.ScriptDom.ResourcePoolParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ParameterValue,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.AffinitySpecification,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayResourcePoolAffinitySpecification(Microsoft.SqlServer.TransactSql.ScriptDom.ResourcePoolAffinitySpecification currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ParameterValue,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("PoolAffinityRanges",null, currentObjectTreeViewItem);
@@ -8236,13 +11064,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateResourcePoolStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateResourcePoolStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ResourcePoolParameters",null, currentObjectTreeViewItem);
@@ -8252,13 +11084,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterResourcePoolStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterResourcePoolStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("ResourcePoolParameters",null, currentObjectTreeViewItem);
@@ -8268,20 +11104,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropResourcePoolStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropResourcePoolStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWorkloadGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.WorkloadGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("WorkloadGroupParameters",null, currentObjectTreeViewItem);
@@ -8291,33 +11134,45 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PoolName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWorkloadGroupParameter(Microsoft.SqlServer.TransactSql.ScriptDom.WorkloadGroupParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayWorkloadGroupResourceParameter(Microsoft.SqlServer.TransactSql.ScriptDom.WorkloadGroupResourceParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ParameterValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWorkloadGroupImportanceParameter(Microsoft.SqlServer.TransactSql.ScriptDom.WorkloadGroupImportanceParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCreateWorkloadGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateWorkloadGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("WorkloadGroupParameters",null, currentObjectTreeViewItem);
@@ -8327,14 +11182,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PoolName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterWorkloadGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterWorkloadGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("WorkloadGroupParameters",null, currentObjectTreeViewItem);
@@ -8344,21 +11204,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.PoolName,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropWorkloadGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropWorkloadGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBrokerPriorityStatement(Microsoft.SqlServer.TransactSql.ScriptDom.BrokerPriorityStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("BrokerPriorityParameters",null, currentObjectTreeViewItem);
@@ -8368,20 +11236,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBrokerPriorityParameter(Microsoft.SqlServer.TransactSql.ScriptDom.BrokerPriorityParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ParameterValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateBrokerPriorityStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateBrokerPriorityStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("BrokerPriorityParameters",null, currentObjectTreeViewItem);
@@ -8391,13 +11266,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterBrokerPriorityStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterBrokerPriorityStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("BrokerPriorityParameters",null, currentObjectTreeViewItem);
@@ -8407,83 +11286,121 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropBrokerPriorityStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropBrokerPriorityStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateFullTextStopListStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateFullTextStopListStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DatabaseName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SourceStopListName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Owner,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterFullTextStopListStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterFullTextStopListStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Action,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayFullTextStopListAction(Microsoft.SqlServer.TransactSql.ScriptDom.FullTextStopListAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.StopWord,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.LanguageTerm,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropFullTextStopListStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropFullTextStopListStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateCryptographicProviderStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateCryptographicProviderStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterCryptographicProviderStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterCryptographicProviderStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.File,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropCryptographicProviderStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropCryptographicProviderStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEventSessionObjectName(Microsoft.SqlServer.TransactSql.ScriptDom.EventSessionObjectName currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.MultiPartIdentifier,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEventSessionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.EventSessionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EventDeclarations",null, currentObjectTreeViewItem);
@@ -8492,6 +11409,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -8502,6 +11420,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("SessionOptions",null, currentObjectTreeViewItem);
@@ -8511,13 +11430,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateEventSessionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateEventSessionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EventDeclarations",null, currentObjectTreeViewItem);
@@ -8526,6 +11449,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -8536,6 +11460,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("SessionOptions",null, currentObjectTreeViewItem);
@@ -8545,13 +11470,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayEventDeclaration(Microsoft.SqlServer.TransactSql.ScriptDom.EventDeclaration currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EventDeclarationSetParameters",null, currentObjectTreeViewItem);
@@ -8560,6 +11489,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -8570,38 +11500,55 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.EventDeclarationPredicateParameter,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEventDeclarationSetParameter(Microsoft.SqlServer.TransactSql.ScriptDom.EventDeclarationSetParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.EventField,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EventValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySourceDeclaration(Microsoft.SqlServer.TransactSql.ScriptDom.SourceDeclaration currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayEventDeclarationCompareFunctionParameter(Microsoft.SqlServer.TransactSql.ScriptDom.EventDeclarationCompareFunctionParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SourceDeclaration,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.EventValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayTargetDeclaration(Microsoft.SqlServer.TransactSql.ScriptDom.TargetDeclaration currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ObjectName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("TargetDeclarationParameters",null, currentObjectTreeViewItem);
@@ -8611,50 +11558,67 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplaySessionOption(Microsoft.SqlServer.TransactSql.ScriptDom.SessionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayEventRetentionSessionOption(Microsoft.SqlServer.TransactSql.ScriptDom.EventRetentionSessionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayMemoryPartitionSessionOption(Microsoft.SqlServer.TransactSql.ScriptDom.MemoryPartitionSessionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralSessionOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralSessionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayMaxDispatchLatencySessionOption(Microsoft.SqlServer.TransactSql.ScriptDom.MaxDispatchLatencySessionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayOnOffSessionOption(Microsoft.SqlServer.TransactSql.ScriptDom.OnOffSessionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAlterEventSessionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterEventSessionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("DropEventDeclarations",null, currentObjectTreeViewItem);
@@ -8663,6 +11627,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -8673,7 +11638,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("EventDeclarations",null, currentObjectTreeViewItem);
@@ -8682,6 +11649,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -8692,6 +11660,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("SessionOptions",null, currentObjectTreeViewItem);
@@ -8701,29 +11670,41 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDropEventSessionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropEventSessionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterResourceGovernorStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterResourceGovernorStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ClassifierFunction,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateSpatialIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateSpatialIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Object,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SpatialColumnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("SpatialIndexOptions",null, currentObjectTreeViewItem);
@@ -8733,26 +11714,35 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OnFileGroup,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySpatialIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.SpatialIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySpatialIndexRegularOption(Microsoft.SqlServer.TransactSql.ScriptDom.SpatialIndexRegularOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Option,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayBoundingBoxSpatialIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.BoundingBoxSpatialIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("BoundingBoxParameters",null, currentObjectTreeViewItem);
@@ -8762,19 +11752,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayBoundingBoxParameter(Microsoft.SqlServer.TransactSql.ScriptDom.BoundingBoxParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayGridsSpatialIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.GridsSpatialIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("GridParameters",null, currentObjectTreeViewItem);
@@ -8784,25 +11780,33 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayGridParameter(Microsoft.SqlServer.TransactSql.ScriptDom.GridParameter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayCellsPerObjectSpatialIndexOption(Microsoft.SqlServer.TransactSql.ScriptDom.CellsPerObjectSpatialIndexOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("ProcessAffinityRanges",null, currentObjectTreeViewItem);
@@ -8812,20 +11816,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayProcessAffinityRange(Microsoft.SqlServer.TransactSql.ScriptDom.ProcessAffinityRange currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.From,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.To,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationSetBufferPoolExtensionStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationSetBufferPoolExtensionStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8835,19 +11846,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationBufferPoolExtensionOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationBufferPoolExtensionOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationBufferPoolExtensionContainerOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationBufferPoolExtensionContainerOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Suboptions",null, currentObjectTreeViewItem);
@@ -8857,20 +11874,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationBufferPoolExtensionSizeOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationBufferPoolExtensionSizeOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationSetDiagnosticsLogStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationSetDiagnosticsLogStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8880,26 +11904,35 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationDiagnosticsLogOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationDiagnosticsLogOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationDiagnosticsLogMaxSizeOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationDiagnosticsLogMaxSizeOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationSetFailoverClusterPropertyStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationSetFailoverClusterPropertyStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8909,19 +11942,25 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationFailoverClusterPropertyOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationFailoverClusterPropertyOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationSetHadrClusterStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationSetHadrClusterStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8931,20 +11970,27 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterServerConfigurationHadrClusterOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterServerConfigurationHadrClusterOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OptionValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAvailabilityGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AvailabilityGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8953,6 +11999,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -8963,6 +12010,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Replicas",null, currentObjectTreeViewItem);
@@ -8972,13 +12020,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayCreateAvailabilityGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateAvailabilityGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -8987,6 +12039,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -8997,6 +12050,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Replicas",null, currentObjectTreeViewItem);
@@ -9006,14 +12060,19 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterAvailabilityGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterAvailabilityGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Action,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -9022,6 +12081,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -9032,6 +12092,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								
 								{
 									var newItem=AddTSqlFragment("Replicas",null, currentObjectTreeViewItem);
@@ -9041,13 +12102,17 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAvailabilityReplica(Microsoft.SqlServer.TransactSql.ScriptDom.AvailabilityReplica currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.ServerName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -9057,68 +12122,91 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAvailabilityReplicaOption(Microsoft.SqlServer.TransactSql.ScriptDom.AvailabilityReplicaOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralReplicaOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralReplicaOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAvailabilityModeReplicaOption(Microsoft.SqlServer.TransactSql.ScriptDom.AvailabilityModeReplicaOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayFailoverModeReplicaOption(Microsoft.SqlServer.TransactSql.ScriptDom.FailoverModeReplicaOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayPrimaryRoleReplicaOption(Microsoft.SqlServer.TransactSql.ScriptDom.PrimaryRoleReplicaOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplaySecondaryRoleReplicaOption(Microsoft.SqlServer.TransactSql.ScriptDom.SecondaryRoleReplicaOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAvailabilityGroupOption(Microsoft.SqlServer.TransactSql.ScriptDom.AvailabilityGroupOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayLiteralAvailabilityGroupOption(Microsoft.SqlServer.TransactSql.ScriptDom.LiteralAvailabilityGroupOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterAvailabilityGroupAction(Microsoft.SqlServer.TransactSql.ScriptDom.AlterAvailabilityGroupAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 			} // End
+
 
 
 
 			 private void DisplayAlterAvailabilityGroupFailoverAction(Microsoft.SqlServer.TransactSql.ScriptDom.AlterAvailabilityGroupFailoverAction currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -9128,60 +12216,87 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayAlterAvailabilityGroupFailoverOption(Microsoft.SqlServer.TransactSql.ScriptDom.AlterAvailabilityGroupFailoverOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropAvailabilityGroupStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropAvailabilityGroupStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateFederationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateFederationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DistributionName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DataType,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayAlterFederationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.AlterFederationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DistributionName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Boundary,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDropFederationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DropFederationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayUseFederationStatement(Microsoft.SqlServer.TransactSql.ScriptDom.UseFederationStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.FederationName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.DistributionName,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayDiskStatement(Microsoft.SqlServer.TransactSql.ScriptDom.DiskStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								
 								{
 									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
@@ -9191,21 +12306,29 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 			} // End
+
 
 
 
 			 private void DisplayDiskStatementOption(Microsoft.SqlServer.TransactSql.ScriptDom.DiskStatementOption currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Value,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayCreateColumnStoreIndexStatement(Microsoft.SqlServer.TransactSql.ScriptDom.CreateColumnStoreIndexStatement currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.OnName,currentObjectTreeViewItem);
+
 								
 								{
 									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
@@ -9214,6 +12337,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								
 								}
 								}
+
 
 								
 								{
@@ -9224,41 +12348,61 @@ namespace DacpacExplorer.TSqlFragmentProcess
 								}
 								}
 
+
 								ProcessTSQLFragment(currentFragment.OnFileGroupOrPartitionScheme,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWindowFrameClause(Microsoft.SqlServer.TransactSql.ScriptDom.WindowFrameClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Top,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Bottom,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWindowDelimiter(Microsoft.SqlServer.TransactSql.ScriptDom.WindowDelimiter currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OffsetValue,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplayWithinGroupClause(Microsoft.SqlServer.TransactSql.ScriptDom.WithinGroupClause currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.OrderByClause,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 
 			 private void DisplaySelectiveXmlIndexPromotedPath(Microsoft.SqlServer.TransactSql.ScriptDom.SelectiveXmlIndexPromotedPath currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+
 								ProcessTSQLFragment(currentFragment.Name,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.Path,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.SQLDataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.XQueryDataType,currentObjectTreeViewItem);
+
 								ProcessTSQLFragment(currentFragment.MaxLength,currentObjectTreeViewItem);
+
 			} // End
+
 
 
 		public void ProcessTSQLFragment(TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem){
@@ -12580,6 +15724,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 				case "Microsoft.SqlServer.TransactSql.ScriptDom.SelectiveXmlIndexPromotedPath":
 					DisplaySelectiveXmlIndexPromotedPath((Microsoft.SqlServer.TransactSql.ScriptDom.SelectiveXmlIndexPromotedPath)currentFragment,newItem);
 					break;
+
 			}// EndSwitch
 
 		
