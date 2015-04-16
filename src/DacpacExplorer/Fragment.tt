@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
+//  Fragment.cs is built from the T4 template fragment.tt.  Do NOT change this file,  change the .tt
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +20,7 @@ using Microsoft.SqlServer.Dac.Model;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using System.Diagnostics;
 using DacpacExplorer.Pages;
+using System.Windows.Media;
 
 <#
   Type[] TypesInAssembly = null;
@@ -49,14 +50,16 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 		private TreeViewItem AddTSqlFragment(string Node, TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem)
         {
-            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem);
+            var childTreeViewItem = Explorer.AddTreeItem(Node, currentObjectTreeViewItem,Brushes.Green);
 
             var propertiesPageBuilder = new PropertiesPageBuilder();
             //var properties = null;// propertiesPageBuilder.GetPropertiesDisplay(currentObject);
             string script = "";
 
-            Microsoft.SqlServer.TransactSql.ScriptDom.Sql120ScriptGenerator sg = new Sql120ScriptGenerator();
-            sg.GenerateScript(currentFragment, out script);
+			if(currentFragment!=null){
+				Microsoft.SqlServer.TransactSql.ScriptDom.Sql120ScriptGenerator sg = new Sql120ScriptGenerator();
+				sg.GenerateScript(currentFragment, out script);
+			}
 
 
             childTreeViewItem.Tag = new CachedObjectDisplay()
@@ -81,6 +84,9 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 			 private void Display<#=Class#>(Microsoft.SqlServer.TransactSql.ScriptDom.<#=s#> currentFragment, TreeViewItem currentObjectTreeViewItem)
 	        {
+						var panel = PropertiesPageBuilder.GetPropertiesDisplayPanel("<#=Class#>");
+						CachedObjectDisplay COD = (CachedObjectDisplay)currentObjectTreeViewItem.Tag;
+                        COD.Properties = panel;
 <#
 						System.Reflection.MethodInfo[] MethodsCollection = t.GetMethods();
                         foreach (var m in MethodsCollection)
@@ -91,6 +97,7 @@ namespace DacpacExplorer.TSqlFragmentProcess
 #>
 								ProcessTSQLFragment(currentFragment.<#=l#>,currentObjectTreeViewItem);
 <#
+								continue;
 							}
                             if (m.Name.Length>=5 && m.Name.Substring(0, 4) == "get_")
                             {
@@ -105,18 +112,43 @@ namespace DacpacExplorer.TSqlFragmentProcess
 #>
 								
 								{
-									var newItem=AddTSqlFragment("<#=f#>",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("<#=f#>"+"["+currentFragment.<#=f#>.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.<#=f#>){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
 
 <#
 									}
-                                }
+                                }else{
+									string f=m.Name;
+									
+									f=f.Replace("get_","");
+									if(f!="Item"){
+#>
+								//  -- Non Ilist Processing of <#=m.Name#>
+								{
+									string Proc = "<#=f#>";
+									string Val = currentFragment.<#=f#>.ToString();
+									var p = PropertiesPageBuilder.GetPropertyLabel(Proc,Val);	
+									panel.Children.Add(p);							
+								}
+<#							
+									}	
+								
+								}
                                 
-                            }
+                            }else{
+							
+#>
+								//  -- Processing of <#=m.Name#>
+
+<#							
+							
+							}
 
                         }
 
@@ -130,9 +162,13 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 #>
 
-		public void ProcessTSQLFragment(TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem){
+		public void ProcessTSQLFragment(TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem,int ArrCount=-1){
 			 if(currentFragment==null)return;
-			 var newItem=AddTSqlFragment(currentFragment.GetType().ToString(), currentFragment, currentObjectTreeViewItem);
+			 var s = currentFragment.GetType().ToString();
+			 if(ArrCount!=-1){
+				s+="["+ArrCount.ToString()+"]";
+			 }
+			 var newItem=AddTSqlFragment(s, currentFragment, currentObjectTreeViewItem);
 
             switch (currentFragment.GetType().ToString())
             {
