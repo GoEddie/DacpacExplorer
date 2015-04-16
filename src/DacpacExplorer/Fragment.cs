@@ -4,7 +4,6 @@
 
 
 
-
 //  Fragment.cs is built from the T4 template fragment.tt.  Do NOT change this file,  change the .tt
 using System;
 using System.Collections.Generic;
@@ -67,9 +66,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Identifiers"+"["+currentFragment.Identifiers.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Identifiers){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -93,9 +94,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Identifiers"+"["+currentFragment.Identifiers.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Identifiers){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -121,9 +124,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Identifiers"+"["+currentFragment.Identifiers.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Identifiers){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -307,9 +312,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Statements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Statements"+"["+currentFragment.Statements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Statements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -335,9 +342,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -361,9 +370,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Definitions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Definitions"+"["+currentFragment.Definitions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Definitions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -387,9 +398,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ResultColumnDefinitions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ResultColumnDefinitions"+"["+currentFragment.ResultColumnDefinitions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ResultColumnDefinitions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -465,9 +478,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -499,9 +514,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -517,9 +534,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Strings",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Strings"+"["+currentFragment.Strings.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Strings){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -527,9 +546,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -567,9 +588,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -577,9 +600,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ViewOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ViewOptions"+"["+currentFragment.ViewOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ViewOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -599,9 +624,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -609,9 +636,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ViewOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ViewOptions"+"["+currentFragment.ViewOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ViewOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -631,9 +660,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -641,9 +672,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ViewOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ViewOptions"+"["+currentFragment.ViewOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ViewOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -703,9 +736,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -713,9 +748,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TriggerActions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TriggerActions"+"["+currentFragment.TriggerActions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TriggerActions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -739,9 +776,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -749,9 +788,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TriggerActions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TriggerActions"+"["+currentFragment.TriggerActions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TriggerActions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -775,9 +816,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -785,9 +828,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TriggerActions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TriggerActions"+"["+currentFragment.TriggerActions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TriggerActions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -807,9 +852,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -831,9 +878,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -841,9 +890,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -865,9 +916,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -875,9 +928,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -899,9 +954,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -909,9 +966,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -961,9 +1020,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -973,9 +1034,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1031,9 +1094,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("XmlNamespacesElements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("XmlNamespacesElements"+"["+currentFragment.XmlNamespacesElements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.XmlNamespacesElements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1083,9 +1148,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1105,9 +1172,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("CommonTableExpressions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("CommonTableExpressions"+"["+currentFragment.CommonTableExpressions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.CommonTableExpressions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1153,9 +1222,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1173,9 +1244,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1193,9 +1266,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1245,9 +1320,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ColumnDefinitions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ColumnDefinitions"+"["+currentFragment.ColumnDefinitions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ColumnDefinitions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1255,9 +1332,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TableConstraints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TableConstraints"+"["+currentFragment.TableConstraints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TableConstraints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1265,9 +1344,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Indexes",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Indexes"+"["+currentFragment.Indexes.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Indexes){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1325,9 +1406,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TableHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TableHints"+"["+currentFragment.TableHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TableHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1347,9 +1430,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1369,9 +1454,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1379,9 +1466,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1407,9 +1496,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexValues",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexValues"+"["+currentFragment.IndexValues.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexValues){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1437,9 +1528,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1457,9 +1550,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("RowValues",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("RowValues"+"["+currentFragment.RowValues.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.RowValues){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1467,9 +1562,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1535,9 +1632,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Values",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Values"+"["+currentFragment.Values.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Values){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1553,9 +1652,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1593,9 +1694,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1615,9 +1718,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ComputeClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ComputeClauses"+"["+currentFragment.ComputeClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ComputeClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1627,9 +1732,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1669,9 +1776,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1697,9 +1806,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1735,9 +1846,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TableHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TableHints"+"["+currentFragment.TableHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TableHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1755,9 +1868,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ColumnValues",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ColumnValues"+"["+currentFragment.ColumnValues.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ColumnValues){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1773,9 +1888,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Pairs",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Pairs"+"["+currentFragment.Pairs.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Pairs){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1851,9 +1968,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("WhenClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("WhenClauses"+"["+currentFragment.WhenClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.WhenClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1873,9 +1992,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("WhenClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("WhenClauses"+"["+currentFragment.WhenClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.WhenClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1909,9 +2030,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Expressions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Expressions"+"["+currentFragment.Expressions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Expressions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1947,9 +2070,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -1977,9 +2102,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2009,9 +2136,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SchemaDeclarationItems",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SchemaDeclarationItems"+"["+currentFragment.SchemaDeclarationItems.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SchemaDeclarationItems){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2057,9 +2186,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("VarArgs",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("VarArgs"+"["+currentFragment.VarArgs.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.VarArgs){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2079,9 +2210,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2089,9 +2222,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2245,9 +2380,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2307,9 +2444,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2327,9 +2466,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2351,9 +2492,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2371,9 +2514,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Partitions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Partitions"+"["+currentFragment.Partitions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Partitions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2417,9 +2562,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2463,9 +2610,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2475,9 +2624,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2507,9 +2658,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2657,9 +2810,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2669,9 +2824,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2719,9 +2876,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Declarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Declarations"+"["+currentFragment.Declarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Declarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2799,9 +2958,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2821,9 +2982,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2899,9 +3062,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2919,9 +3084,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2949,9 +3116,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -2967,9 +3136,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SetClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SetClauses"+"["+currentFragment.SetClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SetClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3103,9 +3274,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Permissions"+"["+currentFragment.Permissions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Permissions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3115,9 +3288,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Principals"+"["+currentFragment.Principals.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Principals){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3135,9 +3310,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Permissions"+"["+currentFragment.Permissions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Permissions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3147,9 +3324,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Principals"+"["+currentFragment.Principals.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Principals){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3167,9 +3346,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Permissions"+"["+currentFragment.Permissions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Permissions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3179,9 +3360,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Principals"+"["+currentFragment.Principals.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Principals){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3199,9 +3382,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Permissions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Permissions"+"["+currentFragment.Permissions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Permissions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3211,9 +3396,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Principals"+"["+currentFragment.Principals.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Principals){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3243,9 +3430,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Identifiers"+"["+currentFragment.Identifiers.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Identifiers){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3253,9 +3442,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3273,9 +3464,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3379,9 +3572,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Privileges",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Privileges"+"["+currentFragment.Privileges.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Privileges){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3391,9 +3586,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3409,9 +3606,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3427,9 +3626,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Users",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Users"+"["+currentFragment.Users.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Users){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3493,9 +3694,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("RowValues",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("RowValues"+"["+currentFragment.RowValues.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.RowValues){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3531,9 +3734,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ColumnValues",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ColumnValues"+"["+currentFragment.ColumnValues.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ColumnValues){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3691,9 +3896,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SequenceOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SequenceOptions"+"["+currentFragment.SequenceOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SequenceOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3739,9 +3946,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SequenceOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SequenceOptions"+"["+currentFragment.SequenceOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SequenceOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3759,9 +3968,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SequenceOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SequenceOptions"+"["+currentFragment.SequenceOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SequenceOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3777,9 +3988,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3795,9 +4008,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3815,9 +4030,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3825,9 +4042,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3847,9 +4066,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3857,9 +4078,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3875,9 +4098,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("DropFiles",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("DropFiles"+"["+currentFragment.DropFiles.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.DropFiles){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3885,9 +4110,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("AddFiles",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("AddFiles"+"["+currentFragment.AddFiles.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.AddFiles){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3897,9 +4124,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -3907,9 +4136,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4019,9 +4250,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4059,9 +4292,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4163,9 +4398,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ConstraintNames",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ConstraintNames"+"["+currentFragment.ConstraintNames.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ConstraintNames){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4189,9 +4426,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4217,9 +4456,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4273,9 +4514,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("DropClusteredConstraintOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("DropClusteredConstraintOptions"+"["+currentFragment.DropClusteredConstraintOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.DropClusteredConstraintOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4291,9 +4534,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("AlterTableDropTableElements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("AlterTableDropTableElements"+"["+currentFragment.AlterTableDropTableElements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.AlterTableDropTableElements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4311,9 +4556,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TriggerNames",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TriggerNames"+"["+currentFragment.TriggerNames.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TriggerNames){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4331,9 +4578,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TriggerNames",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TriggerNames"+"["+currentFragment.TriggerNames.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TriggerNames){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4479,9 +4728,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("RouteOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("RouteOptions"+"["+currentFragment.RouteOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.RouteOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4499,9 +4750,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("RouteOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("RouteOptions"+"["+currentFragment.RouteOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.RouteOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4521,9 +4774,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("RouteOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("RouteOptions"+"["+currentFragment.RouteOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.RouteOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4541,9 +4796,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("QueueOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("QueueOptions"+"["+currentFragment.QueueOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.QueueOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4561,9 +4818,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("QueueOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("QueueOptions"+"["+currentFragment.QueueOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.QueueOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4583,9 +4842,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("QueueOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("QueueOptions"+"["+currentFragment.QueueOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.QueueOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4605,9 +4866,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4615,9 +4878,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4641,9 +4906,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4679,9 +4946,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PromotedPaths",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PromotedPaths"+"["+currentFragment.PromotedPaths.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PromotedPaths){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4695,9 +4964,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4721,9 +4992,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4741,9 +5014,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PromotedPaths",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PromotedPaths"+"["+currentFragment.PromotedPaths.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PromotedPaths){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4761,9 +5036,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4781,9 +5058,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PartitionSchemeColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PartitionSchemeColumns"+"["+currentFragment.PartitionSchemeColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PartitionSchemeColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4799,9 +5078,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4809,9 +5090,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IncludeColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IncludeColumns"+"["+currentFragment.IncludeColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IncludeColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4829,9 +5112,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4883,9 +5168,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4943,9 +5230,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("FullTextIndexColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("FullTextIndexColumns"+"["+currentFragment.FullTextIndexColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.FullTextIndexColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -4957,9 +5246,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5051,9 +5342,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EventTypeGroups",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EventTypeGroups"+"["+currentFragment.EventTypeGroups.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EventTypeGroups){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5125,9 +5418,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ApplicationRoleOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ApplicationRoleOptions"+"["+currentFragment.ApplicationRoleOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ApplicationRoleOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5145,9 +5440,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ApplicationRoleOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ApplicationRoleOptions"+"["+currentFragment.ApplicationRoleOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ApplicationRoleOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5165,9 +5462,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ApplicationRoleOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ApplicationRoleOptions"+"["+currentFragment.ApplicationRoleOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ApplicationRoleOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5311,9 +5610,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("UserOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("UserOptions"+"["+currentFragment.UserOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.UserOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5333,9 +5634,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("UserOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("UserOptions"+"["+currentFragment.UserOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.UserOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5353,9 +5656,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("UserOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("UserOptions"+"["+currentFragment.UserOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.UserOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5379,9 +5684,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Partitions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Partitions"+"["+currentFragment.Partitions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Partitions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5431,9 +5738,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5441,9 +5750,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("StatisticsOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("StatisticsOptions"+"["+currentFragment.StatisticsOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.StatisticsOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5463,9 +5774,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SubElements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SubElements"+"["+currentFragment.SubElements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SubElements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5473,9 +5786,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("StatisticsOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("StatisticsOptions"+"["+currentFragment.StatisticsOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.StatisticsOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5513,9 +5828,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5545,9 +5862,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5681,9 +6000,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IntoVariables",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IntoVariables"+"["+currentFragment.IntoVariables.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IntoVariables){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5713,9 +6034,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Databases",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Databases"+"["+currentFragment.Databases.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Databases){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5731,9 +6054,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5749,9 +6074,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("DropIndexClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("DropIndexClauses"+"["+currentFragment.DropIndexClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.DropIndexClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5789,9 +6116,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5827,9 +6156,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5845,9 +6176,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5863,9 +6196,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5881,9 +6216,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5899,9 +6236,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5917,9 +6256,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5935,9 +6276,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5953,9 +6296,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -5999,9 +6344,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptionalParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptionalParameters"+"["+currentFragment.OptionalParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptionalParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6185,9 +6532,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Commands",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Commands"+"["+currentFragment.Commands.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Commands){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6245,9 +6594,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("FileGroups",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("FileGroups"+"["+currentFragment.FileGroups.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.FileGroups){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6255,9 +6606,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("LogOn",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("LogOn"+"["+currentFragment.LogOn.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.LogOn){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6265,9 +6618,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6289,9 +6644,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6367,9 +6724,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("FileDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("FileDeclarations"+"["+currentFragment.FileDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.FileDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6419,9 +6778,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("FileDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("FileDeclarations"+"["+currentFragment.FileDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.FileDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6529,9 +6890,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6691,9 +7054,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Details",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Details"+"["+currentFragment.Details.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Details){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6793,9 +7158,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Constraints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Constraints"+"["+currentFragment.Constraints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Constraints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6861,9 +7228,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6903,9 +7272,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PartitionRanges",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PartitionRanges"+"["+currentFragment.PartitionRanges.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PartitionRanges){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6959,9 +7330,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -6971,9 +7344,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ReferencedTableColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ReferencedTableColumns"+"["+currentFragment.ReferencedTableColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ReferencedTableColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7001,9 +7376,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7011,9 +7388,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7039,9 +7418,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7049,9 +7430,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("MirrorToClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("MirrorToClauses"+"["+currentFragment.MirrorToClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.MirrorToClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7059,9 +7442,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Devices"+"["+currentFragment.Devices.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Devices){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7077,9 +7462,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Files",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Files"+"["+currentFragment.Files.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Files){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7089,9 +7476,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7099,9 +7488,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("MirrorToClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("MirrorToClauses"+"["+currentFragment.MirrorToClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.MirrorToClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7109,9 +7500,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Devices"+"["+currentFragment.Devices.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Devices){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7129,9 +7522,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7139,9 +7534,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("MirrorToClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("MirrorToClauses"+"["+currentFragment.MirrorToClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.MirrorToClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7149,9 +7546,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Devices"+"["+currentFragment.Devices.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Devices){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7169,9 +7568,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Devices"+"["+currentFragment.Devices.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Devices){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7179,9 +7580,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Files",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Files"+"["+currentFragment.Files.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Files){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7189,9 +7592,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7293,9 +7698,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Devices",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Devices"+"["+currentFragment.Devices.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Devices){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7311,9 +7718,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Items",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Items"+"["+currentFragment.Items.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Items){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7331,9 +7740,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7353,9 +7764,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7371,9 +7784,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ColumnDefinitions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ColumnDefinitions"+"["+currentFragment.ColumnDefinitions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ColumnDefinitions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7383,9 +7798,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7419,9 +7836,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7447,9 +7866,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Literals",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Literals"+"["+currentFragment.Literals.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Literals){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7457,9 +7878,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7513,9 +7936,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("BoundaryValues",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("BoundaryValues"+"["+currentFragment.BoundaryValues.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.BoundaryValues){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7547,9 +7972,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("FileGroups",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("FileGroups"+"["+currentFragment.FileGroups.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.FileGroups){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7567,9 +7994,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7617,9 +8046,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7637,9 +8068,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7685,9 +8118,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("KeyOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("KeyOptions"+"["+currentFragment.KeyOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.KeyOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7739,9 +8174,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("CertificateOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("CertificateOptions"+"["+currentFragment.CertificateOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.CertificateOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7779,9 +8216,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Messages",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Messages"+"["+currentFragment.Messages.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Messages){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7895,9 +8334,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7919,9 +8360,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ProtocolOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ProtocolOptions"+"["+currentFragment.ProtocolOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ProtocolOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7929,9 +8372,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PayloadOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PayloadOptions"+"["+currentFragment.PayloadOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PayloadOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7953,9 +8398,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ProtocolOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ProtocolOptions"+"["+currentFragment.ProtocolOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ProtocolOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7963,9 +8410,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PayloadOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PayloadOptions"+"["+currentFragment.PayloadOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PayloadOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7985,9 +8434,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ProtocolOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ProtocolOptions"+"["+currentFragment.ProtocolOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ProtocolOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -7995,9 +8446,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PayloadOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PayloadOptions"+"["+currentFragment.PayloadOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PayloadOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8207,9 +8660,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EncryptingMechanisms",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EncryptingMechanisms"+"["+currentFragment.EncryptingMechanisms.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EncryptingMechanisms){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8225,9 +8680,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("KeyOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("KeyOptions"+"["+currentFragment.KeyOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.KeyOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8241,9 +8698,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EncryptingMechanisms",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EncryptingMechanisms"+"["+currentFragment.EncryptingMechanisms.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EncryptingMechanisms){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8315,9 +8774,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EncryptingMechanisms",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EncryptingMechanisms"+"["+currentFragment.EncryptingMechanisms.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EncryptingMechanisms){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8335,9 +8796,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8377,9 +8840,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8397,9 +8862,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8419,9 +8886,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ServiceContracts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ServiceContracts"+"["+currentFragment.ServiceContracts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ServiceContracts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8443,9 +8912,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ServiceContracts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ServiceContracts"+"["+currentFragment.ServiceContracts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ServiceContracts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8465,9 +8936,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ServiceContracts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ServiceContracts"+"["+currentFragment.ServiceContracts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ServiceContracts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8507,9 +8980,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8527,9 +9002,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ComputeFunctions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ComputeFunctions"+"["+currentFragment.ComputeFunctions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ComputeFunctions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8537,9 +9014,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ByExpressions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ByExpressions"+"["+currentFragment.ByExpressions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ByExpressions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8567,9 +9046,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("InColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("InColumns"+"["+currentFragment.InColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.InColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8579,9 +9060,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ValueColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ValueColumns"+"["+currentFragment.ValueColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ValueColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8603,9 +9086,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("InColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("InColumns"+"["+currentFragment.InColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.InColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8727,9 +9212,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("GroupingSpecifications",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("GroupingSpecifications"+"["+currentFragment.GroupingSpecifications.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.GroupingSpecifications){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8763,9 +9250,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Items",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Items"+"["+currentFragment.Items.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Items){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8781,9 +9270,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Arguments",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Arguments"+"["+currentFragment.Arguments.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Arguments){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8799,9 +9290,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Arguments",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Arguments"+"["+currentFragment.Arguments.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Arguments){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8825,9 +9318,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Sets",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Sets"+"["+currentFragment.Sets.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Sets){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8843,9 +9338,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SelectColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SelectColumns"+"["+currentFragment.SelectColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SelectColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8861,9 +9358,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SelectColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SelectColumns"+"["+currentFragment.SelectColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SelectColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8873,9 +9372,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IntoTableColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IntoTableColumns"+"["+currentFragment.IntoTableColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IntoTableColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8925,9 +9426,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OrderByElements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OrderByElements"+"["+currentFragment.OrderByElements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OrderByElements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -8999,9 +9502,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SelectElements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SelectElements"+"["+currentFragment.SelectElements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SelectElements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9031,9 +9536,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TableReferences",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TableReferences"+"["+currentFragment.TableReferences.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TableReferences){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9093,9 +9600,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9117,9 +9626,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9139,9 +9650,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PrimaryKeyColumns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PrimaryKeyColumns"+"["+currentFragment.PrimaryKeyColumns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PrimaryKeyColumns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9149,9 +9662,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PrimaryKeyValues",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PrimaryKeyValues"+"["+currentFragment.PrimaryKeyValues.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PrimaryKeyValues){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9159,9 +9674,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9259,9 +9776,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parameters"+"["+currentFragment.Parameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9269,9 +9788,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9309,9 +9830,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9327,9 +9850,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9345,9 +9870,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Objects",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Objects"+"["+currentFragment.Objects.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Objects){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9553,9 +10080,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9571,9 +10100,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9691,9 +10222,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9745,9 +10278,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9809,9 +10344,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9933,9 +10470,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Cryptos",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Cryptos"+"["+currentFragment.Cryptos.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Cryptos){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9953,9 +10492,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Cryptos",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Cryptos"+"["+currentFragment.Cryptos.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Cryptos){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9973,9 +10514,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Cryptos",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Cryptos"+"["+currentFragment.Cryptos.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Cryptos){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -9991,9 +10534,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Notifications",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Notifications"+"["+currentFragment.Notifications.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Notifications){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10071,9 +10616,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SelectElements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SelectElements"+"["+currentFragment.SelectElements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SelectElements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10095,9 +10642,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ConversationHandles",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ConversationHandles"+"["+currentFragment.ConversationHandles.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ConversationHandles){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10179,9 +10728,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10319,9 +10870,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Statements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Statements"+"["+currentFragment.Statements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Statements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10341,9 +10894,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ComputeClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ComputeClauses"+"["+currentFragment.ComputeClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ComputeClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10353,9 +10908,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10379,9 +10936,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Identifiers",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Identifiers"+"["+currentFragment.Identifiers.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Identifiers){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10421,9 +10980,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Batches",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Batches"+"["+currentFragment.Batches.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Batches){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10439,9 +11000,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Statements",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Statements"+"["+currentFragment.Statements.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Statements){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10461,9 +11024,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("OptimizerHints",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("OptimizerHints"+"["+currentFragment.OptimizerHints.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.OptimizerHints){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10485,9 +11050,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ActionClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ActionClauses"+"["+currentFragment.ActionClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ActionClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10531,9 +11098,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SetClauses",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SetClauses"+"["+currentFragment.SetClauses.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SetClauses){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10557,9 +11126,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10579,9 +11150,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10599,9 +11172,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parts"+"["+currentFragment.Parts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10639,9 +11214,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Actions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Actions"+"["+currentFragment.Actions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Actions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10649,9 +11226,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Principals",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Principals"+"["+currentFragment.Principals.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Principals){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10685,9 +11264,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parts"+"["+currentFragment.Parts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10707,9 +11288,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parts"+"["+currentFragment.Parts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10739,9 +11322,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parts"+"["+currentFragment.Parts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10761,9 +11346,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Parts",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Parts"+"["+currentFragment.Parts.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Parts){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10797,9 +11384,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10821,9 +11410,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10847,9 +11438,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -10877,9 +11470,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TargetOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TargetOptions"+"["+currentFragment.TargetOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TargetOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11025,9 +11620,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ResourcePoolParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ResourcePoolParameters"+"["+currentFragment.ResourcePoolParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ResourcePoolParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11057,9 +11654,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("PoolAffinityRanges",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("PoolAffinityRanges"+"["+currentFragment.PoolAffinityRanges.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.PoolAffinityRanges){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11077,9 +11676,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ResourcePoolParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ResourcePoolParameters"+"["+currentFragment.ResourcePoolParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ResourcePoolParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11097,9 +11698,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ResourcePoolParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ResourcePoolParameters"+"["+currentFragment.ResourcePoolParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ResourcePoolParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11127,9 +11730,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("WorkloadGroupParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("WorkloadGroupParameters"+"["+currentFragment.WorkloadGroupParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.WorkloadGroupParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11175,9 +11780,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("WorkloadGroupParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("WorkloadGroupParameters"+"["+currentFragment.WorkloadGroupParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.WorkloadGroupParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11197,9 +11804,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("WorkloadGroupParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("WorkloadGroupParameters"+"["+currentFragment.WorkloadGroupParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.WorkloadGroupParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11229,9 +11838,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("BrokerPriorityParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("BrokerPriorityParameters"+"["+currentFragment.BrokerPriorityParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.BrokerPriorityParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11259,9 +11870,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("BrokerPriorityParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("BrokerPriorityParameters"+"["+currentFragment.BrokerPriorityParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.BrokerPriorityParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11279,9 +11892,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("BrokerPriorityParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("BrokerPriorityParameters"+"["+currentFragment.BrokerPriorityParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.BrokerPriorityParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11403,9 +12018,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EventDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EventDeclarations"+"["+currentFragment.EventDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EventDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11413,9 +12030,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TargetDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TargetDeclarations"+"["+currentFragment.TargetDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TargetDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11423,9 +12042,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SessionOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SessionOptions"+"["+currentFragment.SessionOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SessionOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11443,9 +12064,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EventDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EventDeclarations"+"["+currentFragment.EventDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EventDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11453,9 +12076,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TargetDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TargetDeclarations"+"["+currentFragment.TargetDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TargetDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11463,9 +12088,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SessionOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SessionOptions"+"["+currentFragment.SessionOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SessionOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11483,9 +12110,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EventDeclarationSetParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EventDeclarationSetParameters"+"["+currentFragment.EventDeclarationSetParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EventDeclarationSetParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11493,9 +12122,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EventDeclarationActionParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EventDeclarationActionParameters"+"["+currentFragment.EventDeclarationActionParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EventDeclarationActionParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11551,9 +12182,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TargetDeclarationParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TargetDeclarationParameters"+"["+currentFragment.TargetDeclarationParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TargetDeclarationParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11621,9 +12254,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("DropEventDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("DropEventDeclarations"+"["+currentFragment.DropEventDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.DropEventDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11631,9 +12266,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("DropTargetDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("DropTargetDeclarations"+"["+currentFragment.DropTargetDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.DropTargetDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11643,9 +12280,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("EventDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("EventDeclarations"+"["+currentFragment.EventDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.EventDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11653,9 +12292,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("TargetDeclarations",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("TargetDeclarations"+"["+currentFragment.TargetDeclarations.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.TargetDeclarations){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11663,9 +12304,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SessionOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SessionOptions"+"["+currentFragment.SessionOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SessionOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11707,9 +12350,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("SpatialIndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("SpatialIndexOptions"+"["+currentFragment.SpatialIndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.SpatialIndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11745,9 +12390,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("BoundingBoxParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("BoundingBoxParameters"+"["+currentFragment.BoundingBoxParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.BoundingBoxParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11773,9 +12420,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("GridParameters",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("GridParameters"+"["+currentFragment.GridParameters.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.GridParameters){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11809,9 +12458,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("ProcessAffinityRanges",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("ProcessAffinityRanges"+"["+currentFragment.ProcessAffinityRanges.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.ProcessAffinityRanges){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11839,9 +12490,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11867,9 +12520,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Suboptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Suboptions"+"["+currentFragment.Suboptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Suboptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11897,9 +12552,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11935,9 +12592,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11963,9 +12622,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -11993,9 +12654,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12003,9 +12666,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Databases",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Databases"+"["+currentFragment.Databases.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Databases){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12013,9 +12678,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Replicas",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Replicas"+"["+currentFragment.Replicas.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Replicas){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12033,9 +12700,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12043,9 +12712,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Databases",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Databases"+"["+currentFragment.Databases.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Databases){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12053,9 +12724,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Replicas",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Replicas"+"["+currentFragment.Replicas.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Replicas){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12075,9 +12748,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12085,9 +12760,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Databases",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Databases"+"["+currentFragment.Databases.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Databases){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12095,9 +12772,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Replicas",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Replicas"+"["+currentFragment.Replicas.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Replicas){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12115,9 +12794,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12209,9 +12890,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12299,9 +12982,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Options",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Options"+"["+currentFragment.Options.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Options){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12331,9 +13016,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("Columns",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("Columns"+"["+currentFragment.Columns.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.Columns){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12341,9 +13028,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 								
 								{
-									var newItem=AddTSqlFragment("IndexOptions",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("IndexOptions"+"["+currentFragment.IndexOptions.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.IndexOptions){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -12405,9 +13094,13 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 
 
-		public void ProcessTSQLFragment(TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem){
+		public void ProcessTSQLFragment(TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem,int ArrCount=-1){
 			 if(currentFragment==null)return;
-			 var newItem=AddTSqlFragment(currentFragment.GetType().ToString(), currentFragment, currentObjectTreeViewItem);
+			 var s = currentFragment.GetType().ToString();
+			 if(ArrCount!=-1){
+				s+="["+ArrCount.ToString()+"]";
+			 }
+			 var newItem=AddTSqlFragment(s, currentFragment, currentObjectTreeViewItem);
 
             switch (currentFragment.GetType().ToString())
             {

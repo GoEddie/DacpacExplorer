@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
 //  Fragment.cs is built from the T4 template fragment.tt.  Do NOT change this file,  change the .tt
 using System;
 using System.Collections.Generic;
@@ -109,9 +108,11 @@ namespace DacpacExplorer.TSqlFragmentProcess
 #>
 								
 								{
-									var newItem=AddTSqlFragment("<#=f#>",null, currentObjectTreeViewItem);
+									var newItem=AddTSqlFragment("<#=f#>"+"["+currentFragment.<#=f#>.Count.ToString()+"]",null, currentObjectTreeViewItem);
+									int c=0;
 								foreach(var i in currentFragment.<#=f#>){
-									ProcessTSQLFragment(i,newItem);
+									ProcessTSQLFragment(i,newItem,c);
+									c++;
 								
 								}
 								}
@@ -134,9 +135,13 @@ namespace DacpacExplorer.TSqlFragmentProcess
 
 #>
 
-		public void ProcessTSQLFragment(TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem){
+		public void ProcessTSQLFragment(TSqlFragment currentFragment, TreeViewItem currentObjectTreeViewItem,int ArrCount=-1){
 			 if(currentFragment==null)return;
-			 var newItem=AddTSqlFragment(currentFragment.GetType().ToString(), currentFragment, currentObjectTreeViewItem);
+			 var s = currentFragment.GetType().ToString();
+			 if(ArrCount!=-1){
+				s+="["+ArrCount.ToString()+"]";
+			 }
+			 var newItem=AddTSqlFragment(s, currentFragment, currentObjectTreeViewItem);
 
             switch (currentFragment.GetType().ToString())
             {
