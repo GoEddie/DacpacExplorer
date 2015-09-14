@@ -157,6 +157,7 @@ namespace DacpacExplorer.Pages
 
             foreach (var child in children.OrderBy(p => p, new SqlObjectComparer()))
             {
+                
                 var type = child.ObjectType.Name;
                 var typeContainerHeader = GetContainerHeader(type);
 

@@ -66,6 +66,12 @@ namespace DacpacExplorer.Pages
                 return;
             }
 
+            if (item.ObjectType == ModelSchema.DmlTrigger)
+            {
+                AddPropertiesForDmlTrigger(panel, item);
+                return;
+            }
+
         }
 
 
@@ -170,6 +176,22 @@ namespace DacpacExplorer.Pages
             }
         }
 
+        private void AddPropertiesForDmlTrigger(Panel panel, TSqlObject key)
+        {
+            var duplicateRemover = new Dictionary<string, bool>();
+
+            foreach (var reference in key.GetReferencedRelationshipInstances(DmlTrigger.BodyDependencies))
+            {
+                var name = reference.ObjectName.ToString();
+
+                if (!duplicateRemover.ContainsKey(name))
+                {
+                    panel.Children.Add(GetPropertyLabel("Dependency ", name));
+                    duplicateRemover[name] = true;
+                }
+            }
+        }
+
 
         private void AddPropertiesForColumn(Panel panel, TSqlObject column)
         {
@@ -206,21 +228,24 @@ namespace DacpacExplorer.Pages
         }
 
 
-        public static Label GetPropertyLabel(string name, string val)
+        public static UIElement GetPropertyLabel(string name, string val)
         {
             var displayText = string.Format("{0} = {1}", name, val);
 
-            var label = new Label();
-            label.Content = displayText;
+            var label = new TextBox();
+            label.Text = displayText;
+            label.IsReadOnly = true;
             return label;
         }
         
-        private Label GetSimplePropertyLabel(string value)
+        private UIElement GetSimplePropertyLabel(string value)
         {
             var displayText = value;
 
-            var label = new Label();
-            label.Content = displayText;
+            var label = new TextBox();
+            label.IsReadOnly = true;
+            label.Text = displayText;
+           
             return label;
         }
 

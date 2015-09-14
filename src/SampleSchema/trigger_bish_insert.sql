@@ -6,4 +6,10 @@
 		SET NOCOUNT ON
 		if exists(select * from inserted where Tosh = 99)
 			raiserror('errrrrrrm', 2, 1)
+	
+	
+			if exists(select * from dbo.Bing)
+				raiserror('errrrrrrm', 2, 1)
+				
 	END
+		
